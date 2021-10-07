@@ -65,14 +65,9 @@ export default function HomeScreen() {
     blockContainer: {
       justifyContent: 'center',
       marginBottom: hp('4%'),
-    },
-    flatListContainer: {
-      margin: wp('5%'),
-      paddingBottom: 0,
-    },
-    flatListItems: {
-      marginHorizontal: wp('3.5%'),
-      justifyContent: 'space-between',
+      display: 'flex',
+      flexDirection: 'row',
+      flexWrap: 'wrap',
     },
     lottie: {
       alignSelf: 'center',
@@ -113,14 +108,11 @@ export default function HomeScreen() {
         </View>
         <Badges />
         <View style={styles.blockContainer}>
-          <FlatList
-            data={exercises}
-            renderItem={({
-              item: {id, exerciseName, page, exercise, type, category},
-              index,
-            }: any) => (
+          {exercises.map(
+            ({id, exerciseName, page, exercise, type, category}, index) => (
               <Block
-                id={id}
+                key={id}
+                id={id.toString()}
                 title={exerciseName}
                 onPress={() =>
                   navigate(page, {
@@ -134,11 +126,8 @@ export default function HomeScreen() {
                 category={category}
                 delay={index * 400}
               />
-            )}
-            keyExtractor={({id}) => id}
-            numColumns={2}
-            columnWrapperStyle={styles.flatListItems}
-          />
+            )
+          )}
         </View>
       </ScrollView>
     </View>
