@@ -75,51 +75,54 @@ export default function useGetAnimation(
 
   useEffect(() => {
     if (beginExercise) {
-      if (type === 1) {
-        instructions.value = withRepeat(
-          withSequence(
-            withTiming('IN', {duration: secToMill(exercise[0])}),
-            withTiming('HOLD', {duration: secToMill(exercise[1])}),
-            withTiming('OUT', {duration: secToMill(exercise[2])}),
-            withTiming('HOLD', {duration: secToMill(exercise[3])})
-          ),
-          -1,
-          false
-        );
-      } else if (type === 2) {
-        instructions.value = withRepeat(
-          withSequence(
-            withTiming('IN', {duration: secToMill(exercise[0])}),
-            withTiming('OUT', {duration: secToMill(exercise[2])}),
-            withTiming('HOLD', {duration: secToMill(exercise[3])})
-          ),
-          -1,
-          false
-        );
-      } else if (type === 3) {
-        instructions.value = withRepeat(
-          withSequence(
-            withTiming('IN', {duration: secToMill(exercise[0])}),
-            withTiming('HOLD', {duration: secToMill(exercise[1])}),
-            withTiming('OUT', {duration: secToMill(exercise[2])})
-          ),
-          -1,
-          false
-        );
-      } else if (type === 4) {
-        instructions.value = withRepeat(
-          withSequence(
-            withTiming('IN', {duration: secToMill(exercise[0])}),
-            withTiming('OUT', {duration: secToMill(exercise[2])})
-          ),
-          -1,
-          false
-        );
-      }
+      withTiming(IN, {duration: secToMill(exercise[0])});
+      withTiming(HOLD, {duration: secToMill(exercise[1])});
+      withTiming(OUT, {duration: secToMill(exercise[2])});
+      withTiming(HOLD, {duration: secToMill(exercise[3])});
+
+      // if (type === 1) {
+      //   instructions.value = withRepeat(
+      //     withSequence(
+      //       withTiming(IN, {duration: secToMill(exercise[0])}),
+      //       withTiming(HOLD, {duration: secToMill(exercise[1])}),
+      //       withTiming(OUT, {duration: secToMill(exercise[2])}),
+      //       withTiming(HOLD, {duration: secToMill(exercise[3])})
+      //     ),
+      //     -1,
+      //     false
+      //   );
+      // } else if (type === 2) {
+      //   instructions.value = withRepeat(
+      //     withSequence(
+      //       withTiming(IN, {duration: secToMill(exercise[0])}),
+      //       withTiming(OUT, {duration: secToMill(exercise[2])}),
+      //       withTiming(HOLD, {duration: secToMill(exercise[3])})
+      //     ),
+      //     -1,
+      //     false
+      //   );
+      // } else if (type === 3) {
+      //   instructions.value = withRepeat(
+      //     withSequence(
+      //       withTiming(IN, {duration: secToMill(exercise[0])}),
+      //       withTiming(HOLD, {duration: secToMill(exercise[1])}),
+      //       withTiming(OUT, {duration: secToMill(exercise[2])})
+      //     ),
+      //     -1,
+      //     false
+      //   );
+      // } else if (type === 4) {
+      //   instructions.value = withRepeat(
+      //     withSequence(
+      //       withTiming(IN, {duration: secToMill(exercise[0])}),
+      //       withTiming(OUT, {duration: secToMill(exercise[2])})
+      //     ),
+      //     -1,
+      //     false
+      //   );
+      // }
     }
   }, [beginExercise]);
-
-  console.log({instructions});
 
   useEffect(() => {
     scale.value = withDelay(450, withSpring(1));
@@ -131,7 +134,7 @@ export default function useGetAnimation(
     }
   });
 
-  const handleBeginExercise = (cond: boolean): void => {
+  function handleBeginExercise(cond: boolean): void {
     setStartCountdown(true);
     if (cond) {
       setTimeout(() => {
@@ -140,7 +143,7 @@ export default function useGetAnimation(
     } else {
       setBeginExercise(cond);
     }
-  };
+  }
 
   function reset(): void {
     setSeconds(0);
