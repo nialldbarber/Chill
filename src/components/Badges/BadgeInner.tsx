@@ -17,9 +17,10 @@ import {filterBySelectedBadge} from '../../store/slices/exercises';
 type BadgeInnerProps = {
   i: number;
   item: string;
+  press: () => void;
 };
 
-export default function BadgeInner({i, item}: BadgeInnerProps) {
+export default function BadgeInner({i, item, press}: BadgeInnerProps) {
   const {colors} = useTheme();
 
   const styles = StyleSheet.create({
@@ -50,12 +51,19 @@ export default function BadgeInner({i, item}: BadgeInnerProps) {
     transform: [{scale: scale.value}],
   }));
 
+  function handleFilter(): void {
+    setTimeout(() => {
+      dispatch(filterBySelectedBadge(feelings[i]));
+    }, 200);
+  }
+
   return (
     <TouchableOpacity
       key={i}
       activeOpacity={1}
       onPress={() => {
-        dispatch(filterBySelectedBadge(feelings[i]));
+        handleFilter();
+        press();
       }}
       onPressIn={() => (scale.value = withSpring(1.05))}
       onPressOut={() => (scale.value = withSpring(1))}

@@ -10,7 +10,6 @@ import {
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
-  withDelay,
   withSpring,
   withTiming,
 } from 'react-native-reanimated';
@@ -25,13 +24,7 @@ type BlockProps = {
   onPress?: () => void;
 };
 
-export default function Block({
-  id,
-  title,
-  category = '',
-  delay,
-  onPress,
-}: BlockProps) {
+export default function Block({id, title, category = '', onPress}: BlockProps) {
   const {colors} = useTheme();
 
   const styles = StyleSheet.create({
@@ -79,26 +72,11 @@ export default function Block({
   });
 
   const navigation = useNavigation();
-
-  const block = useSharedValue<number>(0);
   const scale = useSharedValue<number>(1);
-
-  const blockStyle = useAnimatedStyle(() => ({
-    opacity: block.value,
-  }));
 
   const blockHover = useAnimatedStyle(() => ({
     transform: [{scale: scale.value}],
   }));
-
-  useEffect(() => {
-    block.value = withDelay(
-      delay,
-      withTiming(1, {
-        duration: 1000,
-      })
-    );
-  }, [block, delay]);
 
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
@@ -108,7 +86,7 @@ export default function Block({
   }, [navigation, scale]);
 
   return (
-    <Animated.View style={[{...styles.block}, blockStyle, blockHover]}>
+    <Animated.View style={[{...styles.block}, blockHover]}>
       <SharedElement id={id}>
         <Animated.View style={[styles.blockIndicator]} />
       </SharedElement>

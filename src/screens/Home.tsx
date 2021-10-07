@@ -79,6 +79,7 @@ export default function HomeScreen() {
   const exercises = useSelector(selectBadges);
   const headerOpacity = useSharedValue<number>(0);
   const subHeaderOpacity = useSharedValue<number>(0);
+  const listOpacity = useSharedValue<number>(1);
 
   const colorStyle = useAnimatedStyle(() => ({
     opacity: headerOpacity.value,
@@ -88,10 +89,21 @@ export default function HomeScreen() {
     opacity: subHeaderOpacity.value,
   }));
 
+  const listStyles = useAnimatedStyle(() => ({
+    opacity: listOpacity.value,
+  }));
+
   useEffect(() => {
     headerOpacity.value = withTiming(1, {duration: 1000});
     subHeaderOpacity.value = withDelay(1000, withTiming(1, {duration: 1000}));
   }, [headerOpacity, subHeaderOpacity]);
+
+  function handleSelectFromList(): void {
+    listOpacity.value = withTiming(0);
+    setTimeout(() => {
+      listOpacity.value = withTiming(1);
+    }, 500);
+  }
 
   return (
     <View style={styles.container}>
@@ -106,8 +118,8 @@ export default function HomeScreen() {
             How would you like to feel today?
           </Animated.Text>
         </View>
-        <Badges />
-        <View style={styles.blockContainer}>
+        <Badges press={() => handleSelectFromList()} />
+        <Animated.View style={[{...styles.blockContainer}, listStyles]}>
           {exercises.map(
             ({id, exerciseName, page, exercise, type, category}, index) => (
               <Block
@@ -128,7 +140,7 @@ export default function HomeScreen() {
               />
             )
           )}
-        </View>
+        </Animated.View>
       </ScrollView>
     </View>
   );
