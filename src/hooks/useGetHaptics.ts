@@ -1,8 +1,8 @@
 import {useEffect} from 'react';
 import Animated from 'react-native-reanimated';
-import {getAnimatedTextFormatted} from '../utils/animated-text';
-import {impactAsync} from '../utils/haptics';
-import {Instruct} from '../screens/Exercise';
+import {getAnimatedTextFormatted} from '~/utils/animated-text';
+import {impactAsync} from '~/utils/haptics';
+import {Instruct} from '~/screens/Exercise';
 
 export default function useGetHaptics(
   instructions: Animated.SharedValue<Instruct>

@@ -2,6 +2,7 @@ import React from 'react';
 import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
 import {useTheme} from '@react-navigation/native';
 import Animated from 'react-native-reanimated';
+import {SharedElement} from 'react-navigation-shared-element';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -9,17 +10,16 @@ import {
 import {StackNavigationProp} from '@react-navigation/stack';
 import {useNavigation} from '@react-navigation/native';
 import {ReText} from 'react-native-redash';
-import {RootStackParamList} from '../components/Navigators/RootNavigator';
-import useGetAnimation from '../hooks/useGetAnimation';
-import useGetHaptics from '../hooks/useGetHaptics';
-import ExerciseButton from '../components/Exercise/Button';
-import ExerciseTitle from '../components/Exercise/Title';
-import BackIcon from '../components/Icons/Back';
-import InstructionsContainer from '../components/Exercise/Icons/InstructionContainer';
-import {getTime} from '../utils/time';
-import {SHADOW, WIDTH, HEIGHT} from '../constants/theme';
-import {FEELINGS_COLOR_MAP} from '../constants/exercises';
-import {SharedElement} from 'react-navigation-shared-element';
+import {RootStackParamList} from '~/components/Navigators/RootNavigator';
+import useGetAnimation from '~/hooks/useGetAnimation';
+import useGetHaptics from '~/hooks/useGetHaptics';
+import ExerciseButton from '~/components/Exercise/Button';
+import ExerciseTitle from '~/components/Exercise/Title';
+import BackIcon from '~/components/Icons/Back';
+import InstructionsContainer from '~/components/Exercise/Icons/InstructionContainer';
+import {getTime} from '~/utils/time';
+import {SHADOW, WIDTH, HEIGHT} from '~/constants/theme';
+import {FEELINGS_COLOR_MAP} from '~/constants/exercises';
 
 export type Instruct = number | string;
 type breathingScreenProp = StackNavigationProp<RootStackParamList, 'Exercise'>;

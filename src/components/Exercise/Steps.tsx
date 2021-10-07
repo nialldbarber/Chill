@@ -4,7 +4,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import {COLORS} from '../../constants/theme';
+import {COLORS} from '~/constants/theme';
 
 type StepsProps = {
   exercise: number[];

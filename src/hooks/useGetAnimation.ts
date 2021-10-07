@@ -9,11 +9,11 @@ import Animated, {
   withSpring,
   withDelay,
 } from 'react-native-reanimated';
-import useInterval from './useInterval';
-import {secToMill} from '../utils/time';
-import {WIDTH, ORIGINAL_SIZE} from '../constants/theme';
-import {IN, OUT, HOLD} from '../constants/exercises';
-import {Instruct} from '../screens/Exercise';
+import useInterval from '~/hooks/useInterval';
+import {secToMill} from '~/utils/time';
+import {WIDTH, ORIGINAL_SIZE} from '~/constants/theme';
+import {IN, OUT, HOLD} from '~/constants/exercises';
+import {Instruct} from '~/screens/Exercise';
 
 type AnimationT = {
   startCountdown: boolean;

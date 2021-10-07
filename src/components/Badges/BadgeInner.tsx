@@ -1,5 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {useDispatch} from 'react-redux';
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -10,8 +11,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import {feelings} from '../../constants/exercises';
-import {useDispatch} from 'react-redux';
+import {feelings} from '~/constants/exercises';
 import {filterBySelectedBadge} from '../../store/slices/exercises';
 
 type BadgeInnerProps = {

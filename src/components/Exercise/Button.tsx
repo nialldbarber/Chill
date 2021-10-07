@@ -5,8 +5,8 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import Loader from '../Loader';
-import {impactAsync} from '../../utils/haptics';
+import Loader from '~/components/Loader';
+import {impactAsync} from '~/utils/haptics';
 
 type ExerciseButtonProps = {
   startCountdown: boolean;

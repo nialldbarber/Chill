@@ -10,7 +10,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import {impactAsync} from '../../utils/haptics';
+import {impactAsync} from '~/utils/haptics';
 
 export default function Loader({active}: {active: boolean}) {
   const {colors} = useTheme();

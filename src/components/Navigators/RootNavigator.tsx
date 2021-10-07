@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {createSharedElementStackNavigator} from 'react-navigation-shared-element';
-import HomeScreen from '../../screens/Home';
-import ExerciseScreen from '../../screens/Exercise';
+import HomeScreen from '~/screens/Home';
+import ExerciseScreen from '~/screens/Exercise';
 
 export type RootStackParamList = {
   Home: undefined;

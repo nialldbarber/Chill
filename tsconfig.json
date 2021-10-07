@@ -13,17 +13,19 @@
     "esModuleInterop": true,
     "skipLibCheck": false,
     "resolveJsonModule": true,
+    "baseUrl": ".",
     "paths": {
       "*": ["./src/*"],
-      "@/components/*": ["./src/components/*"],
-      "@/constants/*": ["./src/constants/*"],
-      "@/hooks/*": ["./src/hooks/*"],
-      "@/screens/*": ["./src/screens/*"],
-      "@/styles/*": ["./src/styles/*"],
-      "@/utils/*": ["./src/utils/*"],
-      "@/assets/*": ["./assets/*"],
-      "@/store/*": ["./store/*"],
-    }    
+      "~/components/*": ["./src/components/*"],
+      "~/constants/*": ["./src/constants/*"],
+      "~/hooks/*": ["./src/hooks/*"],
+      "~/screens/*": ["./src/screens/*"],
+      "~/styles/*": ["./src/styles/*"],
+      "~/types/*": ["./src/types/*"],
+      "~/utils/*": ["./src/utils/*"],
+      "~/assets/*": ["./assets/*"],
+      "~/store/*": ["./store/*"]
+    }
   },
   "exclude": [
     "node_modules", "babel.config.js", "metro.config.js", "jest.config.js"

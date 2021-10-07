@@ -13,8 +13,8 @@ import Animated, {
   withSpring,
   withTiming,
 } from 'react-native-reanimated';
-import AnimatedText from '../Text';
-import {FEELINGS_COLOR_MAP} from '../../constants/exercises';
+import AnimatedText from '~/components/Text';
+import {FEELINGS_COLOR_MAP} from '~/constants/exercises';
 
 type BlockProps = {
   id?: string;
