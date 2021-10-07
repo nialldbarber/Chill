@@ -23,7 +23,6 @@ export default function RootNavigator() {
         sharedElements={(route, otherRoute, showing) => {
           if (otherRoute.name === 'Home' && showing) {
             const {exerciseName, id} = route.params;
-            console.log(exerciseName);
             return [exerciseName, `${id}`];
           }
         }}

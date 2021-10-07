@@ -12,7 +12,7 @@ import Animated, {
 import useInterval from './useInterval';
 import {secToMill} from '../utils/time';
 import {WIDTH, ORIGINAL_SIZE} from '../constants/theme';
-import {IN, OUT, HOLD} from '../constants/ exercises';
+import {IN, OUT, HOLD} from '../constants/exercises';
 import {Instruct} from '../screens/Exercise';
 
 type AnimationT = {
@@ -78,10 +78,10 @@ export default function useGetAnimation(
       if (type === 1) {
         instructions.value = withRepeat(
           withSequence(
-            withTiming(IN, {duration: secToMill(exercise[0])}),
-            withTiming(HOLD, {duration: secToMill(exercise[1])}),
-            withTiming(OUT, {duration: secToMill(exercise[2])}),
-            withTiming(HOLD, {duration: secToMill(exercise[3])})
+            withTiming('IN', {duration: secToMill(exercise[0])}),
+            withTiming('HOLD', {duration: secToMill(exercise[1])}),
+            withTiming('OUT', {duration: secToMill(exercise[2])}),
+            withTiming('HOLD', {duration: secToMill(exercise[3])})
           ),
           -1,
           false
@@ -89,9 +89,9 @@ export default function useGetAnimation(
       } else if (type === 2) {
         instructions.value = withRepeat(
           withSequence(
-            withTiming(IN, {duration: secToMill(exercise[0])}),
-            withTiming(OUT, {duration: secToMill(exercise[2])}),
-            withTiming(HOLD, {duration: secToMill(exercise[3])})
+            withTiming('IN', {duration: secToMill(exercise[0])}),
+            withTiming('OUT', {duration: secToMill(exercise[2])}),
+            withTiming('HOLD', {duration: secToMill(exercise[3])})
           ),
           -1,
           false
@@ -99,9 +99,9 @@ export default function useGetAnimation(
       } else if (type === 3) {
         instructions.value = withRepeat(
           withSequence(
-            withTiming(IN, {duration: secToMill(exercise[0])}),
-            withTiming(HOLD, {duration: secToMill(exercise[1])}),
-            withTiming(OUT, {duration: secToMill(exercise[2])})
+            withTiming('IN', {duration: secToMill(exercise[0])}),
+            withTiming('HOLD', {duration: secToMill(exercise[1])}),
+            withTiming('OUT', {duration: secToMill(exercise[2])})
           ),
           -1,
           false
@@ -109,8 +109,8 @@ export default function useGetAnimation(
       } else if (type === 4) {
         instructions.value = withRepeat(
           withSequence(
-            withTiming(IN, {duration: secToMill(exercise[0])}),
-            withTiming(OUT, {duration: secToMill(exercise[2])})
+            withTiming('IN', {duration: secToMill(exercise[0])}),
+            withTiming('OUT', {duration: secToMill(exercise[2])})
           ),
           -1,
           false
@@ -118,6 +118,8 @@ export default function useGetAnimation(
       }
     }
   }, [beginExercise]);
+
+  console.log({instructions});
 
   useEffect(() => {
     scale.value = withDelay(450, withSpring(1));

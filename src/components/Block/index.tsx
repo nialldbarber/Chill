@@ -15,7 +15,7 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import AnimatedText from '../Text';
-import {FEELINGS_COLOR_MAP} from '../../constants/ exercises';
+import {FEELINGS_COLOR_MAP} from '../../constants/exercises';
 
 type BlockProps = {
   id?: string;

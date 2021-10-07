@@ -18,7 +18,7 @@ import BackIcon from '../components/Icons/Back';
 import InstructionsContainer from '../components/Exercise/Icons/InstructionContainer';
 import {getTime} from '../utils/time';
 import {SHADOW, WIDTH, HEIGHT} from '../constants/theme';
-import {FEELINGS_COLOR_MAP} from '../constants/ exercises';
+import {FEELINGS_COLOR_MAP} from '../constants/exercises';
 import {SharedElement} from 'react-navigation-shared-element';
 
 export type Instruct = number | string;
