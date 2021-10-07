@@ -21,14 +21,14 @@ type BlockProps = {
   id?: string;
   title: string;
   delay: number;
-  category: string;
+  category?: string;
   onPress?: () => void;
 };
 
 export default function Block({
   id,
   title,
-  category,
+  category = '',
   delay,
   onPress,
 }: BlockProps) {

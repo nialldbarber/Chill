@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {StyleSheet, ScrollView, View, FlatList} from 'react-native';
+import {StyleSheet, ScrollView, View} from 'react-native';
 import {useTheme} from '@react-navigation/native';
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
@@ -26,7 +26,7 @@ import lottie from '../assets/landscape.json';
 export type homeScreenProp = StackNavigationProp<RootStackParamList, 'Home'>;
 
 export default function HomeScreen() {
-  const {colors, normalize} = useTheme();
+  const {colors, normalize} = useTheme() as any;
 
   const styles = StyleSheet.create({
     container: {
@@ -75,7 +75,7 @@ export default function HomeScreen() {
     },
   });
 
-  const {navigate} = useNavigation<homeScreenProp>();
+  const {navigate} = useNavigation<homeScreenProp>() as any;
   const exercises = useSelector(selectBadges);
   const headerOpacity = useSharedValue<number>(0);
   const subHeaderOpacity = useSharedValue<number>(0);
@@ -91,7 +91,7 @@ export default function HomeScreen() {
   useEffect(() => {
     headerOpacity.value = withTiming(1, {duration: 1000});
     subHeaderOpacity.value = withDelay(1000, withTiming(1, {duration: 1000}));
-  }, []);
+  }, [headerOpacity, subHeaderOpacity]);
 
   return (
     <View style={styles.container}>
@@ -124,7 +124,7 @@ export default function HomeScreen() {
                   })
                 }
                 category={category}
-                delay={index * 400}
+                delay={400 * (index + 1)}
               />
             )
           )}
