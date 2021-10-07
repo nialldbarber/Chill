@@ -15,13 +15,13 @@ import Animated, {
   withDelay,
   withTiming,
 } from 'react-native-reanimated';
-import {selectBadges} from '../store/selectors/exercises';
+import {selectBadges} from '~/store/selectors/exercises';
 import {getCurrentTime} from '~/utils/get-date';
 import Block from '~/components/Block';
 import {RootStackParamList} from '~/components/Navigators/RootNavigator';
 import Badges from '~/components/Badges';
 import ModalIcon from '~/components/Modal';
-import lottie from '../assets/landscape.json';
+import lottie from '~/assets/landscape.json';
 
 export type homeScreenProp = StackNavigationProp<RootStackParamList, 'Home'>;
 
