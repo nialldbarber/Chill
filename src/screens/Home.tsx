@@ -3,6 +3,7 @@ import {StyleSheet, ScrollView, View, FlatList} from 'react-native';
 import {useTheme} from '@react-navigation/native';
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
+import {useSelector} from 'react-redux';
 import LottieView from 'lottie-react-native';
 import {
   widthPercentageToDP as wp,
@@ -20,9 +21,7 @@ import Block from '../components/Block';
 import {RootStackParamList} from '../components/Navigators/RootNavigator';
 import Badges from '../components/Badges';
 import ModalIcon from '../components/Modal';
-import {useSelector} from 'react-redux';
-
-const lottie = require('../assets/landscape.json');
+import lottie from '../assets/landscape.json';
 
 export type homeScreenProp = StackNavigationProp<RootStackParamList, 'Home'>;
 
@@ -70,6 +69,10 @@ export default function HomeScreen() {
     flatListContainer: {
       margin: wp('5%'),
       paddingBottom: 0,
+    },
+    flatListItems: {
+      marginHorizontal: wp('3.5%'),
+      justifyContent: 'space-between',
     },
     lottie: {
       alignSelf: 'center',
@@ -134,10 +137,7 @@ export default function HomeScreen() {
             )}
             keyExtractor={({id}) => id}
             numColumns={2}
-            columnWrapperStyle={{
-              marginHorizontal: wp('3.5%'),
-              justifyContent: 'space-between',
-            }}
+            columnWrapperStyle={styles.flatListItems}
           />
         </View>
       </ScrollView>

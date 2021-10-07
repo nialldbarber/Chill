@@ -78,7 +78,7 @@ export default function Block({
     },
   });
 
-  const navigation = useNavigation() as any;
+  const navigation = useNavigation();
 
   const block = useSharedValue<number>(0);
   const scale = useSharedValue<number>(1);
@@ -98,14 +98,14 @@ export default function Block({
         duration: 1000,
       })
     );
-  }, []);
+  }, [block, delay]);
 
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
       scale.value = withTiming(1);
     });
     return unsubscribe;
-  }, [navigation]);
+  }, [navigation, scale]);
 
   return (
     <Animated.View style={[{...styles.block}, blockStyle, blockHover]}>

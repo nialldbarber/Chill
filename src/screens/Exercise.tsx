@@ -14,7 +14,6 @@ import useGetAnimation from '../hooks/useGetAnimation';
 import useGetHaptics from '../hooks/useGetHaptics';
 import ExerciseButton from '../components/Exercise/Button';
 import ExerciseTitle from '../components/Exercise/Title';
-// import ModalIcon from '../components/Modal';
 import BackIcon from '../components/Icons/Back';
 import InstructionsContainer from '../components/Exercise/Icons/InstructionContainer';
 import {getTime} from '../utils/time';
@@ -127,7 +126,6 @@ export default function BreathingExerciseScreen({route}: {route: any}) {
           activeOpacity={1}
           onPress={() => navigate('Home')}
         >
-          {/* <Icon name="arrow-back" type="material" color={colors.text} /> */}
           <BackIcon />
         </TouchableOpacity>
         {/* <ModalIcon modalScreen="BreathingInfoModal" mode="dark" /> */}
