@@ -1,12 +1,12 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export const HAS_LAUNCHED = 'hasLaunched';
+export const HAS_LAUNCHED = '@has_launched';
 
-function setAppLaunched() {
+function setAppLaunched(): void {
   AsyncStorage.setItem(HAS_LAUNCHED, 'true');
 }
 
-export default async function checkIfFirstLaunch() {
+export default async function checkIfFirstLaunch(): Promise<boolean> {
   try {
     const hasLaunched = await AsyncStorage.getItem(HAS_LAUNCHED);
     if (hasLaunched === null) {
