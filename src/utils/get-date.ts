@@ -1,4 +1,4 @@
-export function getCurrentTime(): string {
+export function timeOfDayGreeting(): string {
   let message: string;
   const today = new Date();
   const hours = today.getHours();

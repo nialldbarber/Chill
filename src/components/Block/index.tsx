@@ -19,7 +19,6 @@ import {FEELINGS_COLOR_MAP} from '~/constants/exercises';
 type BlockProps = {
   id?: string;
   title: string;
-  delay: number;
   category?: string;
   onPress?: () => void;
 };
