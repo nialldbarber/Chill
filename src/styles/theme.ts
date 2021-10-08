@@ -14,28 +14,45 @@ export default function getTheme(scheme: any): Theme {
     ios: Platform.OS === 'ios',
     margin: normalize(20, 35),
     colors: {
-      white: '#ffffff',
       primary: '#ff6b6b',
-      primaryFaded: 'rgba(255, 107, 107, 0.45)',
-      calm: '#9CE2FF',
-      calmFaded: 'rgba(156, 226, 255, 0.45)',
-      calmDeep: '#2098c9',
-
-      night: '#d49cff',
-      nightFaded: 'rgba(212, 156, 255, 0.45)',
-      nightDeep: '#7f48a8',
-
-      primaryDeep: '#e85151',
-      success: '#20bf6b',
-      warning: '#f39c12',
-      error: '#e74c3c',
-      text: dark ? '#FFFFFF' : '#2D3047',
       background: dark ? '#2D3047' : '#FFFFFF',
-      lightGrey: '#f7f7f7',
+      card: '#FFFFFF',
+      text: dark ? '#FFFFFF' : '#2D3047',
       border: dark ? '#FFFFFF' : '#1a1a1a',
-      button: dark ? '#1a1a1a' : '#FFFFFF',
+      notification: '',
     },
     // font: Platform.OS === 'ios' ? 'Avenir Next' : 'Roboto',
     normalize,
   };
 }
+
+export const fixedColors: Record<string, string> = {
+  white: '#ffffff',
+  primary: '#ff6b6b',
+  primaryFaded: 'rgba(255, 107, 107, 0.45)',
+  calm: '#9CE2FF',
+  calmFaded: 'rgba(156, 226, 255, 0.45)',
+  calmDeep: '#2098c9',
+
+  night: '#d49cff',
+  nightFaded: 'rgba(212, 156, 255, 0.45)',
+  nightDeep: '#7f48a8',
+
+  primaryDeep: '#e85151',
+  success: '#20bf6b',
+  warning: '#f39c12',
+  error: '#e74c3c',
+  lightGrey: '#f7f7f7',
+};
+
+export const FADED_BACKGROUND: Record<string, string> = {
+  calm: fixedColors.calmFaded,
+  energy: fixedColors.primaryFaded,
+  night: fixedColors.nightFaded,
+};
+
+export const DEEP_BACKGROUND: Record<string, string> = {
+  calm: fixedColors.calmDeep,
+  energy: fixedColors.primaryDeep,
+  night: fixedColors.nightDeep,
+};

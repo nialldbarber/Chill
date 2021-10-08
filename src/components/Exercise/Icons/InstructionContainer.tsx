@@ -6,7 +6,7 @@ import Out from '~/components/Exercise/Icons/Out';
 import Hold from '~/components/Exercise/Icons/Hold';
 
 type InstructionsContainerProps = {
-  type: number;
+  type: number | undefined;
   exercise: number[];
 };
 
@@ -22,7 +22,7 @@ export default function InstructionsContainer({
     },
   });
 
-  const getType = () => {
+  function getType() {
     switch (type) {
       case 1:
         return (
@@ -107,7 +107,7 @@ export default function InstructionsContainer({
       default:
         return null;
     }
-  };
+  }
 
   return <View style={styles.container}>{getType()}</View>;
 }

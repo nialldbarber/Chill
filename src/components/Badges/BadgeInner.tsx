@@ -1,18 +1,19 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import {useDispatch} from 'react-redux';
+import {useTheme} from '@react-navigation/native';
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
   withSpring,
 } from 'react-native-reanimated';
-import {useTheme} from '@react-navigation/native';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import {feelings} from '~/constants/exercises';
 import {filterBySelectedBadge} from '../../store/slices/exercises';
+import {fixedColors} from '~/styles/theme';
+import {feelings} from '~/constants/exercises';
 
 type BadgeInnerProps = {
   i: number;
@@ -29,7 +30,7 @@ export default function BadgeInner({i, item, press}: BadgeInnerProps) {
       marginBottom: hp('4%'),
     },
     badge: {
-      backgroundColor: colors.primaryFaded,
+      backgroundColor: fixedColors.primaryFaded,
       paddingHorizontal: 12,
       paddingVertical: 6,
       borderRadius: 20,
@@ -45,8 +46,8 @@ export default function BadgeInner({i, item, press}: BadgeInnerProps) {
   });
 
   const dispatch = useDispatch();
-
   const scale = useSharedValue(1);
+
   const scaleStyles = useAnimatedStyle(() => ({
     transform: [{scale: scale.value}],
   }));

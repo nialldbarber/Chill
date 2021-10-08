@@ -18,27 +18,23 @@ import ExerciseTitle from '~/components/Exercise/Title';
 import BackIcon from '~/components/Icons/Back';
 import InstructionsContainer from '~/components/Exercise/Icons/InstructionContainer';
 import {getTime} from '~/utils/time';
+import {fixedColors, FADED_BACKGROUND, DEEP_BACKGROUND} from '~/styles/theme';
 import {SHADOW, WIDTH, HEIGHT} from '~/constants/theme';
-import {FEELINGS_COLOR_MAP} from '~/constants/exercises';
+import {ConfigT, FEELINGS_COLOR_MAP} from '~/constants/exercises';
+
+type RouteT = {
+  key: string;
+  name: string;
+  params: ConfigT;
+  path: undefined;
+};
 
 export type Instruct = number | string;
 type breathingScreenProp = StackNavigationProp<RootStackParamList, 'Exercise'>;
 
-export default function BreathingExerciseScreen({route}: {route: any}) {
+export default function ExerciseScreen({route}: {route: RouteT}) {
   const {id, exerciseName, exercise, type, category} = route.params;
   const {colors} = useTheme();
-
-  const FADED_BACKGROUND: Record<string, string> = {
-    calm: colors.calmFaded,
-    energy: colors.primaryFaded,
-    night: colors.nightFaded,
-  };
-
-  const DEEP_BACKGROUND: Record<string, string> = {
-    calm: colors.calmDeep,
-    energy: colors.primaryDeep,
-    night: colors.nightDeep,
-  };
 
   const styles = StyleSheet.create({
     container: {
@@ -47,8 +43,8 @@ export default function BreathingExerciseScreen({route}: {route: any}) {
     },
     timer: {
       position: 'absolute',
-      fontSize: 20,
-      top: 50,
+      fontSize: wp('5%'),
+      top: hp('6%'),
       color: colors.text,
     },
     back: {
@@ -67,7 +63,6 @@ export default function BreathingExerciseScreen({route}: {route: any}) {
       flex: 1,
       alignItems: 'center',
       justifyContent: 'center',
-      borderBottomRightRadius: 75,
       backgroundColor: colors.background,
     },
     outerCircle: {
@@ -88,11 +83,11 @@ export default function BreathingExerciseScreen({route}: {route: any}) {
       position: 'absolute',
       alignSelf: 'center',
       borderWidth: 3,
-      borderColor: colors[FEELINGS_COLOR_MAP[category]],
-      backgroundColor: FADED_BACKGROUND[category],
+      borderColor: fixedColors[FEELINGS_COLOR_MAP[category || '']],
+      backgroundColor: FADED_BACKGROUND[category || ''],
     },
     innerText: {
-      color: DEEP_BACKGROUND[category],
+      color: DEEP_BACKGROUND[category || ''],
       fontSize: 20,
       fontWeight: '700',
     },
@@ -132,12 +127,8 @@ export default function BreathingExerciseScreen({route}: {route: any}) {
         {beginExercise ? (
           <Text style={styles.timer}>{getTime(seconds)}</Text>
         ) : null}
-        <ExerciseTitle
-          title={exerciseName}
-          hasBegun={beginExercise}
-          {...{category}}
-        />
-        <SharedElement id={id}>
+        <ExerciseTitle title={exerciseName} hasBegun={beginExercise} />
+        <SharedElement id={id.toString()}>
           <View style={styles.outerCircle}>
             <Animated.View style={[styles.innerCircle, innerCircleStyles]}>
               <View>

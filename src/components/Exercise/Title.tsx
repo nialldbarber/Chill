@@ -14,7 +14,6 @@ import {
 
 type ExerciseTitleProps = {
   title: string;
-  category: string;
   hasBegun: boolean;
 };
 

@@ -22,7 +22,7 @@ type AnimationT = {
   handleBeginExercise: (cond: boolean) => void;
   reset: () => void;
   instructions: Animated.SharedValue<Instruct>;
-  innerCircleStyles: Animated.AnimatedStyleProp<{
+  innerCircleStyles: Animated.AnimateStyle<{
     width: number;
     height: number;
     borderRadius: number;
@@ -31,7 +31,7 @@ type AnimationT = {
 };
 
 export default function useGetAnimation(
-  type: number,
+  type: number | undefined,
   exercise: number[]
 ): AnimationT {
   const [startCountdown, setStartCountdown] = useState<boolean>(false);
@@ -75,52 +75,47 @@ export default function useGetAnimation(
 
   useEffect(() => {
     if (beginExercise) {
-      withTiming(IN, {duration: secToMill(exercise[0])});
-      withTiming(HOLD, {duration: secToMill(exercise[1])});
-      withTiming(OUT, {duration: secToMill(exercise[2])});
-      withTiming(HOLD, {duration: secToMill(exercise[3])});
-
-      // if (type === 1) {
-      //   instructions.value = withRepeat(
-      //     withSequence(
-      //       withTiming(IN, {duration: secToMill(exercise[0])}),
-      //       withTiming(HOLD, {duration: secToMill(exercise[1])}),
-      //       withTiming(OUT, {duration: secToMill(exercise[2])}),
-      //       withTiming(HOLD, {duration: secToMill(exercise[3])})
-      //     ),
-      //     -1,
-      //     false
-      //   );
-      // } else if (type === 2) {
-      //   instructions.value = withRepeat(
-      //     withSequence(
-      //       withTiming(IN, {duration: secToMill(exercise[0])}),
-      //       withTiming(OUT, {duration: secToMill(exercise[2])}),
-      //       withTiming(HOLD, {duration: secToMill(exercise[3])})
-      //     ),
-      //     -1,
-      //     false
-      //   );
-      // } else if (type === 3) {
-      //   instructions.value = withRepeat(
-      //     withSequence(
-      //       withTiming(IN, {duration: secToMill(exercise[0])}),
-      //       withTiming(HOLD, {duration: secToMill(exercise[1])}),
-      //       withTiming(OUT, {duration: secToMill(exercise[2])})
-      //     ),
-      //     -1,
-      //     false
-      //   );
-      // } else if (type === 4) {
-      //   instructions.value = withRepeat(
-      //     withSequence(
-      //       withTiming(IN, {duration: secToMill(exercise[0])}),
-      //       withTiming(OUT, {duration: secToMill(exercise[2])})
-      //     ),
-      //     -1,
-      //     false
-      //   );
-      // }
+      if (type === 1) {
+        instructions.value = withRepeat(
+          withSequence(
+            withTiming(IN, {duration: secToMill(exercise[0])}),
+            withTiming(HOLD, {duration: secToMill(exercise[1])}),
+            withTiming(OUT, {duration: secToMill(exercise[2])}),
+            withTiming(HOLD, {duration: secToMill(exercise[3])})
+          ),
+          -1,
+          false
+        );
+      } else if (type === 2) {
+        instructions.value = withRepeat(
+          withSequence(
+            withTiming(IN, {duration: secToMill(exercise[0])}),
+            withTiming(OUT, {duration: secToMill(exercise[2])}),
+            withTiming(HOLD, {duration: secToMill(exercise[3])})
+          ),
+          -1,
+          false
+        );
+      } else if (type === 3) {
+        instructions.value = withRepeat(
+          withSequence(
+            withTiming(IN, {duration: secToMill(exercise[0])}),
+            withTiming(HOLD, {duration: secToMill(exercise[1])}),
+            withTiming(OUT, {duration: secToMill(exercise[2])})
+          ),
+          -1,
+          false
+        );
+      } else if (type === 4) {
+        instructions.value = withRepeat(
+          withSequence(
+            withTiming(IN, {duration: secToMill(exercise[0])}),
+            withTiming(OUT, {duration: secToMill(exercise[2])})
+          ),
+          -1,
+          false
+        );
+      }
     }
   }, [beginExercise]);
 
