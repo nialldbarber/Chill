@@ -27,14 +27,11 @@ export default function RootNavigator() {
   if (isFirstLaunch === null) return null;
 
   return (
-    <Stack.Navigator initialRouteName={isFirstLaunch ? 'Home' : 'Onboarding'}>
-      <Stack.Screen
-        name="Home"
-        component={HomeScreen}
-        options={{
-          headerShown: false,
-        }}
-      />
+    <Stack.Navigator
+      initialRouteName={isFirstLaunch ? 'Home' : 'Onboarding'}
+      screenOptions={{gestureEnabled: false}}
+    >
+      <Stack.Screen name="Home" component={HomeScreen} {...{options}} />
       <Stack.Screen
         name="Onboarding"
         component={OnboardingScreen}

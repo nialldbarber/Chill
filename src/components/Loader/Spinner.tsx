@@ -7,10 +7,7 @@ import Animated, {
   withSequence,
   withSpring,
 } from 'react-native-reanimated';
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen';
+import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 import {fixedColors} from '~/styles/theme';
 
 export default function Spinner() {
@@ -33,10 +30,7 @@ export default function Spinner() {
 
   useEffect(() => {
     size.value = withRepeat(
-      withSequence(
-        withSpring(1), 
-        withSpring(0.5)
-      ),
+      withSequence(withSpring(1), withSpring(0.5)),
       -1,
       true
     );
