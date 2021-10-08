@@ -1,5 +1,6 @@
 Todos:
 
+- [ ] button loader animation onboarding screen
 - [ ] info popups
 - [ ] custom breathing exercises
 - [ ] dark mode

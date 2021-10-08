@@ -28,7 +28,13 @@ export default function RootNavigator() {
 
   return (
     <Stack.Navigator initialRouteName={isFirstLaunch ? 'Home' : 'Onboarding'}>
-      <Stack.Screen name="Home" component={HomeScreen} {...{options}} />
+      <Stack.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
       <Stack.Screen
         name="Onboarding"
         component={OnboardingScreen}

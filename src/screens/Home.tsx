@@ -1,5 +1,5 @@
 import React from 'react';
-import {ScrollView, StyleSheet, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {useTheme} from '@react-navigation/native';
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
@@ -18,6 +18,7 @@ import Block from '~/components/Block';
 import Header from '~/components/Header';
 import ModalIcon from '~/components/Modal';
 import {RootStackParamList} from '~/components/Navigators/RootNavigator';
+import Scroll from '~/components/helpers/Scrollview';
 import {toggleVisibility} from '~/utils/toggle-visibility';
 
 export type homeScreenProp = StackNavigationProp<RootStackParamList, 'Home'>;
@@ -54,7 +55,7 @@ export default function HomeScreen() {
 
   return (
     <View style={styles.container}>
-      <ScrollView>
+      <Scroll>
         <ModalIcon modalScreen="InfoModal" mode="light" />
         <Header />
         <Badges
@@ -81,7 +82,7 @@ export default function HomeScreen() {
             )
           )}
         </Animated.View>
-      </ScrollView>
+      </Scroll>
     </View>
   );
 }

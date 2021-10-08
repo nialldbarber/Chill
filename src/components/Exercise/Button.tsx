@@ -27,7 +27,7 @@ export default function ExerciseButton({
 
   const styles = StyleSheet.create({
     button: {
-      alignSelf: 'center',
+      alignSelf: 'center', 
       width: wp('100%'),
       height: hp('20%'),
       backgroundColor: colors.background,

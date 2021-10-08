@@ -14,6 +14,7 @@ import {
 import {setStoredData} from '~/utils/stored-data';
 import Btn from '~/components/helpers/Button';
 import Exit from '~/components/Icons/Exit';
+import Spinner from '~/components/Loader/Spinner';
 import {fixedColors} from '~/styles/theme';
 
 export default function OnboardingScreen() {
@@ -73,6 +74,7 @@ export default function OnboardingScreen() {
 
   const {navigate} = useNavigation() as any;
   const [value, setValue] = useState<string>('');
+  const [showLoader, setShowLoader] = useState<boolean>(false);
 
   const title = useSharedValue(0);
   const message = useSharedValue(0);
@@ -122,8 +124,16 @@ export default function OnboardingScreen() {
             setStoredData(value);
             navigate('Home');
           }}
+          onPressIn={() => setShowLoader(true)}
+          disabled={showLoader}
         >
-          <Text style={styles.btnText}>Submit</Text>
+          <>
+            {showLoader ? (
+              <Spinner />
+            ) : (
+              <Text style={styles.btnText}>Submit</Text>
+            )}
+          </>
         </Btn>
       </Animated.View>
     </View>
