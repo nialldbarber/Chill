@@ -5,16 +5,14 @@ import Animated, {
   useAnimatedStyle,
   withTiming,
 } from 'react-native-reanimated';
-import {useTheme} from '@react-navigation/native';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import {impactAsync} from '~/utils/haptics';
+import {fixedColors} from '~/styles/theme';
 
 export default function Loader({active}: {active: boolean}) {
-  const {colors} = useTheme();
-
   const styles = StyleSheet.create({
     container: {
       display: 'flex',
@@ -23,7 +21,7 @@ export default function Loader({active}: {active: boolean}) {
       height: hp('5%'),
     },
     circle: {
-      backgroundColor: colors.white,
+      backgroundColor: fixedColors.white,
       width: hp('1.3%'),
       height: hp('1.3%'),
       marginHorizontal: wp('1%'),
