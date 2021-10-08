@@ -6,7 +6,7 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import {impactAsync} from '~/utils/haptics';
-import Btn from '~/components/Button';
+import Btn from '~/components/helpers/Button';
 import Loader from '~/components/Loader';
 import {fixedColors} from '~/styles/theme';
 

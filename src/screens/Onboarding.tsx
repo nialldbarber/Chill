@@ -12,7 +12,7 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import {setStoredData} from '~/utils/stored-data';
-import Btn from '~/components/Button';
+import Btn from '~/components/helpers/Button';
 import Exit from '~/components/Icons/Exit';
 import {fixedColors} from '~/styles/theme';
 

@@ -12,7 +12,7 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import {filterBySelectedBadge} from '../../store/slices/exercises';
-import Btn from '~/components/Button';
+import Btn from '~/components/helpers/Button';
 import {fixedColors} from '~/styles/theme';
 import {feelings} from '~/constants/exercises';
 

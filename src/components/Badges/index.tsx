@@ -1,14 +1,14 @@
 import React from 'react';
-import {ScrollView} from 'react-native';
+import Scroll from '~/components/helpers/Scrollview';
 import BadgeInner from '~/components/Badges/BadgeInner';
 import {feelings} from '~/constants/exercises';
 
 export default function Badges({press}: {press: () => void}) {
   return (
-    <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+    <Scroll h>
       {feelings.map((item, i) => (
         <BadgeInner key={i} {...{i, item, press}} />
       ))}
-    </ScrollView>
+    </Scroll>
   );
 }

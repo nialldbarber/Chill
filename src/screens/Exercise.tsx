@@ -13,7 +13,7 @@ import {ReText} from 'react-native-redash';
 import {RootStackParamList} from '~/components/Navigators/RootNavigator';
 import useGetAnimation from '~/hooks/useGetAnimation';
 import useGetHaptics from '~/hooks/useGetHaptics';
-import Btn from '~/components/Button';
+import Btn from '~/components/helpers/Button';
 import ExerciseButton from '~/components/Exercise/Button';
 import ExerciseTitle from '~/components/Exercise/Title';
 import BackIcon from '~/components/Icons/Back';

@@ -5,7 +5,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import Btn from '~/components/Button';
+import Btn from '~/components/helpers/Button';
 
 type ModalIconProps = {
   modalScreen: any;

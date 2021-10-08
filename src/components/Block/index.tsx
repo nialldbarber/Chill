@@ -13,7 +13,7 @@ import Animated, {
   withSpring,
   withTiming,
 } from 'react-native-reanimated';
-import Btn from '~/components/Button';
+import Btn from '~/components/helpers/Button';
 import {fixedColors} from '~/styles/theme';
 import {FEELINGS_COLOR_MAP} from '~/constants/exercises';
 
