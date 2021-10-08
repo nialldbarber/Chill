@@ -43,6 +43,8 @@ export const fixedColors: Record<string, string> = {
   warning: '#f39c12',
   error: '#e74c3c',
   lightGrey: '#f7f7f7',
+  lighterGrey: '#F2F5F9',
+  darkGrey: '#A09FA2',
 };
 
 export const FADED_BACKGROUND: Record<string, string> = {

@@ -4,11 +4,13 @@ Todos:
 - [ ] custom breathing exercises
 - [ ] dark mode
 - [ ] formalise imports
-- [ ] make prettier & eslint better
 - [ ] tests
 - [ ] hold countdown animation
-- [ ] intro animation
-- [ ] get first name from localstorage?
+- [ ] define typescript types better
+- [x] intro animation
+- [x] on first launch - get user name
+- [x] get first name from localstorage?
+- [x] make prettier & eslint better
 - [x] intro image
 - [x] countdown before exercise starts
 - [x] badge select animation

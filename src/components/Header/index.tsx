@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react';
 import {StyleSheet, View} from 'react-native';
+import {useSelector, useDispatch} from 'react-redux';
 import {useTheme} from '@react-navigation/native';
 import LottieView from 'lottie-react-native';
 import {
@@ -12,7 +13,10 @@ import Animated, {
   withDelay,
   withTiming,
 } from 'react-native-reanimated';
+import {selectName} from '~/store/selectors/name';
+import {setName} from '~/store/slices/name';
 import {timeOfDayGreeting} from '~/utils/get-date';
+import {getStoredData} from '~/utils/stored-data';
 import animation from '~/assets/landscape.json';
 
 export default function Header() {
@@ -38,6 +42,8 @@ export default function Header() {
     },
   });
 
+  const dispatch = useDispatch();
+  const firstName = useSelector(selectName);
   const greetingOpacity = useSharedValue<number>(0);
   const questionOpacity = useSharedValue<number>(0);
 
@@ -55,10 +61,17 @@ export default function Header() {
     questionOpacity.value = withDelay(duration, withTiming(1, {duration}));
   }, [greetingOpacity, questionOpacity]);
 
+  useEffect(() => {
+    (async function getData(): Promise<void> {
+      const {name} = await getStoredData();
+      dispatch(setName(name.trim()));
+    })();
+  }, []);
+
   return (
     <View style={styles.header}>
       <Animated.Text style={[styles.greeting, greetingStyle]}>
-        {timeOfDayGreeting()}
+        {timeOfDayGreeting()} {firstName || ''}
       </Animated.Text>
       <LottieView autoPlay loop style={styles.animation} source={animation} />
       <Animated.Text style={[styles.question, questionStyle]}>
