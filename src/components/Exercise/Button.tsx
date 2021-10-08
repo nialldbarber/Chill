@@ -67,7 +67,7 @@ export default function ExerciseButton({
 
   const isLoaderActive = startCountdown && !beginExercise;
 
-  function beginExerciseIfNotActive() {
+  function beginExerciseIfNotActive(): void {
     if (!isLoaderActive) {
       action();
       impactAsync('heavy');

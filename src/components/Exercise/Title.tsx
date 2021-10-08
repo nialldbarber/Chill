@@ -1,11 +1,11 @@
 import React, {useEffect} from 'react';
 import {StyleSheet, Text} from 'react-native';
+import {useTheme} from '@react-navigation/native';
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
   withSpring,
 } from 'react-native-reanimated';
-import {useTheme} from '@react-navigation/native';
 import {SharedElement} from 'react-navigation-shared-element';
 import {
   widthPercentageToDP as wp,

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import {createSharedElementStackNavigator} from 'react-navigation-shared-element';
 import HomeScreen from '~/screens/Home';
 import ExerciseScreen from '~/screens/Exercise';
