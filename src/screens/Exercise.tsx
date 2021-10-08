@@ -13,6 +13,7 @@ import {ReText} from 'react-native-redash';
 import {RootStackParamList} from '~/components/Navigators/RootNavigator';
 import useGetAnimation from '~/hooks/useGetAnimation';
 import useGetHaptics from '~/hooks/useGetHaptics';
+import Btn from '~/components/Button';
 import ExerciseButton from '~/components/Exercise/Button';
 import ExerciseTitle from '~/components/Exercise/Title';
 import BackIcon from '~/components/Icons/Back';
@@ -116,13 +117,9 @@ export default function ExerciseScreen({route}: {route: RouteT}) {
   return (
     <View style={styles.container}>
       <View style={styles.outerCircleContainer}>
-        <TouchableOpacity
-          style={styles.back}
-          activeOpacity={1}
-          onPress={() => navigate('Home')}
-        >
+        <Btn style={styles.back} onPress={() => navigate('Home')}>
           <BackIcon />
-        </TouchableOpacity>
+        </Btn>
         {/* <ModalIcon modalScreen="BreathingInfoModal" mode="dark" /> */}
         {beginExercise ? (
           <Text style={styles.timer}>{getTime(seconds)}</Text>

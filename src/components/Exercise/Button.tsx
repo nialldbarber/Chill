@@ -1,12 +1,14 @@
 import React from 'react';
-import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import {useTheme} from '@react-navigation/native';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import Loader from '~/components/Loader';
 import {impactAsync} from '~/utils/haptics';
+import Btn from '~/components/Button';
+import Loader from '~/components/Loader';
+import {fixedColors} from '~/styles/theme';
 
 type ExerciseButtonProps = {
   startCountdown: boolean;
@@ -26,9 +28,10 @@ export default function ExerciseButton({
   const styles = StyleSheet.create({
     button: {
       alignSelf: 'center',
+      width: wp('100%'),
       height: hp('20%'),
       backgroundColor: colors.background,
-      width: wp('100%'),
+      borderRadius: 30,
       shadowColor: colors.border,
       shadowOffset: {
         width: 1,
@@ -37,7 +40,6 @@ export default function ExerciseButton({
       shadowOpacity: 0.1,
       shadowRadius: 12,
       elevation: 5,
-      borderRadius: 30,
     },
     buttonInnerWrap: {
       ...StyleSheet.absoluteFillObject,
@@ -53,43 +55,42 @@ export default function ExerciseButton({
       alignSelf: 'center',
       justifyContent: 'center',
       height: hp('5%'),
-      width: 250,
+      width: wp('65%'),
       borderRadius: 25,
       backgroundColor: colors.text,
     },
     btnText: {
-      color: colors.white,
-      fontSize: 20,
+      color: fixedColors.white,
+      fontSize: wp('5%'),
     },
   });
 
   const isLoaderActive = startCountdown && !beginExercise;
-  const beginExerciseIfNotActive = () => {
+
+  function beginExerciseIfNotActive() {
     if (!isLoaderActive) {
       action();
       impactAsync('heavy');
     }
-  };
+  }
 
   return (
     <View style={styles.button}>
       <View style={styles.buttonInnerWrap}>
         <View style={styles.buttonInnerMask}>
           {beginExercise ? (
-            <TouchableOpacity
+            <Btn
               style={styles.btn}
-              activeOpacity={1}
               onPress={() => {
                 reset();
                 impactAsync('heavy');
               }}
             >
               <Text style={styles.btnText}>Stop</Text>
-            </TouchableOpacity>
+            </Btn>
           ) : (
-            <TouchableOpacity
+            <Btn
               style={styles.btn}
-              activeOpacity={1}
               disabled={isLoaderActive}
               onPress={beginExerciseIfNotActive}
             >
@@ -100,7 +101,7 @@ export default function ExerciseButton({
                   <Text style={styles.btnText}>Begin</Text>
                 )}
               </View>
-            </TouchableOpacity>
+            </Btn>
           )}
         </View>
       </View>

@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {useTheme} from '@react-navigation/native';
 import Animated, {
@@ -12,6 +12,7 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import {filterBySelectedBadge} from '../../store/slices/exercises';
+import Btn from '~/components/Button';
 import {fixedColors} from '~/styles/theme';
 import {feelings} from '~/constants/exercises';
 
@@ -59,9 +60,8 @@ export default function BadgeInner({i, item, press}: BadgeInnerProps) {
   }
 
   return (
-    <TouchableOpacity
+    <Btn
       key={i}
-      activeOpacity={1}
       onPress={() => {
         handleFilter();
         press();
@@ -79,6 +79,6 @@ export default function BadgeInner({i, item, press}: BadgeInnerProps) {
       >
         <Text style={styles.badgeText}>{item}</Text>
       </Animated.View>
-    </TouchableOpacity>
+    </Btn>
   );
 }
