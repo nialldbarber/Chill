@@ -1,6 +1,5 @@
 import React from 'react';
 
-import {useTheme} from '@react-navigation/native';
 import {StyleSheet, Text} from 'react-native';
 import Animated, {
   useAnimatedStyle,
@@ -14,9 +13,9 @@ import {
 import {useDispatch} from 'react-redux';
 
 import Btn from '~/components/helpers/Button';
-import {feelings} from '~/constants/exercises';
+import {FEELING_MAPPED_KEY, feelings} from '~/constants/exercises';
 import {filterBySelectedBadge} from '~/store/slices/exercises';
-import {fixedColors} from '~/styles/theme';
+import {DEEP_BACKGROUND, FADED_BACKGROUND} from '~/styles/theme';
 
 type BadgeInnerProps = {
   i: number;
@@ -25,24 +24,22 @@ type BadgeInnerProps = {
 };
 
 export default function BadgeInner({i, item, press}: BadgeInnerProps) {
-  const {colors} = useTheme();
-
   const styles = StyleSheet.create({
     badgeContainer: {
       marginTop: hp('2%'),
       marginBottom: hp('4%'),
     },
     badge: {
-      backgroundColor: fixedColors.primaryFaded,
+      backgroundColor: FADED_BACKGROUND[FEELING_MAPPED_KEY[item]],
       paddingHorizontal: 12,
       paddingVertical: 6,
       borderRadius: 20,
       marginRight: 10,
-      borderColor: colors.primary,
+      borderColor: DEEP_BACKGROUND[FEELING_MAPPED_KEY[item]],
       borderWidth: 1,
     },
     badgeText: {
-      color: colors.primary,
+      color: DEEP_BACKGROUND[FEELING_MAPPED_KEY[item]],
       fontWeight: '800',
       fontSize: wp('4%'),
     },

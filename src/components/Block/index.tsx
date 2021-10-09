@@ -1,7 +1,6 @@
 import React, {useEffect} from 'react';
 
-import {useNavigation} from '@react-navigation/native';
-import {useTheme} from '@react-navigation/native';
+import {useNavigation, useTheme} from '@react-navigation/native';
 import {StyleSheet} from 'react-native';
 import Animated, {
   useAnimatedStyle,
@@ -87,7 +86,7 @@ export default function Block({id, title, category = '', onPress}: BlockProps) {
 
   return (
     <Animated.View style={[styles.block, blockHover]}>
-      <SharedElement id={id}>
+      <SharedElement id={id ?? ''}>
         <Animated.View style={[styles.blockIndicator]} />
       </SharedElement>
       <Btn

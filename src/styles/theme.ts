@@ -52,7 +52,7 @@ export const fixedColors: Record<string, string> = {
 
   night: '#d49cff',
   nightFaded: 'rgba(212, 156, 255, 0.45)',
-  nightDeep: '#7f48a8',
+  nightDeep: '#945abf',
 
   primaryDeep: '#e85151',
   success: '#20bf6b',

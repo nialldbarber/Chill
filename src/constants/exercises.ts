@@ -4,6 +4,31 @@ export const HOLD = 'Hold';
 
 const page = 'Exercise';
 
+export const FEELING_MAPPED_KEY: Record<string, string> = {
+  activated: 'energy',
+  alleviated: 'calm',
+  awake: 'energy',
+  balanced: 'calm',
+  blissful: 'calm',
+  calm: 'calm',
+  clear: 'calm',
+  cool: 'calm',
+  dream: 'night',
+  euphoric: 'energy',
+  energized: 'energy',
+  focused: 'energy',
+  'pain relief': 'calm',
+  peaceful: 'calm',
+  recharged: 'energy',
+  relaxed: 'calm',
+  'rise and shine': 'energy',
+  sleepy: 'night',
+  stimulated: 'energy',
+  tranquil: 'night',
+  uplifted: 'energy',
+  unwind: 'night',
+};
+
 export const feelings = [
   'activated',
   'alleviated',
@@ -82,7 +107,7 @@ export const CONFIG: ConfigT[] = [
     page,
     exerciseName: 'Calm',
     exercise: [4, 7, 8, 0],
-    type: 2,
+    type: 3,
     theme: 'dark',
     category: 'calm',
     tags: ['uplifted'],
