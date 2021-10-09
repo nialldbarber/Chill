@@ -13,9 +13,9 @@ import {
 } from 'react-native-responsive-screen';
 import {useDispatch} from 'react-redux';
 
-import {filterBySelectedBadge} from '../../store/slices/exercises';
 import Btn from '~/components/helpers/Button';
 import {feelings} from '~/constants/exercises';
+import {filterBySelectedBadge} from '~/store/slices/exercises';
 import {fixedColors} from '~/styles/theme';
 
 type BadgeInnerProps = {

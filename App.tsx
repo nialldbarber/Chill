@@ -5,8 +5,8 @@ import {useColorScheme} from 'react-native';
 import RNBootSplash from 'react-native-bootsplash';
 import {Provider} from 'react-redux';
 
-import {store} from './src/store';
 import RootNavigator from '~/components/Navigators/RootNavigator';
+import {store} from '~/store/index';
 import getTheme from '~/styles/theme';
 
 export default function App() {
