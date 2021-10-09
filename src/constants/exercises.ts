@@ -1,3 +1,14 @@
+// categories
+// - calm
+// - energy
+// - night
+
+// types
+// - 1 = in hold out hold
+// - 2 = in out hold
+// - 3 = in hold out
+// - 4 = in out
+
 export const IN = 'In';
 export const OUT = 'Out';
 export const HOLD = 'Hold';
@@ -70,17 +81,6 @@ export type ConfigT = {
   category?: string;
   tags?: string[];
 };
-
-// categories
-// - calm
-// - energy
-// - night
-
-// types
-// - 1 = in hold out hold
-// - 2 = in out hold
-// - 3 = in hold out
-// - 4 = in out
 
 export const CONFIG: ConfigT[] = [
   {

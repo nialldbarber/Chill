@@ -8,7 +8,12 @@ export async function setStoredData(value: string): Promise<void> {
   }
 }
 
-export async function getStoredData(): Promise<any> {
+export async function getStoredData(): Promise<
+  | {
+      name: string;
+    }
+  | undefined
+> {
   try {
     let name: string;
     const value = await AsyncStorage.getItem('@first_name');

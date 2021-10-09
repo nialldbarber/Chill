@@ -16,7 +16,7 @@ import InstructionsContainer from '~/components/Exercise/Icons/InstructionContai
 import ExerciseTitle from '~/components/Exercise/Title';
 import Btn from '~/components/helpers/Button';
 import BackIcon from '~/components/Icons/Back';
-import {RootStackParamList} from '~/components/Navigators/RootNavigator';
+import {RootStackParamList} from '~/components/Navigator/RootNavigator';
 import {ConfigT, FEELINGS_COLOR_MAP} from '~/constants/exercises';
 import {HEIGHT, SHADOW, WIDTH} from '~/constants/theme';
 import useGetAnimation from '~/hooks/useGetAnimation';

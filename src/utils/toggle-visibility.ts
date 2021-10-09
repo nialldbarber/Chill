@@ -3,7 +3,7 @@ import Animated, {withTiming} from 'react-native-reanimated';
 export function toggleVisibility(
   sharedValue: Animated.SharedValue<number | string | null>,
   show = true,
-  timeout: number
+  timeout: number,
 ): void {
   if (show) {
     sharedValue.value = withTiming(0);

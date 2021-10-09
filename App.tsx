@@ -5,7 +5,7 @@ import {useColorScheme} from 'react-native';
 import RNBootSplash from 'react-native-bootsplash';
 import {Provider} from 'react-redux';
 
-import RootNavigator from '~/components/Navigators/RootNavigator';
+import RootNavigator from '~/components/Navigator/RootNavigator';
 import {store} from '~/store/index';
 import getTheme from '~/styles/theme';
 
@@ -18,7 +18,7 @@ export default function App() {
 
   return (
     <Provider store={store}>
-      <NavigationContainer theme={getTheme(scheme)}>
+      <NavigationContainer theme={getTheme(scheme || '')}>
         <RootNavigator />
       </NavigationContainer>
     </Provider>

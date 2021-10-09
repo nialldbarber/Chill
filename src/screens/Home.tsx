@@ -15,7 +15,7 @@ import Block from '~/components/Block';
 import Header from '~/components/Header';
 import Scroll from '~/components/helpers/Scrollview';
 import ModalIcon from '~/components/Modal';
-import {RootStackParamList} from '~/components/Navigators/RootNavigator';
+import {RootStackParamList} from '~/components/Navigator/RootNavigator';
 import {selectBadges} from '~/store/selectors/exercises';
 import {toggleVisibility} from '~/utils/toggle-visibility';
 

@@ -9,7 +9,7 @@ import checkIfFirstLaunch from '~/utils/first-launch';
 
 export type RootStackParamList = {
   Home: undefined;
-  Exercise: any;
+  Exercise: undefined;
   Onboarding: undefined;
 };
 
@@ -18,7 +18,7 @@ const options = {headerShown: false};
 export default function RootNavigator() {
   const Stack = createSharedElementStackNavigator<RootStackParamList>();
 
-  const [isFirstLaunch, setIsFirstLaunch] = useState<any>(null);
+  const [isFirstLaunch, setIsFirstLaunch] = useState<boolean | null>(null);
 
   useEffect(() => {
     checkIfFirstLaunch().then((firstLaunch) => {
