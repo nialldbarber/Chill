@@ -1,6 +1,5 @@
 Todos:
 
-- [ ] button loader animation onboarding screen
 - [ ] info popups
 - [ ] custom breathing exercises
 - [ ] dark mode
@@ -8,6 +7,7 @@ Todos:
 - [ ] tests
 - [ ] hold countdown animation
 - [ ] define typescript types better
+- [x] button loader animation onboarding screen
 - [x] intro animation
 - [x] on first launch - get user name
 - [x] get first name from localstorage?

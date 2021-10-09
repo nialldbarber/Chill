@@ -62,13 +62,13 @@ export default function BadgeInner({i, item, press}: BadgeInnerProps) {
   return (
     <Btn
       key={i}
+      style={styles.badgeContainer}
       onPress={() => {
         handleFilter();
         press();
       }}
       onPressIn={() => (scale.value = withSpring(1.05))}
       onPressOut={() => (scale.value = withSpring(1))}
-      style={styles.badgeContainer}
     >
       <Animated.View
         style={[
