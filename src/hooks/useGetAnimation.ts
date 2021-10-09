@@ -34,7 +34,7 @@ type AnimationT = {
 
 export default function useGetAnimation(
   type: number | undefined,
-  exercise: number[]
+  exercise: number[],
 ): AnimationT {
   const [startCountdown, setStartCountdown] = useState<boolean>(false);
   const [seconds, setSeconds] = useState<number>(0);
@@ -67,13 +67,13 @@ export default function useGetAnimation(
           // out breath
           withTiming(ORIGINAL_SIZE, {duration: secToMill(exercise[2])}),
           // hold
-          withTiming(ORIGINAL_SIZE, {duration: secToMill(exercise[3])})
+          withTiming(ORIGINAL_SIZE, {duration: secToMill(exercise[3])}),
         ),
         -1,
-        false
+        false,
       );
     }
-  }, [beginExercise]);
+  }, [beginExercise, exercise, innerCircle]);
 
   useEffect(() => {
     if (beginExercise) {
@@ -83,47 +83,47 @@ export default function useGetAnimation(
             withTiming(IN, {duration: secToMill(exercise[0])}),
             withTiming(HOLD, {duration: secToMill(exercise[1])}),
             withTiming(OUT, {duration: secToMill(exercise[2])}),
-            withTiming(HOLD, {duration: secToMill(exercise[3])})
+            withTiming(HOLD, {duration: secToMill(exercise[3])}),
           ),
           -1,
-          false
+          false,
         );
       } else if (type === 2) {
         instructions.value = withRepeat(
           withSequence(
             withTiming(IN, {duration: secToMill(exercise[0])}),
             withTiming(OUT, {duration: secToMill(exercise[2])}),
-            withTiming(HOLD, {duration: secToMill(exercise[3])})
+            withTiming(HOLD, {duration: secToMill(exercise[3])}),
           ),
           -1,
-          false
+          false,
         );
       } else if (type === 3) {
         instructions.value = withRepeat(
           withSequence(
             withTiming(IN, {duration: secToMill(exercise[0])}),
             withTiming(HOLD, {duration: secToMill(exercise[1])}),
-            withTiming(OUT, {duration: secToMill(exercise[2])})
+            withTiming(OUT, {duration: secToMill(exercise[2])}),
           ),
           -1,
-          false
+          false,
         );
       } else if (type === 4) {
         instructions.value = withRepeat(
           withSequence(
             withTiming(IN, {duration: secToMill(exercise[0])}),
-            withTiming(OUT, {duration: secToMill(exercise[2])})
+            withTiming(OUT, {duration: secToMill(exercise[2])}),
           ),
           -1,
-          false
+          false,
         );
       }
     }
-  }, [beginExercise]);
+  }, [beginExercise, exercise, instructions, type]);
 
   useEffect(() => {
     scale.value = withDelay(450, withSpring(1));
-  }, []);
+  }, [scale]);
 
   useInterval(() => {
     if (beginExercise) {

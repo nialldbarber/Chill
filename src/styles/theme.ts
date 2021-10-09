@@ -1,7 +1,23 @@
-import {useWindowDimensions, Platform} from 'react-native';
-import {Theme} from '@react-navigation/native';
+import {Platform, useWindowDimensions} from 'react-native';
 
-export default function getTheme(scheme: any): Theme {
+type ThemeT = {
+  dark: boolean;
+  width: number;
+  height: number;
+  ios: boolean;
+  margin: number;
+  colors: {
+    primary: string;
+    background: string;
+    card: string;
+    text: string;
+    border: string;
+    notification: string;
+  };
+  normalize: (size: number, max: number) => number;
+};
+
+export default function getTheme(scheme: string): ThemeT {
   const {width, height} = useWindowDimensions();
   const dark = scheme === 'dark';
   const normalize = (size: number, max: number) =>

@@ -1,5 +1,6 @@
 Todos:
 
+- [ ] prevent onboard submit without value
 - [ ] info popups
 - [ ] dark mode
 - [ ] formalise imports

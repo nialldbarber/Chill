@@ -48,7 +48,7 @@ export default function ExerciseTitle({title, hasBegun}: ExerciseTitleProps) {
     } else {
       top.value = withSpring(hp('6%'));
     }
-  }, [hasBegun]);
+  }, [top, hasBegun]);
 
   return (
     <Animated.View style={[styles.container, topStyles]}>

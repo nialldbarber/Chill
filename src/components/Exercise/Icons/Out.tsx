@@ -4,7 +4,7 @@ import Svg, {Circle, Path, Rect} from 'react-native-svg';
 
 export default function BreatheOut() {
   return (
-    <Svg width={47} height={45} fill="none" xmlns="http://www.w3.org/2000/svg">
+    <Svg width={47} height={45} fill="none">
       <Circle
         cx={24.5}
         cy={20.5}

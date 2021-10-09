@@ -1,17 +1,13 @@
 import React from 'react';
 
-import {useTheme} from '@react-navigation/native';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useTheme} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {StyleSheet, View} from 'react-native';
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
 } from 'react-native-reanimated';
-import {
-  heightPercentageToDP as hp,
-  widthPercentageToDP as wp,
-} from 'react-native-responsive-screen';
+import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {useSelector} from 'react-redux';
 
 import Badges from '~/components/Badges';
@@ -26,17 +22,11 @@ import {toggleVisibility} from '~/utils/toggle-visibility';
 export type homeScreenProp = StackNavigationProp<RootStackParamList, 'Home'>;
 
 export default function HomeScreen() {
-  const {colors} = useTheme() as any;
+  const {colors} = useTheme();
 
   const styles = StyleSheet.create({
     container: {
       backgroundColor: colors.background,
-    },
-    modal: {
-      position: 'absolute',
-      top: hp('7%'),
-      right: wp('5%'),
-      zIndex: 3,
     },
     blockContainer: {
       display: 'flex',
@@ -81,7 +71,7 @@ export default function HomeScreen() {
                   })
                 }
               />
-            )
+            ),
           )}
         </Animated.View>
       </Scroll>

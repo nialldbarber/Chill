@@ -7,7 +7,7 @@ import {getAnimatedTextFormatted} from '~/utils/animated-text';
 import {impactAsync} from '~/utils/haptics';
 
 export default function useGetHaptics(
-  instructions: Animated.SharedValue<Instruct>
+  instructions: Animated.SharedValue<Instruct>,
 ) {
   useEffect(() => {
     const str = getAnimatedTextFormatted(instructions.value);

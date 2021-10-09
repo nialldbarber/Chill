@@ -1,7 +1,6 @@
 import React from 'react';
 
-import {useTheme} from '@react-navigation/native';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useTheme} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {StyleSheet, Text, View} from 'react-native';
 import Animated from 'react-native-reanimated';
@@ -54,13 +53,6 @@ export default function ExerciseScreen({route}: {route: RouteT}) {
       position: 'absolute',
       top: hp('7%'),
       left: wp('5%'),
-    },
-    info: {
-      position: 'absolute',
-      top: hp('7%'),
-      right: wp('-5%'),
-      width: 100,
-      height: 100,
     },
     outerCircleContainer: {
       flex: 1,

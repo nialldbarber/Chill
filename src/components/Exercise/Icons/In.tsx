@@ -4,7 +4,7 @@ import Svg, {Path, Rect} from 'react-native-svg';
 
 export default function BreatheIn() {
   return (
-    <Svg width={54} height={51} fill="none" xmlns="http://www.w3.org/2000/svg">
+    <Svg width={54} height={51} fill="none">
       <Path
         d="M48 22.5C48 34.395 38.577 44 27 44S6 34.395 6 22.5 15.423 1 27 1s21 9.605 21 21.5z"
         fill="#F7D075"

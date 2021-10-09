@@ -4,7 +4,7 @@ import Svg, {Circle, Rect} from 'react-native-svg';
 
 export default function Hold() {
   return (
-    <Svg width={41} height={41} fill="none" xmlns="http://www.w3.org/2000/svg">
+    <Svg width={41} height={41} fill="none">
       <Circle
         cx={20.5}
         cy={20.5}

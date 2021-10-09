@@ -99,7 +99,7 @@ export default function OnboardingScreen() {
     title.value = withTiming(1, {duration});
     message.value = withDelay(1000, withTiming(1, {duration}));
     input.value = withDelay(1500, withTiming(1, {duration}));
-  }, []);
+  }, [input, message, title]);
 
   return (
     <View style={styles.container}>
