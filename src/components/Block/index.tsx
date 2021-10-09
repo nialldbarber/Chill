@@ -1,21 +1,23 @@
 import React, {useEffect} from 'react';
-import {StyleSheet} from 'react-native';
+
 import {useNavigation} from '@react-navigation/native';
 import {useTheme} from '@react-navigation/native';
-import {SharedElement} from 'react-navigation-shared-element';
-import {
-  heightPercentageToDP as hp,
-  widthPercentageToDP as wp,
-} from 'react-native-responsive-screen';
+import {StyleSheet} from 'react-native';
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
   withSpring,
   withTiming,
 } from 'react-native-reanimated';
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from 'react-native-responsive-screen';
+import {SharedElement} from 'react-navigation-shared-element';
+
 import Btn from '~/components/helpers/Button';
-import {fixedColors} from '~/styles/theme';
 import {FEELINGS_COLOR_MAP} from '~/constants/exercises';
+import {fixedColors} from '~/styles/theme';
 
 type BlockProps = {
   id?: string;

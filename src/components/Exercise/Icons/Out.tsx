@@ -1,5 +1,6 @@
 import React from 'react';
-import Svg, {Circle, Rect, Path} from 'react-native-svg';
+
+import Svg, {Circle, Path, Rect} from 'react-native-svg';
 
 export default function BreatheOut() {
   return (

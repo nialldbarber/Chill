@@ -1,19 +1,21 @@
-import {useState, useEffect} from 'react';
+import {useEffect, useState} from 'react';
+
 import Animated, {
-  useSharedValue,
   useAnimatedStyle,
   useDerivedValue,
-  withTiming,
+  useSharedValue,
+  withDelay,
   withRepeat,
   withSequence,
   withSpring,
-  withDelay,
+  withTiming,
 } from 'react-native-reanimated';
+
+import {HOLD, IN, OUT} from '~/constants/exercises';
+import {ORIGINAL_SIZE, WIDTH} from '~/constants/theme';
 import useInterval from '~/hooks/useInterval';
-import {secToMill} from '~/utils/time';
-import {WIDTH, ORIGINAL_SIZE} from '~/constants/theme';
-import {IN, OUT, HOLD} from '~/constants/exercises';
 import {Instruct} from '~/screens/Exercise';
+import {secToMill} from '~/utils/time';
 
 type AnimationT = {
   startCountdown: boolean;

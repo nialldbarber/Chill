@@ -1,20 +1,22 @@
 import React from 'react';
-import {StyleSheet, Text} from 'react-native';
-import {useDispatch} from 'react-redux';
+
 import {useTheme} from '@react-navigation/native';
+import {StyleSheet, Text} from 'react-native';
 import Animated, {
-  useSharedValue,
   useAnimatedStyle,
+  useSharedValue,
   withSpring,
 } from 'react-native-reanimated';
 import {
-  widthPercentageToDP as wp,
   heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
+import {useDispatch} from 'react-redux';
+
 import {filterBySelectedBadge} from '../../store/slices/exercises';
 import Btn from '~/components/helpers/Button';
-import {fixedColors} from '~/styles/theme';
 import {feelings} from '~/constants/exercises';
+import {fixedColors} from '~/styles/theme';
 
 type BadgeInnerProps = {
   i: number;

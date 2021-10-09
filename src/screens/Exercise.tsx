@@ -1,27 +1,29 @@
 import React from 'react';
-import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
+
 import {useTheme} from '@react-navigation/native';
-import Animated from 'react-native-reanimated';
-import {SharedElement} from 'react-navigation-shared-element';
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen';
-import {StackNavigationProp} from '@react-navigation/stack';
 import {useNavigation} from '@react-navigation/native';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {StyleSheet, Text, View} from 'react-native';
+import Animated from 'react-native-reanimated';
 import {ReText} from 'react-native-redash';
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from 'react-native-responsive-screen';
+import {SharedElement} from 'react-navigation-shared-element';
+
+import ExerciseButton from '~/components/Exercise/Button';
+import InstructionsContainer from '~/components/Exercise/Icons/InstructionContainer';
+import ExerciseTitle from '~/components/Exercise/Title';
+import Btn from '~/components/helpers/Button';
+import BackIcon from '~/components/Icons/Back';
 import {RootStackParamList} from '~/components/Navigators/RootNavigator';
+import {ConfigT, FEELINGS_COLOR_MAP} from '~/constants/exercises';
+import {HEIGHT, SHADOW, WIDTH} from '~/constants/theme';
 import useGetAnimation from '~/hooks/useGetAnimation';
 import useGetHaptics from '~/hooks/useGetHaptics';
-import Btn from '~/components/helpers/Button';
-import ExerciseButton from '~/components/Exercise/Button';
-import ExerciseTitle from '~/components/Exercise/Title';
-import BackIcon from '~/components/Icons/Back';
-import InstructionsContainer from '~/components/Exercise/Icons/InstructionContainer';
+import {DEEP_BACKGROUND, FADED_BACKGROUND, fixedColors} from '~/styles/theme';
 import {getTime} from '~/utils/time';
-import {fixedColors, FADED_BACKGROUND, DEEP_BACKGROUND} from '~/styles/theme';
-import {SHADOW, WIDTH, HEIGHT} from '~/constants/theme';
-import {ConfigT, FEELINGS_COLOR_MAP} from '~/constants/exercises';
 
 type RouteT = {
   key: string;

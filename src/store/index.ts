@@ -1,4 +1,5 @@
 import {configureStore} from '@reduxjs/toolkit';
+
 import exerciseReducer from './slices/exercises';
 import nameReducer from './slices/name';
 

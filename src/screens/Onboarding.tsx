@@ -1,21 +1,23 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, View, Text, TextInput} from 'react-native';
+
 import {useNavigation, useTheme} from '@react-navigation/native';
+import {StyleSheet, Text, TextInput, View} from 'react-native';
 import Animated, {
-  useSharedValue,
   useAnimatedStyle,
-  withTiming,
+  useSharedValue,
   withDelay,
+  withTiming,
 } from 'react-native-reanimated';
 import {
-  widthPercentageToDP as wp,
   heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-import {setStoredData} from '~/utils/stored-data';
+
 import Btn from '~/components/helpers/Button';
 import Exit from '~/components/Icons/Exit';
 import Spinner from '~/components/Loader/Spinner';
 import {fixedColors} from '~/styles/theme';
+import {setStoredData} from '~/utils/stored-data';
 
 export default function OnboardingScreen() {
   const {colors} = useTheme();

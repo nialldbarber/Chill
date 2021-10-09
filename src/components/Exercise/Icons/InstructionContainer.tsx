@@ -1,9 +1,11 @@
 import React from 'react';
+
 import {StyleSheet, View} from 'react-native';
-import Instructions from '~/components/Exercise/Icons/Instructions';
-import In from '~/components/Exercise/Icons/In';
-import Out from '~/components/Exercise/Icons/Out';
+
 import Hold from '~/components/Exercise/Icons/Hold';
+import In from '~/components/Exercise/Icons/In';
+import Instructions from '~/components/Exercise/Icons/Instructions';
+import Out from '~/components/Exercise/Icons/Out';
 
 type InstructionsContainerProps = {
   type: number | undefined;

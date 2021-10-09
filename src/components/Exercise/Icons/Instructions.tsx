@@ -1,9 +1,10 @@
 import React, {ReactChild} from 'react';
-import {StyleSheet, View, Text} from 'react-native';
+
 import {useTheme} from '@react-navigation/native';
+import {StyleSheet, Text, View} from 'react-native';
 import {
-  widthPercentageToDP as wp,
   heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 
 type InstructionsProps = {

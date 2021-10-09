@@ -1,9 +1,11 @@
 import React from 'react';
-import {StyleSheet, View, Text} from 'react-native';
+
+import {StyleSheet, Text, View} from 'react-native';
 import {
-  widthPercentageToDP as wp,
   heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
+
 import {COLORS} from '~/constants/theme';
 
 type StepsProps = {

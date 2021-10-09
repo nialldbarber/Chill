@@ -1,9 +1,11 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
+
 import {createSharedElementStackNavigator} from 'react-navigation-shared-element';
-import checkIfFirstLaunch from '~/utils/first-launch';
+
 import ExerciseScreen from '~/screens/Exercise';
 import HomeScreen from '~/screens/Home';
 import OnboardingScreen from '~/screens/Onboarding';
+import checkIfFirstLaunch from '~/utils/first-launch';
 
 export type RootStackParamList = {
   Home: undefined;
@@ -19,12 +21,14 @@ export default function RootNavigator() {
   const [isFirstLaunch, setIsFirstLaunch] = useState<any>(null);
 
   useEffect(() => {
-    checkIfFirstLaunch().then((isFirstLaunch) => {
-      setIsFirstLaunch(isFirstLaunch);
+    checkIfFirstLaunch().then((firstLaunch) => {
+      setIsFirstLaunch(firstLaunch);
     });
   }, []);
 
-  if (isFirstLaunch === null) return null;
+  if (isFirstLaunch === null) {
+    return null;
+  }
 
   return (
     <Stack.Navigator

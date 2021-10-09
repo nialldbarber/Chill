@@ -1,16 +1,18 @@
 import React, {useEffect} from 'react';
+
 import {StyleSheet, View} from 'react-native';
 import Animated, {
-  useSharedValue,
   useAnimatedStyle,
+  useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
 import {
-  widthPercentageToDP as wp,
   heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-import {impactAsync} from '~/utils/haptics';
+
 import {fixedColors} from '~/styles/theme';
+import {impactAsync} from '~/utils/haptics';
 
 export default function Loader({active}: {active: boolean}) {
   const styles = StyleSheet.create({

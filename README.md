@@ -1,7 +1,6 @@
 Todos:
 
 - [ ] info popups
-- [ ] custom breathing exercises
 - [ ] dark mode
 - [ ] formalise imports
 - [ ] tests

@@ -1,4 +1,5 @@
 import React, {ReactChild} from 'react';
+
 import {ScrollView} from 'react-native';
 
 type ScrollProps = {

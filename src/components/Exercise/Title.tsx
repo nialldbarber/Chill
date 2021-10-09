@@ -1,16 +1,17 @@
 import React, {useEffect} from 'react';
-import {StyleSheet, Text} from 'react-native';
+
 import {useTheme} from '@react-navigation/native';
+import {StyleSheet, Text} from 'react-native';
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
   withSpring,
 } from 'react-native-reanimated';
-import {SharedElement} from 'react-navigation-shared-element';
 import {
-  widthPercentageToDP as wp,
   heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
+import {SharedElement} from 'react-navigation-shared-element';
 
 type ExerciseTitleProps = {
   title: string;

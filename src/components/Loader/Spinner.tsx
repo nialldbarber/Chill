@@ -1,13 +1,15 @@
 import React, {useEffect} from 'react';
+
 import {StyleSheet} from 'react-native';
 import Animated, {
-  useSharedValue,
   useAnimatedStyle,
+  useSharedValue,
   withRepeat,
   withSequence,
   withSpring,
 } from 'react-native-reanimated';
 import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
+
 import {fixedColors} from '~/styles/theme';
 
 export default function Spinner() {

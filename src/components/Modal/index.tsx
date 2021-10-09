@@ -1,10 +1,12 @@
 import React from 'react';
-import {StyleSheet, Text} from 'react-native';
+
 import {useNavigation} from '@react-navigation/native';
+import {StyleSheet, Text} from 'react-native';
 import {
-  widthPercentageToDP as wp,
   heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
+
 import Btn from '~/components/helpers/Button';
 
 type ModalIconProps = {

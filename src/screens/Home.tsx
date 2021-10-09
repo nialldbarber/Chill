@@ -1,24 +1,26 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+
 import {useTheme} from '@react-navigation/native';
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
-import {useSelector} from 'react-redux';
-import {
-  heightPercentageToDP as hp,
-  widthPercentageToDP as wp,
-} from 'react-native-responsive-screen';
+import {StyleSheet, View} from 'react-native';
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
 } from 'react-native-reanimated';
-import {selectBadges} from '~/store/selectors/exercises';
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from 'react-native-responsive-screen';
+import {useSelector} from 'react-redux';
+
 import Badges from '~/components/Badges';
 import Block from '~/components/Block';
 import Header from '~/components/Header';
+import Scroll from '~/components/helpers/Scrollview';
 import ModalIcon from '~/components/Modal';
 import {RootStackParamList} from '~/components/Navigators/RootNavigator';
-import Scroll from '~/components/helpers/Scrollview';
+import {selectBadges} from '~/store/selectors/exercises';
 import {toggleVisibility} from '~/utils/toggle-visibility';
 
 export type homeScreenProp = StackNavigationProp<RootStackParamList, 'Home'>;

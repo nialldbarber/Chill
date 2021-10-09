@@ -1,4 +1,5 @@
 import React from 'react';
+
 import Svg, {Circle, Rect} from 'react-native-svg';
 
 export default function Hold() {

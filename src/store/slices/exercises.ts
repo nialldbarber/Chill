@@ -1,4 +1,5 @@
-import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {PayloadAction, createSlice} from '@reduxjs/toolkit';
+
 import {CONFIG, ConfigT} from '~/constants/exercises';
 
 export interface ExerciseState {

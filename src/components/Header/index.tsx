@@ -1,23 +1,25 @@
 import React, {useEffect} from 'react';
-import {StyleSheet, View} from 'react-native';
-import {useSelector, useDispatch} from 'react-redux';
+
 import {useTheme} from '@react-navigation/native';
 import LottieView from 'lottie-react-native';
-import {
-  heightPercentageToDP as hp,
-  widthPercentageToDP as wp,
-} from 'react-native-responsive-screen';
+import {StyleSheet, View} from 'react-native';
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
   withDelay,
   withTiming,
 } from 'react-native-reanimated';
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from 'react-native-responsive-screen';
+import {useDispatch, useSelector} from 'react-redux';
+
+import animation from '~/assets/landscape.json';
 import {selectName} from '~/store/selectors/name';
 import {setName} from '~/store/slices/name';
 import {timeOfDayGreeting} from '~/utils/get-date';
 import {getStoredData} from '~/utils/stored-data';
-import animation from '~/assets/landscape.json';
 
 export default function Header() {
   const {colors, normalize} = useTheme() as any;
