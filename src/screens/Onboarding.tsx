@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 
 import {useNavigation, useTheme} from '@react-navigation/native';
+import {StackNavigationProp} from '@react-navigation/stack';
 import {StyleSheet, Text, TextInput, View} from 'react-native';
 import Animated, {
   useAnimatedStyle,
@@ -16,8 +17,14 @@ import {
 import Btn from '~/components/helpers/Button';
 import Exit from '~/components/Icons/Exit';
 import Spinner from '~/components/Loader/Spinner';
+import {RootStackParamList} from '~/components/Navigator/RootNavigator';
 import {fixedColors} from '~/styles/theme';
 import {setStoredData} from '~/utils/stored-data';
+
+export type onboardingScreenProp = StackNavigationProp<
+  RootStackParamList,
+  'Onboarding'
+>;
 
 export default function OnboardingScreen() {
   const {colors} = useTheme();
@@ -66,7 +73,6 @@ export default function OnboardingScreen() {
       height: hp('5%'),
       width: wp('85%'),
       borderRadius: 25,
-      backgroundColor: colors.text,
     },
     btnText: {
       color: fixedColors.white,
@@ -74,8 +80,9 @@ export default function OnboardingScreen() {
     },
   });
 
-  const {navigate} = useNavigation() as any;
+  const {navigate} = useNavigation<onboardingScreenProp>();
   const [value, setValue] = useState<string>('');
+  const [proceed, setProceed] = useState<boolean>(false);
   const [showLoader, setShowLoader] = useState<boolean>(false);
 
   const title = useSharedValue(0);
@@ -101,6 +108,12 @@ export default function OnboardingScreen() {
     input.value = withDelay(1500, withTiming(1, {duration}));
   }, [input, message, title]);
 
+  useEffect(() => {
+    if (value.length > 0) {
+      setProceed(true);
+    }
+  }, [value]);
+
   return (
     <View style={styles.container}>
       <Animated.Text style={[styles.title, titleStyles]}>
@@ -121,13 +134,16 @@ export default function OnboardingScreen() {
           </Btn>
         ) : null}
         <Btn
-          style={styles.btn}
+          style={{
+            ...styles.btn,
+            backgroundColor: proceed ? colors.text : fixedColors.darkGrey,
+          }}
           onPress={() => {
             setStoredData(value);
             navigate('Home');
           }}
           onPressIn={() => setShowLoader(true)}
-          disabled={showLoader}
+          disabled={!proceed}
         >
           <>
             {showLoader ? (

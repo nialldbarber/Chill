@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react';
 
+import {useTheme} from '@react-navigation/native';
 import {StyleSheet} from 'react-native';
 import Animated, {
   useAnimatedStyle,
@@ -13,6 +14,8 @@ import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 import {fixedColors} from '~/styles/theme';
 
 export default function Spinner() {
+  const {colors} = useTheme();
+
   const styles = StyleSheet.create({
     outer: {
       position: 'relative',
@@ -21,6 +24,7 @@ export default function Spinner() {
       backgroundColor: fixedColors.white,
       borderWidth: wp('1%'),
       borderRadius: wp('50%'),
+      borderColor: colors.text,
     },
   });
 
@@ -34,9 +38,9 @@ export default function Spinner() {
     size.value = withRepeat(
       withSequence(withSpring(1), withSpring(0.5)),
       -1,
-      true
+      true,
     );
-  }, []);
+  }, [size]);
 
   return <Animated.View style={[styles.outer, sizeStyles]} />;
 }

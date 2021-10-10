@@ -111,8 +111,8 @@ export default function ExerciseScreen({route}: {route: RouteT}) {
   const {seconds, instructions, reset, innerCircleStyles, animatedText} =
     useGetAnimation(type, exercise);
 
-  const {steps} = useGetTime(1, exercise);
-  console.log(steps);
+  // const {steps} = useGetTime(1, exercise);
+  // console.log(steps);
 
   // useGetHaptics(instructions)
 
