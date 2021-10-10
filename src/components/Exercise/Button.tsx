@@ -13,15 +13,15 @@ import {fixedColors} from '~/styles/theme';
 import {impactAsync} from '~/utils/haptics';
 
 type ExerciseButtonProps = {
-  startCountdown: boolean;
-  beginExercise: boolean;
+  hasCountdownStarted: boolean;
+  hasBegun: boolean;
   reset: () => void;
   action: () => void;
 };
 
 export default function ExerciseButton({
-  startCountdown,
-  beginExercise,
+  hasCountdownStarted,
+  hasBegun,
   reset,
   action,
 }: ExerciseButtonProps) {
@@ -67,7 +67,7 @@ export default function ExerciseButton({
     },
   });
 
-  const isLoaderActive = startCountdown && !beginExercise;
+  const isLoaderActive = hasCountdownStarted && !hasBegun;
 
   function beginExerciseIfNotActive(): void {
     if (!isLoaderActive) {
@@ -80,7 +80,7 @@ export default function ExerciseButton({
     <View style={styles.button}>
       <View style={styles.buttonInnerWrap}>
         <View style={styles.buttonInnerMask}>
-          {beginExercise ? (
+          {hasBegun ? (
             <Btn
               style={styles.btn}
               onPress={() => {

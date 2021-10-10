@@ -10,6 +10,7 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 import {SharedElement} from 'react-navigation-shared-element';
+import {useDispatch, useSelector} from 'react-redux';
 
 import ExerciseButton from '~/components/Exercise/Button';
 import InstructionsContainer from '~/components/Exercise/Icons/InstructionContainer';
@@ -21,6 +22,15 @@ import {ConfigT, FEELINGS_COLOR_MAP} from '~/constants/exercises';
 import {HEIGHT, SHADOW, WIDTH} from '~/constants/theme';
 import useGetAnimation from '~/hooks/useGetAnimation';
 import useGetHaptics from '~/hooks/useGetHaptics';
+import useGetTime from '~/hooks/useGetTime';
+import {
+  selectHasBegun,
+  selectHasCountdownStarted,
+} from '~/store/selectors/individual-exercise';
+import {
+  handleBeginExercise,
+  handleStartCountdown,
+} from '~/store/slices/individual-exercise';
 import {DEEP_BACKGROUND, FADED_BACKGROUND, fixedColors} from '~/styles/theme';
 import {getTime} from '~/utils/time';
 
@@ -94,19 +104,28 @@ export default function ExerciseScreen({route}: {route: RouteT}) {
     },
   });
 
+  const dispatch = useDispatch();
+  const hasBegun = useSelector(selectHasBegun);
+  const hasCountdownStarted = useSelector(selectHasCountdownStarted);
   const {navigate} = useNavigation<breathingScreenProp>();
-  const {
-    startCountdown,
-    seconds,
-    beginExercise,
-    handleBeginExercise,
-    instructions,
-    reset,
-    innerCircleStyles,
-    animatedText,
-  } = useGetAnimation(type, exercise);
+  const {seconds, instructions, reset, innerCircleStyles, animatedText} =
+    useGetAnimation(type, exercise);
 
-  useGetHaptics(instructions);
+  const {steps} = useGetTime(1, exercise);
+  console.log(steps);
+
+  // useGetHaptics(instructions)
+
+  function handleExercise(cond: boolean): void {
+    dispatch(handleStartCountdown(true));
+    if (cond) {
+      setTimeout(() => {
+        dispatch(handleBeginExercise(cond));
+      }, 4000);
+    } else {
+      dispatch(handleBeginExercise(cond));
+    }
+  }
 
   return (
     <View style={styles.container}>
@@ -115,15 +134,13 @@ export default function ExerciseScreen({route}: {route: RouteT}) {
           <BackIcon />
         </Btn>
         {/* <ModalIcon modalScreen="BreathingInfoModal" mode="dark" /> */}
-        {beginExercise ? (
-          <Text style={styles.timer}>{getTime(seconds)}</Text>
-        ) : null}
-        <ExerciseTitle title={exerciseName} hasBegun={beginExercise} />
+        {hasBegun ? <Text style={styles.timer}>{getTime(seconds)}</Text> : null}
+        <ExerciseTitle title={exerciseName} hasBegun={hasBegun} />
         <SharedElement id={id.toString()}>
           <View style={styles.outerCircle}>
             <Animated.View style={[styles.innerCircle, innerCircleStyles]}>
               <View>
-                {beginExercise ? (
+                {hasBegun ? (
                   <ReText text={animatedText} style={styles.innerText} />
                 ) : null}
               </View>
@@ -135,8 +152,8 @@ export default function ExerciseScreen({route}: {route: RouteT}) {
         <InstructionsContainer {...{type, exercise}} />
       </View>
       <ExerciseButton
-        {...{beginExercise, reset, category, startCountdown}}
-        action={() => handleBeginExercise(true)}
+        {...{hasBegun, reset, category, hasCountdownStarted}}
+        action={() => handleExercise(true)}
       />
     </View>
   );

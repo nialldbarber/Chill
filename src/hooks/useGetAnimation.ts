@@ -10,18 +10,21 @@ import Animated, {
   withSpring,
   withTiming,
 } from 'react-native-reanimated';
+import {useDispatch, useSelector} from 'react-redux';
 
 import {HOLD, IN, OUT} from '~/constants/exercises';
 import {ORIGINAL_SIZE, WIDTH} from '~/constants/theme';
 import useInterval from '~/hooks/useInterval';
 import {Instruct} from '~/screens/Exercise';
+import {selectHasBegun} from '~/store/selectors/individual-exercise';
+import {
+  handleBeginExercise,
+  handleStartCountdown,
+} from '~/store/slices/individual-exercise';
 import {secToMill} from '~/utils/time';
 
 type AnimationT = {
-  startCountdown: boolean;
   seconds: number;
-  beginExercise: boolean;
-  handleBeginExercise: (cond: boolean) => void;
   reset: () => void;
   instructions: Animated.SharedValue<Instruct>;
   innerCircleStyles: Animated.AnimateStyle<{
@@ -36,9 +39,9 @@ export default function useGetAnimation(
   type: number | undefined,
   exercise: number[],
 ): AnimationT {
-  const [startCountdown, setStartCountdown] = useState<boolean>(false);
+  const dispatch = useDispatch();
+  const hasBegun = useSelector(selectHasBegun);
   const [seconds, setSeconds] = useState<number>(0);
-  const [beginExercise, setBeginExercise] = useState<boolean>(false);
   const innerCircle = useSharedValue<number>(ORIGINAL_SIZE);
   const instructions = useSharedValue<Instruct>('');
   const scale = useSharedValue<number>(0);
@@ -54,29 +57,25 @@ export default function useGetAnimation(
     let str: Instruct = instructions.value;
     str = str.toString().replace(/NaN/g, '');
     return str;
-  }, [beginExercise]);
+  }, [hasBegun]);
 
   useEffect(() => {
-    if (beginExercise) {
+    if (hasBegun) {
       innerCircle.value = withRepeat(
         withSequence(
-          // in breath
           withTiming(WIDTH, {duration: secToMill(exercise[0])}),
-          // hold
           withTiming(WIDTH, {duration: secToMill(exercise[1])}),
-          // out breath
           withTiming(ORIGINAL_SIZE, {duration: secToMill(exercise[2])}),
-          // hold
           withTiming(ORIGINAL_SIZE, {duration: secToMill(exercise[3])}),
         ),
         -1,
         false,
       );
     }
-  }, [beginExercise, exercise, innerCircle]);
+  }, [hasBegun, exercise, innerCircle]);
 
   useEffect(() => {
-    if (beginExercise) {
+    if (hasBegun) {
       if (type === 1) {
         instructions.value = withRepeat(
           withSequence(
@@ -119,42 +118,28 @@ export default function useGetAnimation(
         );
       }
     }
-  }, [beginExercise, exercise, instructions, type]);
+  }, [hasBegun, exercise, instructions, type]);
 
   useEffect(() => {
     scale.value = withDelay(450, withSpring(1));
   }, [scale]);
 
   useInterval(() => {
-    if (beginExercise) {
-      setSeconds((sec) => sec + 1), 1000, beginExercise, seconds;
+    if (hasBegun) {
+      setSeconds((sec) => sec + 1), 1000, hasBegun, seconds;
     }
   });
 
-  function handleBeginExercise(cond: boolean): void {
-    setStartCountdown(true);
-    if (cond) {
-      setTimeout(() => {
-        setBeginExercise(cond);
-      }, 4000);
-    } else {
-      setBeginExercise(cond);
-    }
-  }
-
   function reset(): void {
     setSeconds(0);
-    handleBeginExercise(false);
-    setStartCountdown(false);
+    dispatch(handleBeginExercise(false));
+    dispatch(handleStartCountdown(false));
     innerCircle.value = withSpring(ORIGINAL_SIZE);
     instructions.value = '';
   }
 
   return {
-    startCountdown,
     seconds,
-    beginExercise,
-    handleBeginExercise,
     reset,
     instructions,
     innerCircleStyles,
