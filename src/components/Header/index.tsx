@@ -22,7 +22,7 @@ import {timeOfDayGreeting} from '~/utils/get-date';
 import {getStoredData} from '~/utils/stored-data';
 
 export default function Header() {
-  const {colors, normalize} = useTheme() as any;
+  const {colors, normalize} = useTheme();
 
   const styles = StyleSheet.create({
     header: {

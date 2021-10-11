@@ -1,5 +1,6 @@
 Todos:
 
+- [ ] correct black icons
 - [ ] prevent onboard submit without value
 - [ ] info popups
 - [ ] dark mode
