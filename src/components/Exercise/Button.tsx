@@ -28,7 +28,7 @@ export default function ExerciseButton({
   const {colors} = useTheme();
 
   const styles = StyleSheet.create({
-    button: {
+    container: {
       alignSelf: 'center',
       width: wp('100%'),
       height: hp('20%'),
@@ -43,15 +43,12 @@ export default function ExerciseButton({
       shadowRadius: 12,
       elevation: 5,
     },
-    buttonInnerWrap: {
-      ...StyleSheet.absoluteFillObject,
-    },
-    buttonInnerMask: {
+    buttonWrapper: {
       flex: 1,
       alignItems: 'center',
       justifyContent: 'center',
     },
-    btn: {
+    button: {
       display: 'flex',
       alignItems: 'center',
       alignSelf: 'center',
@@ -61,7 +58,7 @@ export default function ExerciseButton({
       borderRadius: 25,
       backgroundColor: colors.text,
     },
-    btnText: {
+    buttonText: {
       color: fixedColors.white,
       fontSize: wp('5%'),
     },
@@ -77,35 +74,33 @@ export default function ExerciseButton({
   }
 
   return (
-    <View style={styles.button}>
-      <View style={styles.buttonInnerWrap}>
-        <View style={styles.buttonInnerMask}>
-          {hasBegun ? (
-            <Btn
-              style={styles.btn}
-              onPress={() => {
-                reset();
-                impactAsync('heavy');
-              }}
-            >
-              <Text style={styles.btnText}>Stop</Text>
-            </Btn>
-          ) : (
-            <Btn
-              style={styles.btn}
-              disabled={isLoaderActive}
-              onPress={beginExerciseIfNotActive}
-            >
-              <View>
-                {isLoaderActive ? (
-                  <Loader active={isLoaderActive} />
-                ) : (
-                  <Text style={styles.btnText}>Begin</Text>
-                )}
-              </View>
-            </Btn>
-          )}
-        </View>
+    <View style={styles.container}>
+      <View style={styles.buttonWrapper}>
+        {hasBegun ? (
+          <Btn
+            style={styles.button}
+            onPress={() => {
+              reset();
+              impactAsync('heavy');
+            }}
+          >
+            <Text style={styles.buttonText}>Stop</Text>
+          </Btn>
+        ) : (
+          <Btn
+            style={styles.button}
+            disabled={isLoaderActive}
+            onPress={beginExerciseIfNotActive}
+          >
+            <View>
+              {isLoaderActive ? (
+                <Loader active={isLoaderActive} />
+              ) : (
+                <Text style={styles.buttonText}>Begin</Text>
+              )}
+            </View>
+          </Btn>
+        )}
       </View>
     </View>
   );
