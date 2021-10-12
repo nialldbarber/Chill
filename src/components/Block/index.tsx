@@ -82,7 +82,7 @@ export default function Block({id, title, category = '', onPress}: BlockProps) {
       scale.value = withTiming(1);
     });
     return unsubscribe;
-  }, [addListener, scale]);
+  }, [scale]);
 
   return (
     <Animated.View style={[styles.block, blockHover]}>
