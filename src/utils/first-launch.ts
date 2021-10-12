@@ -14,7 +14,7 @@ export default async function checkIfFirstLaunch(): Promise<boolean> {
       return true;
     }
     return false;
-  } catch (error) {
+  } catch (err) {
     return false;
   }
 }

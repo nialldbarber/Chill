@@ -70,7 +70,7 @@ export default function Block({id, title, category = '', onPress}: BlockProps) {
     },
   });
 
-  const navigation = useNavigation();
+  const {addListener} = useNavigation();
   const scale = useSharedValue<number>(1);
 
   const blockHover = useAnimatedStyle(() => ({
@@ -78,11 +78,11 @@ export default function Block({id, title, category = '', onPress}: BlockProps) {
   }));
 
   useEffect(() => {
-    const unsubscribe = navigation.addListener('focus', () => {
+    const unsubscribe = addListener('focus', () => {
       scale.value = withTiming(1);
     });
     return unsubscribe;
-  }, [navigation, scale]);
+  }, [addListener, scale]);
 
   return (
     <Animated.View style={[styles.block, blockHover]}>

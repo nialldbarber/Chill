@@ -1,7 +1,7 @@
 export const secToMill = (seconds: number): number => seconds * 1000;
 
 export function getTime(time: number): string {
-  let ticker;
+  let ticker: string;
   if (time > 3600) {
     ticker = new Date(time * 1000).toISOString().substr(11, 8);
   } else {

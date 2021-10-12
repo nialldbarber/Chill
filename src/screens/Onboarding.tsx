@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 
 import {useNavigation, useTheme} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
@@ -13,11 +13,22 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
+import {useDispatch, useSelector} from 'react-redux';
 
 import Btn from '~/components/helpers/Button';
 import Exit from '~/components/Icons/Exit';
 import Spinner from '~/components/Loader/Spinner';
 import {RootStackParamList} from '~/components/Navigator/RootNavigator';
+import {
+  selectInputValue,
+  selectProceedToHome,
+  selectShowLoader,
+} from '~/store/selectors/onboarding';
+import {
+  setInputValue,
+  setProceedToHome,
+  setShowLoader,
+} from '~/store/slices/onboarding';
 import {fixedColors} from '~/styles/theme';
 import {setStoredData} from '~/utils/stored-data';
 
@@ -80,10 +91,12 @@ export default function OnboardingScreen() {
     },
   });
 
+  const dispatch = useDispatch();
   const {navigate} = useNavigation<onboardingScreenProp>();
-  const [value, setValue] = useState<string>('');
-  const [proceed, setProceed] = useState<boolean>(false);
-  const [showLoader, setShowLoader] = useState<boolean>(false);
+
+  const value = useSelector(selectInputValue);
+  const proceed = useSelector(selectProceedToHome);
+  const showLoader = useSelector(selectShowLoader);
 
   const title = useSharedValue(0);
   const message = useSharedValue(0);
@@ -110,9 +123,9 @@ export default function OnboardingScreen() {
 
   useEffect(() => {
     if (value.length > 0) {
-      setProceed(true);
+      dispatch(setProceedToHome(true));
     }
-  }, [value]);
+  }, [value, dispatch]);
 
   return (
     <View style={styles.container}>
@@ -125,11 +138,17 @@ export default function OnboardingScreen() {
       <Animated.View style={[styles.inputContainer, inputStyles]}>
         <TextInput
           value={value}
-          onChangeText={(text) => setValue(text)}
+          onChangeText={(text) => dispatch(setInputValue(text))}
           style={styles.textInput}
         />
         {value ? (
-          <Btn style={styles.exit} onPress={() => setValue('')}>
+          <Btn
+            style={styles.exit}
+            onPress={() => {
+              dispatch(setInputValue(''));
+              dispatch(setProceedToHome(false));
+            }}
+          >
             <Exit fill={fixedColors.darkGrey} />
           </Btn>
         ) : null}
@@ -142,7 +161,7 @@ export default function OnboardingScreen() {
             setStoredData(value);
             navigate('Home');
           }}
-          onPressIn={() => setShowLoader(true)}
+          onPressIn={() => dispatch(setShowLoader(true))}
           disabled={!proceed}
         >
           <>

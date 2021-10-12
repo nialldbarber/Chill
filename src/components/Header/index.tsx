@@ -16,8 +16,8 @@ import {
 import {useDispatch, useSelector} from 'react-redux';
 
 import animation from '~/assets/landscape.json';
-import {selectName} from '~/store/selectors/name';
-import {setName} from '~/store/slices/name';
+import {selectName} from '~/store/selectors/user-name';
+import {setUserName} from '~/store/slices/user-name';
 import {timeOfDayGreeting} from '~/utils/get-date';
 import {getStoredData} from '~/utils/stored-data';
 
@@ -65,10 +65,10 @@ export default function Header() {
 
   useEffect(() => {
     (async function getData(): Promise<void> {
-      const {name} = await getStoredData();
-      dispatch(setName(name.trim()));
+      const user = await getStoredData();
+      dispatch(setUserName(user?.name.trim()));
     })();
-  }, []);
+  }, [dispatch]);
 
   return (
     <View style={styles.header}>

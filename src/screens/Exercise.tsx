@@ -28,8 +28,8 @@ import {
   selectHasCountdownStarted,
 } from '~/store/selectors/individual-exercise';
 import {
-  handleBeginExercise,
-  handleStartCountdown,
+  setBeginExercise,
+  setStartCountdown,
 } from '~/store/slices/individual-exercise';
 import {DEEP_BACKGROUND, FADED_BACKGROUND, fixedColors} from '~/styles/theme';
 import {getTime} from '~/utils/time';
@@ -117,13 +117,13 @@ export default function ExerciseScreen({route}: {route: RouteT}) {
   // useGetHaptics(instructions)
 
   function handleExercise(cond: boolean): void {
-    dispatch(handleStartCountdown(true));
+    dispatch(setStartCountdown(true));
     if (cond) {
       setTimeout(() => {
-        dispatch(handleBeginExercise(cond));
+        dispatch(setBeginExercise(cond));
       }, 4000);
     } else {
-      dispatch(handleBeginExercise(cond));
+      dispatch(setBeginExercise(cond));
     }
   }
 
@@ -152,7 +152,7 @@ export default function ExerciseScreen({route}: {route: RouteT}) {
         <InstructionsContainer {...{type, exercise}} />
       </View>
       <ExerciseButton
-        {...{hasBegun, reset, category, hasCountdownStarted}}
+        {...{reset, category, hasCountdownStarted}}
         action={() => handleExercise(true)}
       />
     </View>

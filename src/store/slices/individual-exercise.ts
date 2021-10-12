@@ -14,16 +14,16 @@ export const individualExerciseSlice = createSlice({
   name: 'individual-exercise',
   initialState,
   reducers: {
-    handleBeginExercise: (state, action: PayloadAction<boolean>) => {
+    setBeginExercise: (state, action: PayloadAction<boolean>) => {
       state.hasBegun = action.payload;
     },
-    handleStartCountdown: (state, action: PayloadAction<boolean>) => {
+    setStartCountdown: (state, action: PayloadAction<boolean>) => {
       state.startCountdown = action.payload;
     },
   },
 });
 
-export const {handleBeginExercise, handleStartCountdown} =
+export const {setBeginExercise, setStartCountdown} =
   individualExerciseSlice.actions;
 
 export default individualExerciseSlice.reducer;

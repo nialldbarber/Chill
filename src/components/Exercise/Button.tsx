@@ -6,25 +6,23 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
+import {useSelector} from 'react-redux';
 
 import Btn from '~/components/helpers/Button';
 import Loader from '~/components/Loader';
+import {
+  selectHasBegun,
+  selectHasCountdownStarted,
+} from '~/store/selectors/individual-exercise';
 import {fixedColors} from '~/styles/theme';
 import {impactAsync} from '~/utils/haptics';
 
 type ExerciseButtonProps = {
-  hasCountdownStarted: boolean;
-  hasBegun: boolean;
   reset: () => void;
   action: () => void;
 };
 
-export default function ExerciseButton({
-  hasCountdownStarted,
-  hasBegun,
-  reset,
-  action,
-}: ExerciseButtonProps) {
+export default function ExerciseButton({reset, action}: ExerciseButtonProps) {
   const {colors} = useTheme();
 
   const styles = StyleSheet.create({
@@ -64,7 +62,9 @@ export default function ExerciseButton({
     },
   });
 
-  const isLoaderActive = hasCountdownStarted && !hasBegun;
+  const hasExerciseBegun = useSelector(selectHasBegun);
+  const hasCountdownStarted = useSelector(selectHasCountdownStarted);
+  const isLoaderActive = hasCountdownStarted && !hasExerciseBegun;
 
   function beginExerciseIfNotActive(): void {
     if (!isLoaderActive) {
@@ -76,7 +76,7 @@ export default function ExerciseButton({
   return (
     <View style={styles.container}>
       <View style={styles.buttonWrapper}>
-        {hasBegun ? (
+        {hasExerciseBegun ? (
           <Btn
             style={styles.button}
             onPress={() => {

@@ -16,7 +16,7 @@ export const exerciseSlice = createSlice({
   name: 'exercises',
   initialState,
   reducers: {
-    filterBySelectedBadge: (state, action: PayloadAction<string>) => {
+    setFilterBySelectedBadge: (state, action: PayloadAction<string>) => {
       state.exerciseList = state.originalList;
       state.exerciseList = state.exerciseList.filter((item) => {
         return item?.tags?.includes(action.payload);
@@ -25,6 +25,6 @@ export const exerciseSlice = createSlice({
   },
 });
 
-export const {filterBySelectedBadge} = exerciseSlice.actions;
+export const {setFilterBySelectedBadge} = exerciseSlice.actions;
 
 export default exerciseSlice.reducer;

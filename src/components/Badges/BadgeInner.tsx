@@ -14,16 +14,16 @@ import {useDispatch} from 'react-redux';
 
 import Btn from '~/components/helpers/Button';
 import {FEELING_MAPPED_KEY, feelings} from '~/constants/exercises';
-import {filterBySelectedBadge} from '~/store/slices/exercises';
+import {setFilterBySelectedBadge} from '~/store/slices/exercises';
 import {DEEP_BACKGROUND, FADED_BACKGROUND} from '~/styles/theme';
 
 type BadgeInnerProps = {
-  i: number;
+  index: number;
   item: string;
   press: () => void;
 };
 
-export default function BadgeInner({i, item, press}: BadgeInnerProps) {
+export default function BadgeInner({index, item, press}: BadgeInnerProps) {
   const styles = StyleSheet.create({
     badgeContainer: {
       marginTop: hp('2%'),
@@ -54,13 +54,12 @@ export default function BadgeInner({i, item, press}: BadgeInnerProps) {
 
   function handleFilter(): void {
     setTimeout(() => {
-      dispatch(filterBySelectedBadge(feelings[i]));
+      dispatch(setFilterBySelectedBadge(feelings[index]));
     }, 200);
   }
 
   return (
     <Btn
-      key={i}
       style={styles.badgeContainer}
       onPress={() => {
         handleFilter();
@@ -72,7 +71,7 @@ export default function BadgeInner({i, item, press}: BadgeInnerProps) {
       <Animated.View
         style={[
           styles.badge,
-          {marginLeft: i === 0 ? wp('5%') : 0},
+          {marginLeft: index === 0 ? wp('5%') : 0},
           scaleStyles,
         ]}
       >

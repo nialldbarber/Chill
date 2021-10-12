@@ -18,8 +18,8 @@ import useInterval from '~/hooks/useInterval';
 import {Instruct} from '~/screens/Exercise';
 import {selectHasBegun} from '~/store/selectors/individual-exercise';
 import {
-  handleBeginExercise,
-  handleStartCountdown,
+  setBeginExercise,
+  setStartCountdown,
 } from '~/store/slices/individual-exercise';
 import {secToMill} from '~/utils/time';
 
@@ -132,8 +132,8 @@ export default function useGetAnimation(
 
   function reset(): void {
     setSeconds(0);
-    dispatch(handleBeginExercise(false));
-    dispatch(handleStartCountdown(false));
+    dispatch(setBeginExercise(false));
+    dispatch(setStartCountdown(false));
     innerCircle.value = withSpring(ORIGINAL_SIZE);
     instructions.value = '';
   }

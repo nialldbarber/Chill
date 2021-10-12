@@ -11,8 +11,8 @@ type BadgesProps = {
 export default function Badges({press}: BadgesProps) {
   return (
     <Scroll h>
-      {feelings.map((item, i) => (
-        <BadgeInner key={i} {...{i, item, press}} />
+      {feelings.map((item, index) => (
+        <BadgeInner key={index} {...{index, item, press}} />
       ))}
     </Scroll>
   );
