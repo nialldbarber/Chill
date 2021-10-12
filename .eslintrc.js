@@ -3,7 +3,12 @@ module.exports = {
   extends: ['@react-native-community', 'plugin:import/typescript'],
   plugins: ['import'],
   rules: {
-    'prefer-const': 1,
+    'prefer-const': [
+      'error',
+      {
+        destructuring: 'all',
+      },
+    ],
     'sort-imports': [
       'error',
       {

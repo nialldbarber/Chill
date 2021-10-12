@@ -13,7 +13,6 @@ import Animated, {
 import {useDispatch, useSelector} from 'react-redux';
 
 import {HOLD, IN, OUT} from '~/constants/exercises';
-import {ORIGINAL_SIZE, WIDTH} from '~/constants/theme';
 import useInterval from '~/hooks/useInterval';
 import {Instruct} from '~/screens/Exercise';
 import {selectHasBegun} from '~/store/selectors/individual-exercise';
@@ -21,6 +20,7 @@ import {
   setBeginExercise,
   setStartCountdown,
 } from '~/store/slices/individual-exercise';
+import {ORIGINAL_SIZE, WIDTH} from '~/styles/theme';
 import {secToMill} from '~/utils/time';
 
 type AnimationT = {

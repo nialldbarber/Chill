@@ -1,7 +1,8 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 
 import {useSelector} from 'react-redux';
 
+import useTimeout from '~/hooks/useTimeout';
 import {selectHasBegun} from '~/store/selectors/individual-exercise';
 
 // types
@@ -20,22 +21,20 @@ export default function useGetTime(type: number, exercise: number[]) {
   const hasBegun = useSelector(selectHasBegun);
   const [steps, setSteps] = useState<string>();
 
-  if (type === 1) {
+  useEffect(() => {
     if (hasBegun) {
       setSteps('Inhale');
-
-      setTimeout(() => {
-        setSteps('Hold');
-      }, secToMill(exercise[0]));
-
-      setTimeout(() => {
-        setSteps('Exhale');
-      }, secToMill(exercise[1]));
-
-      setTimeout(() => {
-        setSteps('Hold');
-      }, secToMill(exercise[2]));
     }
-  }
+  }, [hasBegun]);
+
+  useTimeout(
+    () => {
+      if (hasBegun) {
+        setSteps('Hold');
+      }
+    },
+    secToMill(exercise[1]),
+    hasBegun,
+  );
   return {steps};
 }

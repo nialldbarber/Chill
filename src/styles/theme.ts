@@ -74,3 +74,17 @@ export const DEEP_BACKGROUND: Record<string, string> = {
   energy: fixedColors.primaryDeep,
   night: fixedColors.nightDeep,
 };
+
+export const WIDTH = 300;
+export const HEIGHT = 300;
+export const ORIGINAL_SIZE = WIDTH / 3;
+
+export const SHADOW = {
+  shadowOffset: {
+    width: 1,
+    height: 3,
+  },
+  shadowOpacity: 0.1,
+  shadowRadius: 10,
+  elevation: 5,
+};
