@@ -1,13 +1,14 @@
 Todos:
 
-- [ ] correct black icons
+- [ ] kill exercise on screen change
 - [ ] prevent onboard submit without value
-- [ ] info popups
 - [ ] dark mode
-- [ ] formalise imports
 - [ ] tests
 - [ ] hold countdown animation
 - [ ] define typescript types better
+- [x] info popups
+- [x] formalise imports
+- [x] correct black icons
 - [x] button loader animation onboarding screen
 - [x] intro animation
 - [x] on first launch - get user name

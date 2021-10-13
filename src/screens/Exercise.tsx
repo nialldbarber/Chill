@@ -125,7 +125,7 @@ export default function ExerciseScreen({route}: {route: RouteT}) {
   return (
     <View style={styles.container}>
       <View style={styles.outerCircleContainer}>
-        <ModalIcon style={styles.back} modalScreen="Home">
+        <ModalIcon style={styles.back} modalScreen="Home" onPress={reset}>
           <BackIcon />
         </ModalIcon>
         {hasBegun ? <Text style={styles.timer}>{getTime(seconds)}</Text> : null}

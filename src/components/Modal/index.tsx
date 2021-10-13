@@ -14,6 +14,7 @@ type ModalIconProps = {
   mode?: string;
   style?: any;
   customRoute?: any;
+  onPress?: () => void;
   children: ReactChild;
 };
 
@@ -21,6 +22,7 @@ export default function ModalIcon({
   modalScreen,
   style,
   customRoute,
+  onPress,
   children,
 }: ModalIconProps) {
   const styles = StyleSheet.create({
@@ -37,6 +39,7 @@ export default function ModalIcon({
   return (
     <Btn
       onPress={() => {
+        onPress && onPress();
         customRoute ? customRoute() : navigate(modalScreen);
       }}
       style={[styles.modal, style]}
