@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {ReactChild} from 'react';
 
 import {useNavigation} from '@react-navigation/native';
-import {StyleSheet, Text} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
@@ -11,10 +11,18 @@ import Btn from '~/components/helpers/Button';
 
 type ModalIconProps = {
   modalScreen: any;
-  mode: string;
+  mode?: string;
+  style?: any;
+  customRoute?: any;
+  children: ReactChild;
 };
 
-export default function ModalIcon({modalScreen}: ModalIconProps) {
+export default function ModalIcon({
+  modalScreen,
+  style,
+  customRoute,
+  children,
+}: ModalIconProps) {
   const styles = StyleSheet.create({
     modal: {
       position: 'absolute',
@@ -27,8 +35,13 @@ export default function ModalIcon({modalScreen}: ModalIconProps) {
   const {navigate} = useNavigation();
 
   return (
-    <Btn onPress={() => navigate(modalScreen)} style={styles.modal}>
-      <Text>MODAL</Text>
+    <Btn
+      onPress={() => {
+        customRoute ? customRoute() : navigate(modalScreen);
+      }}
+      style={[styles.modal, style]}
+    >
+      {children}
     </Btn>
   );
 }

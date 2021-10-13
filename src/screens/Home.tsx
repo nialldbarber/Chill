@@ -7,13 +7,18 @@ import Animated, {
   useAnimatedStyle,
   useSharedValue,
 } from 'react-native-reanimated';
-import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from 'react-native-responsive-screen';
+import {SharedElement} from 'react-navigation-shared-element';
 import {useSelector} from 'react-redux';
 
 import Badges from '~/components/Badges';
 import Block from '~/components/Block';
 import Header from '~/components/Header';
 import Scroll from '~/components/helpers/Scrollview';
+import SettingsIcon from '~/components/Icons/Settings';
 import ModalIcon from '~/components/Modal';
 import {RootStackParamList} from '~/components/Navigator/RootNavigator';
 import {selectBadges} from '~/store/selectors/exercises';
@@ -35,6 +40,16 @@ export default function HomeScreen() {
       justifyContent: 'center',
       marginBottom: hp('4%'),
     },
+    infoCircle: {
+      backgroundColor: colors.text,
+      position: 'absolute',
+      top: hp('7%'),
+      right: wp('5%'),
+      zIndex: -1,
+      width: 1,
+      height: 1,
+      borderRadius: wp('50%'),
+    },
   });
 
   const {navigate} = useNavigation<homeScreenProp>() as any;
@@ -48,7 +63,19 @@ export default function HomeScreen() {
   return (
     <View style={styles.container}>
       <Scroll>
-        <ModalIcon modalScreen="InfoModal" mode="light" />
+        <SharedElement id="info">
+          <View style={styles.infoCircle} />
+        </SharedElement>
+        <ModalIcon
+          modalScreen="InfoModal"
+          customRoute={() =>
+            navigate('InfoModal', {
+              page: 'info',
+            })
+          }
+        >
+          <SettingsIcon />
+        </ModalIcon>
         <Header />
         <Badges
           press={() => toggleVisibility(blockContainerOpacity, true, 500)}

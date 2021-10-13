@@ -1,7 +1,6 @@
 import React from 'react';
 
-import {useNavigation, useTheme} from '@react-navigation/native';
-import {StackNavigationProp} from '@react-navigation/stack';
+import {useTheme} from '@react-navigation/native';
 import {StyleSheet, Text, View} from 'react-native';
 import Animated from 'react-native-reanimated';
 import {
@@ -14,13 +13,11 @@ import {useDispatch, useSelector} from 'react-redux';
 import ExerciseButton from '~/components/Exercise/Button';
 import InstructionsContainer from '~/components/Exercise/Icons/InstructionContainer';
 import ExerciseTitle from '~/components/Exercise/Title';
-import Btn from '~/components/helpers/Button';
 import BackIcon from '~/components/Icons/Back';
-import {RootStackParamList} from '~/components/Navigator/RootNavigator';
+import ModalIcon from '~/components/Modal';
 import {ConfigT, FEELINGS_COLOR_MAP} from '~/constants/exercises';
 import useGetAnimation from '~/hooks/useGetAnimation';
 import useGetHaptics from '~/hooks/useGetHaptics';
-import useGetTime from '~/hooks/useGetTime';
 import {
   selectHasBegun,
   selectHasCountdownStarted,
@@ -37,8 +34,7 @@ import {
   WIDTH,
   fixedColors,
 } from '~/styles/theme';
-import {loopItUp, run} from '~/utils/animated-text';
-import {getTime, secToMill} from '~/utils/time';
+import {getTime} from '~/utils/time';
 
 type RouteT = {
   key: string;
@@ -48,7 +44,6 @@ type RouteT = {
 };
 
 export type Instruct = number | string;
-type breathingScreenProp = StackNavigationProp<RootStackParamList, 'Exercise'>;
 
 export default function ExerciseScreen({route}: {route: RouteT}) {
   const {id, exerciseName, exercise, type, category} = route.params;
@@ -113,27 +108,8 @@ export default function ExerciseScreen({route}: {route: RouteT}) {
   const dispatch = useDispatch();
   const hasBegun = useSelector(selectHasBegun);
   const hasCountdownStarted = useSelector(selectHasCountdownStarted);
-  const {navigate} = useNavigation<breathingScreenProp>();
   const {seconds, instructions, reset, innerCircleStyles, animatedText} =
     useGetAnimation(type, exercise);
-  const [steps, setSteps] = React.useState('');
-
-  // const {steps} = useGetTime(1, exercise);
-  // console.log(steps);
-
-  // useGetHaptics(instructions)
-  React.useEffect(() => {
-    async function getInstructions() {
-      const instruction = await loopItUp(
-        secToMill(0),
-        secToMill(exercise[1]),
-        secToMill(exercise[2]),
-        secToMill(exercise[3]),
-      );
-      console.log(instruction);
-    }
-    getInstructions();
-  }, [exercise]);
 
   function handleExercise(cond: boolean): void {
     dispatch(setStartCountdown(true));
@@ -149,10 +125,9 @@ export default function ExerciseScreen({route}: {route: RouteT}) {
   return (
     <View style={styles.container}>
       <View style={styles.outerCircleContainer}>
-        <Btn style={styles.back} onPress={() => navigate('Home')}>
+        <ModalIcon style={styles.back} modalScreen="Home">
           <BackIcon />
-        </Btn>
-        {/* <ModalIcon modalScreen="BreathingInfoModal" mode="dark" /> */}
+        </ModalIcon>
         {hasBegun ? <Text style={styles.timer}>{getTime(seconds)}</Text> : null}
         <ExerciseTitle title={exerciseName} hasBegun={hasBegun} />
         <SharedElement id={id.toString()}>
