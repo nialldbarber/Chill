@@ -22,6 +22,7 @@ import SettingsIcon from '~/components/Icons/Settings';
 import ModalIcon from '~/components/Modal';
 import {RootStackParamList} from '~/components/Navigator/RootNavigator';
 import {selectBadges} from '~/store/selectors/exercises';
+import {fixedColors} from '~/styles/theme';
 import {toggleVisibility} from '~/utils/toggle-visibility';
 
 export type homeScreenProp = StackNavigationProp<RootStackParamList, 'Home'>;
@@ -41,7 +42,7 @@ export default function HomeScreen() {
       marginBottom: hp('4%'),
     },
     infoCircle: {
-      backgroundColor: colors.text,
+      backgroundColor: fixedColors.lighterGrey,
       position: 'absolute',
       top: hp('7%'),
       right: wp('5%'),
