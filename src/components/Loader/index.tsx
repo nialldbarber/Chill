@@ -62,7 +62,7 @@ export default function Loader({active}: {active: boolean}) {
         impactAsync('heavy');
       }, 3000);
     }
-  }, []);
+  }, [active, circleOne, circleTwo, circleThree]);
 
   return (
     <View style={styles.container}>

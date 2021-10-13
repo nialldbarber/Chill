@@ -9,6 +9,7 @@ module.exports = {
         destructuring: 'all',
       },
     ],
+    'block-scoped-var': 'error',
     'func-names': 0,
     'sort-imports': [
       'error',
