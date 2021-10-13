@@ -37,7 +37,6 @@ export default function getTheme(scheme: string): ThemeT {
       border: dark ? '#FFFFFF' : '#1a1a1a',
       notification: '',
     },
-    // font: Platform.OS === 'ios' ? 'Avenir Next' : 'Roboto',
     normalize,
   };
 }
