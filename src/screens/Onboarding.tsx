@@ -30,7 +30,7 @@ import {
   setShowLoader,
 } from '~/store/slices/onboarding';
 import {fixedColors} from '~/styles/theme';
-import {setStoredData} from '~/utils/stored-data';
+import {setStoredData} from '~/utils/storedData';
 
 export type onboardingScreenProp = StackNavigationProp<
   RootStackParamList,

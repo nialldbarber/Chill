@@ -18,8 +18,8 @@ import {useDispatch, useSelector} from 'react-redux';
 import animation from '~/assets/landscape.json';
 import {selectName} from '~/store/selectors/user-name';
 import {setUserName} from '~/store/slices/user-name';
-import {timeOfDayGreeting} from '~/utils/get-date';
-import {getStoredData} from '~/utils/stored-data';
+import {timeOfDayGreeting} from '~/utils/getDate';
+import {getStoredData} from '~/utils/storedData';
 
 export default function Header() {
   const {colors, normalize} = useTheme();

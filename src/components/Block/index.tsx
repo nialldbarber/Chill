@@ -17,6 +17,7 @@ import {SharedElement} from 'react-navigation-shared-element';
 import Btn from '~/components/helpers/Button';
 import {FEELINGS_COLOR_MAP} from '~/constants/exercises';
 import {fixedColors} from '~/styles/theme';
+import {haptics} from '~/utils/haptics';
 
 type BlockProps = {
   id?: string;
@@ -92,6 +93,7 @@ export default function Block({id, title, category = '', onPress}: BlockProps) {
       <Btn
         style={styles.blockWrapper}
         onPress={() => {
+          haptics.selection();
           onPress && onPress();
           scale.value = withSpring(1);
         }}

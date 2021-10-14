@@ -3,7 +3,7 @@ import {useEffect} from 'react';
 import Animated from 'react-native-reanimated';
 
 import {Instruct} from '~/screens/Exercise';
-import {getAnimatedTextFormatted} from '~/utils/animated-text';
+import {getAnimatedTextFormatted} from '~/utils/animatedText';
 import {impactAsync} from '~/utils/haptics';
 
 export default function useGetHaptics(

@@ -6,7 +6,7 @@ import ExerciseScreen from '~/screens/Exercise';
 import HomeScreen from '~/screens/Home';
 import InfoModalScreen from '~/screens/InfoModal';
 import OnboardingScreen from '~/screens/Onboarding';
-import checkIfFirstLaunch from '~/utils/first-launch';
+import checkIfFirstLaunch from '~/utils/firstLaunch';
 
 export type RootStackParamList = {
   Home: undefined;

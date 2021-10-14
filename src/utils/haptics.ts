@@ -1,23 +1,37 @@
+import {keys, map} from 'lodash';
 import ReactNativeHapticFeedback from 'react-native-haptic-feedback';
 
-const options = {
-  enableVibrateFallback: true,
-  ignoreAndroidSystemSettings: false,
+import reduceArrayToObject from '~/utils/reduceArrayToObject';
+
+type Haptics = {
+  impactHeavy: string;
+  impactLight: string;
+  impactMedium: string;
+  keyboardPress: string;
+  notificationError: string;
+  notificationSuccess: string;
+  notificationWarning: string;
+  selection: string;
 };
 
-export function impactAsync(style: string): void {
-  switch (style) {
-    case 'light':
-      ReactNativeHapticFeedback.trigger('impactLight', options);
-      break;
-    case 'medium':
-      ReactNativeHapticFeedback.trigger('impactLight', options);
-      break;
-    case 'heavy':
-      ReactNativeHapticFeedback.trigger('impactLight', options);
-      break;
-    default:
-      ReactNativeHapticFeedback.trigger('impactLight', options);
-      break;
-  }
-}
+export const HapticFeedbackTypes: Haptics = {
+  impactHeavy: 'impactHeavy',
+  impactLight: 'impactLight',
+  impactMedium: 'impactMedium',
+  keyboardPress: 'keyboardPress',
+  notificationError: 'notificationError',
+  notificationSuccess: 'notificationSuccess',
+  notificationWarning: 'notificationWarning',
+  selection: 'selection',
+};
+
+export const hapticToTrigger = (haptic) => {
+  // console.log(haptic);
+  return {
+    [haptic]: () => ReactNativeHapticFeedback.trigger(haptic),
+  };
+};
+
+export const haptics = reduceArrayToObject(
+  map(keys(HapticFeedbackTypes), hapticToTrigger),
+);

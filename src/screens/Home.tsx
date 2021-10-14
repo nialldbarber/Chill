@@ -25,7 +25,7 @@ import ModalIcon from '~/components/Modal';
 import {RootStackParamList} from '~/components/Navigator/RootNavigator';
 import {selectBadges} from '~/store/selectors/exercises';
 import {fixedColors} from '~/styles/theme';
-import {toggleVisibility} from '~/utils/toggle-visibility';
+import {toggleVisibility} from '~/utils/toggleVisibility';
 
 export type homeScreenProp = StackNavigationProp<RootStackParamList, 'Home'>;
 
