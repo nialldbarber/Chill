@@ -1,11 +1,11 @@
 Todos:
 
-- [ ] kill exercise on screen change
-- [ ] prevent onboard submit without value
 - [ ] dark mode
 - [ ] tests
 - [ ] hold countdown animation
 - [ ] define typescript types better
+- [x] kill exercise on screen change
+- [x] prevent onboard submit without value
 - [x] info popups
 - [x] formalise imports
 - [x] correct black icons

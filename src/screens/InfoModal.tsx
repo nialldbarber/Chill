@@ -46,7 +46,7 @@ export default function InfoModalScreen() {
     },
   });
 
-  const scale = useSharedValue(INITIAL_SCALE);
+  const scale = useSharedValue<number>(INITIAL_SCALE);
 
   const scaleStyles = useAnimatedStyle(() => ({
     transform: [{scale: scale.value}],

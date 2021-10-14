@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
 import {useNavigation, useTheme} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
@@ -6,6 +6,8 @@ import {StyleSheet, View} from 'react-native';
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
+  withDelay,
+  withSpring,
 } from 'react-native-reanimated';
 import {
   heightPercentageToDP as hp,
@@ -51,15 +53,28 @@ export default function HomeScreen() {
       height: 1,
       borderRadius: wp('50%'),
     },
+    settingsBackground: {
+      height: 24,
+      width: 24,
+    },
   });
 
   const {navigate} = useNavigation<homeScreenProp>() as any;
   const exercises = useSelector(selectBadges);
   const blockContainerOpacity = useSharedValue<number>(1);
+  const spin = useSharedValue<number>(10);
 
   const blockContainerStyle = useAnimatedStyle(() => ({
     opacity: blockContainerOpacity.value,
   }));
+
+  const spinStyles = useAnimatedStyle(() => ({
+    transform: [{rotate: `${spin.value}deg`}],
+  }));
+
+  useEffect(() => {
+    spin.value = withDelay(800, withSpring(180));
+  }, [spin]);
 
   return (
     <View style={styles.container}>
@@ -75,7 +90,9 @@ export default function HomeScreen() {
             })
           }
         >
-          <SettingsIcon />
+          <Animated.View style={[styles.settingsBackground, spinStyles]}>
+            <SettingsIcon />
+          </Animated.View>
         </ModalIcon>
         <Header />
         <Badges
