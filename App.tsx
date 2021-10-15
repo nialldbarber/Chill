@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 
 import {NavigationContainer} from '@react-navigation/native';
 import {useColorScheme} from 'react-native';
-import RNBootSplash from 'react-native-bootsplash';
+import {hide} from 'react-native-bootsplash';
 import {Provider} from 'react-redux';
 
 import RootNavigator from '~/components/Navigator/RootNavigator';
@@ -13,7 +13,7 @@ export default function App() {
   const scheme = useColorScheme();
 
   useEffect(() => {
-    RNBootSplash.hide({fade: true});
+    hide({fade: true});
   }, []);
 
   return (
