@@ -1,5 +1,6 @@
 Todos:
 
+- [ ] specific lodash imports
 - [ ] dark mode
 - [ ] tests
 - [ ] hold countdown animation
