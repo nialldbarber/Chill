@@ -1,4 +1,5 @@
-import {keys, map} from 'lodash';
+import keys from 'lodash.keys';
+import map from 'lodash.map';
 import ReactNativeHapticFeedback from 'react-native-haptic-feedback';
 
 import reduceArrayToObject from '~/utils/reduceArrayToObject';

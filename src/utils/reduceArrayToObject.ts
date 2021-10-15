@@ -1,6 +1,11 @@
-import {compact} from 'lodash';
+import compact from 'lodash.compact';
 
-const reduceArrayToObject = (item, culm) => Object.assign(culm, item);
+function reduceArrayToObject(item: number, culm: number) {
+  return Object.assign(culm, item);
+}
 
-export default (array) =>
-  Array.isArray(array) ? compact(array).reduce(reduceArrayToObject, {}) : array;
+export default (array: any) => {
+  return Array.isArray(array)
+    ? compact(array).reduce(reduceArrayToObject, {})
+    : array;
+};
