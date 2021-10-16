@@ -51,12 +51,14 @@ export default function OnboardingScreen() {
       top: hp('15%'),
       left: wp('8.5%'),
       fontSize: wp('12%'),
+      color: colors.text,
     },
     message: {
       fontSize: wp('5%'),
       position: 'absolute',
       top: hp('40%'),
       left: wp('8.5%'),
+      color: colors.text,
     },
     inputContainer: {
       position: 'relative',

@@ -15,7 +15,7 @@ export default function Base() {
   const mode = useSelector(selectMode);
 
   useEffect(() => {
-    dispatch(setMode(scheme || ''));
+    dispatch(setMode('dark'));
   }, [dispatch, scheme, mode]);
 
   console.log({mode});

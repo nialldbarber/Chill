@@ -22,6 +22,12 @@ export default function Btn({
   return (
     <TouchableOpacity
       {...{style, disabled, onPress, onPressIn, onPressOut}}
+      hitSlop={{
+        top: 5,
+        bottom: 5,
+        left: 5,
+        right: 5,
+      }}
       activeOpacity={1}
     >
       {children}
