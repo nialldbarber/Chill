@@ -30,7 +30,7 @@ export default function getTheme(scheme: string): ThemeT {
     ios: Platform.OS === 'ios',
     margin: normalize(20, 35),
     colors: {
-      primary: '#ff6b6b',
+      primary: dark ? '#ff6b6b' : 'green',
       background: dark ? '#2D3047' : '#FFFFFF',
       card: '#FFFFFF',
       text: dark ? '#FFFFFF' : '#2D3047',

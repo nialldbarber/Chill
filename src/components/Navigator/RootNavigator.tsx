@@ -1,14 +1,11 @@
 import React, {useEffect, useState} from 'react';
 
-import {useColorScheme} from 'react-native';
 import {createSharedElementStackNavigator} from 'react-navigation-shared-element';
-import {useDispatch} from 'react-redux';
 
 import ExerciseScreen from '~/screens/Exercise';
 import HomeScreen from '~/screens/Home';
 import InfoModalScreen from '~/screens/InfoModal';
 import OnboardingScreen from '~/screens/Onboarding';
-import {setMode} from '~/store/slices/dark-mode';
 import checkIfFirstLaunch from '~/utils/firstLaunch';
 
 export type RootStackParamList = {
@@ -21,16 +18,10 @@ export type RootStackParamList = {
 const options = {headerShown: false};
 
 export default function RootNavigator() {
-  const dispatch = useDispatch();
-  const scheme = useColorScheme();
   const {Navigator, Screen} =
     createSharedElementStackNavigator<RootStackParamList>();
 
   const [isFirstLaunch, setIsFirstLaunch] = useState<boolean | null>(null);
-
-  useEffect(() => {
-    dispatch(setMode(scheme || ''));
-  }, [dispatch, scheme]);
 
   useEffect(() => {
     checkIfFirstLaunch().then((firstLaunch) => {
