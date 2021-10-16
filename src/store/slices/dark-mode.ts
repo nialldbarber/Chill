@@ -1,26 +1,23 @@
-import {createSlice} from '@reduxjs/toolkit';
+import {PayloadAction, createSlice} from '@reduxjs/toolkit';
 
 type DarkModeState = {
-  darkMode: boolean;
+  mode: string;
 };
 
 const initialState: DarkModeState = {
-  darkMode: false,
+  mode: 'light',
 };
 
 export const darkModeSlice = createSlice({
   name: 'darkMode',
   initialState,
   reducers: {
-    setDarkMode: (state) => {
-      state.darkMode = true;
-    },
-    setLightMode: (state) => {
-      state.darkMode = false;
+    setMode: (state, action: PayloadAction<string>) => {
+      state.mode = action.payload;
     },
   },
 });
 
-export const {setDarkMode, setLightMode} = darkModeSlice.actions;
+export const {setMode} = darkModeSlice.actions;
 
 export default darkModeSlice.reducer;

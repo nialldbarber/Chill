@@ -1,11 +1,14 @@
 import React, {useEffect, useState} from 'react';
 
+import {useColorScheme} from 'react-native';
 import {createSharedElementStackNavigator} from 'react-navigation-shared-element';
+import {useDispatch} from 'react-redux';
 
 import ExerciseScreen from '~/screens/Exercise';
 import HomeScreen from '~/screens/Home';
 import InfoModalScreen from '~/screens/InfoModal';
 import OnboardingScreen from '~/screens/Onboarding';
+import {setMode} from '~/store/slices/dark-mode';
 import checkIfFirstLaunch from '~/utils/firstLaunch';
 
 export type RootStackParamList = {
@@ -18,9 +21,16 @@ export type RootStackParamList = {
 const options = {headerShown: false};
 
 export default function RootNavigator() {
-  const Stack = createSharedElementStackNavigator<RootStackParamList>();
+  const dispatch = useDispatch();
+  const scheme = useColorScheme();
+  const {Navigator, Screen} =
+    createSharedElementStackNavigator<RootStackParamList>();
 
   const [isFirstLaunch, setIsFirstLaunch] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    dispatch(setMode(scheme || ''));
+  }, [dispatch, scheme]);
 
   useEffect(() => {
     checkIfFirstLaunch().then((firstLaunch) => {
@@ -33,17 +43,13 @@ export default function RootNavigator() {
   }
 
   return (
-    <Stack.Navigator
+    <Navigator
       initialRouteName={isFirstLaunch ? 'Home' : 'Onboarding'}
       screenOptions={{gestureEnabled: false}}
     >
-      <Stack.Screen name="Home" component={HomeScreen} {...{options}} />
-      <Stack.Screen
-        name="Onboarding"
-        component={OnboardingScreen}
-        {...{options}}
-      />
-      <Stack.Screen
+      <Screen name="Home" component={HomeScreen} {...{options}} />
+      <Screen name="Onboarding" component={OnboardingScreen} {...{options}} />
+      <Screen
         name="Exercise"
         component={ExerciseScreen}
         {...{options}}
@@ -54,17 +60,17 @@ export default function RootNavigator() {
           }
         }}
       />
-      <Stack.Screen
+      <Screen
         name="InfoModal"
         component={InfoModalScreen}
         {...{options}}
-        sharedElements={(route, otherRoute, showing) => {
+        sharedElements={(route, showing) => {
           if (showing) {
             const {page} = route.params;
             return [page];
           }
         }}
       />
-    </Stack.Navigator>
+    </Navigator>
   );
 }
