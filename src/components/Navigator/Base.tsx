@@ -8,6 +8,7 @@ import RootNavigator from '~/components/Navigator/RootNavigator';
 import {selectMode} from '~/store/selectors/dark-mode';
 import {setMode} from '~/store/slices/dark-mode';
 import getTheme from '~/styles/theme';
+
 export default function Base() {
   const dispatch = useDispatch();
   const scheme = useColorScheme();
