@@ -165,6 +165,7 @@ export default function OnboardingScreen() {
           }}
           onPressIn={() => dispatch(setShowLoader(true))}
           disabled={!proceed}
+          hitSlop={5}
         >
           <>
             {showLoader ? (

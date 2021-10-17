@@ -6,6 +6,7 @@ type BtnProps = {
   children: ReactChild;
   style?: any;
   disabled?: boolean;
+  hitSlop?: number;
   onPress?: () => void;
   onPressIn?: () => void;
   onPressOut?: () => void;
@@ -15,18 +16,19 @@ export default function Btn({
   children,
   style,
   disabled,
+  hitSlop,
   onPress,
   onPressIn,
   onPressOut,
 }: BtnProps) {
   return (
     <TouchableOpacity
-      {...{style, disabled, onPress, onPressIn, onPressOut}}
+      {...{style, disabled, hitSlop, onPress, onPressIn, onPressOut}}
       hitSlop={{
-        top: 5,
-        bottom: 5,
-        left: 5,
-        right: 5,
+        top: hitSlop,
+        bottom: hitSlop,
+        left: hitSlop,
+        right: hitSlop,
       }}
       activeOpacity={1}
     >
