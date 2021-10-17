@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 
 import {useNavigation, useTheme} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
-import {StyleSheet, Text, TextInput, View} from 'react-native';
+import {StyleSheet, Text, TextInput} from 'react-native';
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
@@ -17,6 +17,7 @@ import {useDispatch, useSelector} from 'react-redux';
 
 import Btn from '~/components/helpers/Button';
 import Exit from '~/components/Icons/Exit';
+import Wrapper from '~/components/Layout/Wrapper';
 import Spinner from '~/components/Loader/Spinner';
 import {RootStackParamList} from '~/components/Navigator/RootNavigator';
 import {
@@ -41,11 +42,6 @@ export default function OnboardingScreen() {
   const {colors} = useTheme();
 
   const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
     title: {
       position: 'absolute',
       top: hp('15%'),
@@ -88,7 +84,7 @@ export default function OnboardingScreen() {
       borderRadius: 25,
     },
     btnText: {
-      color: fixedColors.white,
+      color: colors.background,
       fontSize: wp('5%'),
     },
   });
@@ -130,7 +126,7 @@ export default function OnboardingScreen() {
   }, [value, dispatch]);
 
   return (
-    <View style={styles.container}>
+    <Wrapper>
       <Animated.Text style={[styles.title, titleStyles]}>
         Hey there
       </Animated.Text>
@@ -176,6 +172,6 @@ export default function OnboardingScreen() {
           </>
         </Btn>
       </Animated.View>
-    </View>
+    </Wrapper>
   );
 }

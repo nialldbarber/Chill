@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet} from 'react-native';
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
@@ -11,15 +11,13 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 
+import Wrapper from '~/components/Layout/Wrapper';
 import {fixedColors} from '~/styles/theme';
 import {impactAsync} from '~/utils/haptics';
 
 export default function Loader({active}: {active: boolean}) {
   const styles = StyleSheet.create({
     container: {
-      display: 'flex',
-      flexDirection: 'row',
-      alignItems: 'center',
       height: hp('5%'),
     },
     circle: {
@@ -65,10 +63,10 @@ export default function Loader({active}: {active: boolean}) {
   }, [active, circleOne, circleTwo, circleThree]);
 
   return (
-    <View style={styles.container}>
+    <Wrapper style={styles.container}>
       <Animated.View style={[styles.circle, circleOneStyles]} />
       <Animated.View style={[styles.circle, circleTwoStyles]} />
       <Animated.View style={[styles.circle, circleThreeStyles]} />
-    </View>
+    </Wrapper>
   );
 }

@@ -11,8 +11,6 @@ import Animated, {
 } from 'react-native-reanimated';
 import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 
-import {fixedColors} from '~/styles/theme';
-
 export default function Spinner() {
   const {colors} = useTheme();
 
@@ -21,7 +19,7 @@ export default function Spinner() {
       position: 'relative',
       width: wp('6%'),
       height: wp('6%'),
-      backgroundColor: fixedColors.white,
+      backgroundColor: colors.background,
       borderWidth: wp('1%'),
       borderRadius: wp('50%'),
       borderColor: colors.text,

@@ -15,10 +15,8 @@ export default function Base() {
   const mode = useSelector(selectMode);
 
   useEffect(() => {
-    dispatch(setMode('dark'));
+    dispatch(setMode('light'));
   }, [dispatch, scheme, mode]);
-
-  console.log({mode});
 
   return (
     <NavigationContainer theme={getTheme(mode)}>
