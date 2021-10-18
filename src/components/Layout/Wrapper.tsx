@@ -1,9 +1,9 @@
 import React from 'react';
 
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, View, ViewStyle} from 'react-native';
 
 type WrapperProps = {
-  style: any;
+  style: ViewStyle;
   children: JSX.Element | JSX.Element[];
 };
 
