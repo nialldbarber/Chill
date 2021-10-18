@@ -85,6 +85,12 @@ export default function Block({id, title, category = '', onPress}: BlockProps) {
     return unsubscribe;
   }, [scale]);
 
+  function handlePressBlock(): void {
+    haptics.selection();
+    onPress && onPress();
+    scale.value = withSpring(1);
+  }
+
   return (
     <Animated.View style={[styles.block, blockHover]}>
       <SharedElement id={id ?? ''}>
@@ -92,11 +98,7 @@ export default function Block({id, title, category = '', onPress}: BlockProps) {
       </SharedElement>
       <Btn
         style={styles.blockWrapper}
-        onPress={() => {
-          haptics.selection();
-          onPress && onPress();
-          scale.value = withSpring(1);
-        }}
+        onPress={handlePressBlock}
         onPressIn={() => (scale.value = withSpring(1.05))}
         onPressOut={() => (scale.value = withSpring(1))}
       >
