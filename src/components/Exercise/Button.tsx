@@ -15,7 +15,7 @@ import {
   selectHasCountdownStarted,
 } from '~/store/selectors/individual-exercise';
 import {fixedColors} from '~/styles/theme';
-import {impactAsync} from '~/utils/haptics';
+import {haptics} from '~/utils/haptics';
 
 type ExerciseButtonProps = {
   reset: () => void;
@@ -69,7 +69,7 @@ export default function ExerciseButton({reset, action}: ExerciseButtonProps) {
   function beginExerciseIfNotActive(): void {
     if (!isLoaderActive) {
       action();
-      impactAsync('heavy');
+      // haptics('impactHeavy');
     }
   }
 
@@ -81,7 +81,7 @@ export default function ExerciseButton({reset, action}: ExerciseButtonProps) {
             style={styles.button}
             onPress={() => {
               reset();
-              impactAsync('heavy');
+              // haptics('impactHeavy');
             }}
           >
             <Text style={styles.buttonText}>Stop</Text>

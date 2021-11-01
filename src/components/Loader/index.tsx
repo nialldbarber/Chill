@@ -19,6 +19,8 @@ export default function Loader({active}: {active: boolean}) {
   const styles = StyleSheet.create({
     container: {
       height: hp('5%'),
+      display: 'flex',
+      flexDirection: 'row',
     },
     circle: {
       backgroundColor: fixedColors.white,
@@ -49,15 +51,15 @@ export default function Loader({active}: {active: boolean}) {
     if (active) {
       setTimeout(() => {
         circleThree.value = withTiming(0);
-        impactAsync('heavy');
+        // impactAsync('heavy');
       }, 1000);
       setTimeout(() => {
         circleTwo.value = withTiming(0);
-        impactAsync('heavy');
+        // impactAsync('heavy');
       }, 2000);
       setTimeout(() => {
         circleOne.value = withTiming(0);
-        impactAsync('heavy');
+        // impactAsync('heavy');
       }, 3000);
     }
   }, [active, circleOne, circleTwo, circleThree]);
