@@ -1,6 +1,6 @@
 import compact from 'lodash.compact';
 
-function reduceArrayToObject(item: number, culm: number) {
+function reduceArrayToObject<T extends number>(item: T, culm: T) {
   return Object.assign(culm, item);
 }
 

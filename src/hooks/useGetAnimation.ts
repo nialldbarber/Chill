@@ -138,6 +138,8 @@ export default function useGetAnimation(
     instructions.value = '';
   }
 
+  console.log(instructions.value);
+
   return {
     seconds,
     reset,

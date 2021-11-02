@@ -17,7 +17,7 @@ import {selectHasBegun} from '~/store/selectors/individual-exercise';
 
 const secToMill = (seconds: number) => seconds * 1000;
 
-export default function useGetTime(type: number, exercise: number[]) {
+export default function useGetTime<T extends number>(type: T, exercise: T[]) {
   const hasBegun = useSelector(selectHasBegun);
   const [steps, setSteps] = useState<string>();
 
