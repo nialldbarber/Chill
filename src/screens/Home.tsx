@@ -22,7 +22,7 @@ import Header from '~/components/Header';
 import Scroll from '~/components/helpers/Scrollview';
 import SettingsIcon from '~/components/Icons/Settings';
 import ModalIcon from '~/components/Modal';
-import {RootStackParamList} from '~/components/Navigator/RootNavigator';
+import {RootStackParamList} from '~/components/Navigator/RootNavigator/RootNavigator';
 import {selectBadges} from '~/store/selectors/exercises';
 import {fixedColors} from '~/styles/theme';
 import {toggleVisibility} from '~/utils/toggleVisibility';

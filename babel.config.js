@@ -18,6 +18,7 @@ module.exports = {
           '.json',
         ],
         alias: {
+          '~/src': './src',
           '~/components': './src/components',
           '~/constants': './src/constants',
           '~/hooks': './src/hooks',

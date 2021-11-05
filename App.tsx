@@ -4,7 +4,7 @@ import {hide} from 'react-native-bootsplash';
 import {enableFreeze} from 'react-native-screens';
 import {Provider} from 'react-redux';
 
-import Base from '~/components/Navigator/Base';
+import {Base} from '~/components/Navigator/Base';
 import {store} from '~/store/index';
 
 enableFreeze(true);
