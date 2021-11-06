@@ -1,21 +1,17 @@
 import React, {ReactElement, useState} from 'react';
 
-import {useTheme} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {Auth} from 'aws-amplify';
 import {Formik} from 'formik';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import * as Keychain from 'react-native-keychain';
-import {
-  heightPercentageToDP as hp,
-  widthPercentageToDP as wp,
-} from 'react-native-responsive-screen';
 import * as Yup from 'yup';
 
 import {ActionButton} from '~/components/Button';
 import ErrorText from '~/components/Error/ErrorText';
 import BackIcon from '~/components/Icons/Back';
 import {Input} from '~/components/Input';
+import {AuthLoader} from '~/components/Loader/AuthLoader';
 import ModalIcon from '~/components/Modal';
 import {RootStackParamList} from '~/components/Navigator/RootNavigator/RootNavigator';
 import {SIGN_IN_ERROR_MAP} from '~/constants/errors';
@@ -31,19 +27,11 @@ type SignUpT = {
 };
 
 export default function SignUp({navigation}: SignUpT) {
-  const {colors} = useTheme();
-
   const styles = StyleSheet.create({
     container: {
       flex: 1,
       alignItems: 'center',
       justifyContent: 'center',
-    },
-    errorBtnText: {
-      alignSelf: 'center',
-      color: colors.text,
-      fontSize: wp('4%'),
-      marginBottom: hp('3%'),
     },
   });
 
@@ -87,72 +75,74 @@ export default function SignUp({navigation}: SignUpT) {
   }
 
   return (
-    <View style={styles.container}>
-      <ModalIcon modalScreen="Authenticator">
-        <BackIcon />
-      </ModalIcon>
-      <Formik
-        initialValues={{email: '', password: '', passwordConfirmation: ''}}
-        onSubmit={(values) => onPress(values)}
-        validationSchema={Yup.object().shape({
-          email: Yup.string().email().required(),
-          password: Yup.string().min(6).required(),
-          passwordConfirmation: Yup.string().min(6).required(),
-        })}
-      >
-        {({
-          values,
-          handleChange,
-          errors,
-          setFieldTouched,
-          touched,
-          handleSubmit,
-        }: {
-          values: any;
-          handleChange: any;
-          errors: any;
-          setFieldTouched: any;
-          touched: boolean;
-          handleSubmit: any;
-        }): ReactElement => (
-          <View>
-            <Input
-              name="email"
-              value={values.email}
-              onChangeText={handleChange('email')}
-              onBlur={(): void => setFieldTouched('email')}
-              placeholder="e-mail"
-              touched={touched}
-              errors={errors}
-              autoCapitalize="none"
-            />
-            <Input
-              name="password"
-              value={values.password}
-              onChangeText={handleChange('password')}
-              onBlur={(): void => setFieldTouched('password')}
-              placeholder="password"
-              touched={touched}
-              errors={errors}
-              autoCapitalize="none"
-              secureTextEntry
-            />
-            <Input
-              name="passwordConfirmation"
-              value={values.passwordConfirmation}
-              onChangeText={handleChange('passwordConfirmation')}
-              onBlur={(): void => setFieldTouched('passwordConfirmation')}
-              placeholder="password confirm"
-              touched={touched}
-              errors={errors}
-              autoCapitalize="none"
-              secureTextEntry
-            />
-            {error !== '' && <ErrorText text={SIGN_IN_ERROR_MAP[error]} />}
-            <ActionButton text="sign up" onPress={handleSubmit} />
-          </View>
-        )}
-      </Formik>
-    </View>
+    <AuthLoader {...{loading}}>
+      <View style={styles.container}>
+        <ModalIcon modalScreen="Authenticator">
+          <BackIcon />
+        </ModalIcon>
+        <Formik
+          initialValues={{email: '', password: '', passwordConfirmation: ''}}
+          onSubmit={(values) => onPress(values)}
+          validationSchema={Yup.object().shape({
+            email: Yup.string().email().required(),
+            password: Yup.string().min(6).required(),
+            passwordConfirmation: Yup.string().min(6).required(),
+          })}
+        >
+          {({
+            values,
+            handleChange,
+            errors,
+            setFieldTouched,
+            touched,
+            handleSubmit,
+          }: {
+            values: any;
+            handleChange: any;
+            errors: any;
+            setFieldTouched: any;
+            touched: boolean;
+            handleSubmit: any;
+          }): ReactElement => (
+            <View>
+              <Input
+                name="email"
+                value={values.email}
+                onChangeText={handleChange('email')}
+                onBlur={(): void => setFieldTouched('email')}
+                placeholder="e-mail"
+                touched={touched}
+                errors={errors}
+                autoCapitalize="none"
+              />
+              <Input
+                name="password"
+                value={values.password}
+                onChangeText={handleChange('password')}
+                onBlur={(): void => setFieldTouched('password')}
+                placeholder="password"
+                touched={touched}
+                errors={errors}
+                autoCapitalize="none"
+                secureTextEntry
+              />
+              <Input
+                name="passwordConfirmation"
+                value={values.passwordConfirmation}
+                onChangeText={handleChange('passwordConfirmation')}
+                onBlur={(): void => setFieldTouched('passwordConfirmation')}
+                placeholder="password confirm"
+                touched={touched}
+                errors={errors}
+                autoCapitalize="none"
+                secureTextEntry
+              />
+              {error !== '' && <ErrorText text={SIGN_IN_ERROR_MAP[error]} />}
+              <ActionButton text="sign up" onPress={handleSubmit} />
+            </View>
+          )}
+        </Formik>
+      </View>
+    </AuthLoader>
   );
 }

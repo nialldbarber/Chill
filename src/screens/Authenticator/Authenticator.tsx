@@ -19,6 +19,7 @@ import {
 
 import {ActionButton} from '~/components/Button';
 import Wrapper from '~/components/Layout/Wrapper';
+import {AuthLoader} from '~/components/Loader/AuthLoader';
 import {RootStackParamList} from '~/components/Navigator/RootNavigator/RootNavigator';
 import {fixedColors} from '~/styles/theme';
 import {onScreen} from '~/utils/navigation';
@@ -124,6 +125,8 @@ export default function Authenticator({navigation}: AuthenticatorT) {
       } catch (err) {
         console.error(err);
         setLoading(false);
+      } finally {
+        setLoading(false);
       }
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -151,7 +154,7 @@ export default function Authenticator({navigation}: AuthenticatorT) {
   }, []);
 
   return (
-    <>
+    <AuthLoader {...{loading}}>
       <View>
         <Animated.Text style={[styles.title, titleStyles]}>
           hey there
@@ -190,6 +193,6 @@ export default function Authenticator({navigation}: AuthenticatorT) {
           <ActionButton text="sign up" onPress={() => navigate('SignUp')} />
         </Animated.View>
       </Wrapper>
-    </>
+    </AuthLoader>
   );
 }

@@ -17,6 +17,7 @@ import ErrorText from '~/components/Error/ErrorText';
 import BackIcon from '~/components/Icons/Back';
 import {Input} from '~/components/Input';
 import Wrapper from '~/components/Layout/Wrapper';
+import {AuthLoader} from '~/components/Loader/AuthLoader';
 import ModalIcon from '~/components/Modal';
 import {RootStackParamList} from '~/components/Navigator/RootNavigator/RootNavigator';
 import {onScreen} from '~/utils/navigation';
@@ -75,61 +76,63 @@ export default function SignIn({navigation}: SignInT): ReactElement {
   };
 
   return (
-    <Wrapper>
-      <ModalIcon style={styles.back} modalScreen="Authenticator">
-        <BackIcon />
-      </ModalIcon>
-      <Formik
-        enableReinitialize
-        initialValues={userInfo}
-        onSubmit={(values) => _onPress(values)}
-        validationSchema={Yup.object().shape({
-          email: Yup.string().email().required(),
-          password: Yup.string().min(6).required(),
-        })}
-      >
-        {({
-          values,
-          handleChange,
-          errors,
-          setFieldTouched,
-          touched,
-          handleSubmit,
-        }): ReactElement => (
-          <>
-            <Input
-              name="email"
-              value={values.email}
-              onChangeText={handleChange('email')}
-              onBlur={(): void => setFieldTouched('email')}
-              placeholder="e-mail"
-              touched={touched}
-              errors={errors}
-              autoCapitalize="none"
-            />
-            <Input
-              name="password"
-              value={values.password}
-              onChangeText={handleChange('password')}
-              onBlur={(): void => setFieldTouched('password')}
-              placeholder="password"
-              touched={touched}
-              errors={errors}
-              autoCapitalize="none"
-              secureTextEntry
-            />
-            {error !== '' && error === 'Forgot Password?' ? (
-              <ErrorText text="Hmmmm that's not right 🤔" />
-            ) : null}
-            <ActionButton
-              text="forgot password?"
-              error
-              onPress={onScreen('ForgotPassword', navigation, userInfo)}
-            />
-            <ActionButton text="sign in" onPress={handleSubmit} />
-          </>
-        )}
-      </Formik>
-    </Wrapper>
+    <AuthLoader {...{loading}}>
+      <Wrapper>
+        <ModalIcon style={styles.back} modalScreen="Authenticator">
+          <BackIcon />
+        </ModalIcon>
+        <Formik
+          enableReinitialize
+          initialValues={userInfo}
+          onSubmit={(values) => _onPress(values)}
+          validationSchema={Yup.object().shape({
+            email: Yup.string().email().required(),
+            password: Yup.string().min(6).required(),
+          })}
+        >
+          {({
+            values,
+            handleChange,
+            errors,
+            setFieldTouched,
+            touched,
+            handleSubmit,
+          }): ReactElement => (
+            <>
+              <Input
+                name="email"
+                value={values.email}
+                onChangeText={handleChange('email')}
+                onBlur={(): void => setFieldTouched('email')}
+                placeholder="e-mail"
+                touched={touched}
+                errors={errors}
+                autoCapitalize="none"
+              />
+              <Input
+                name="password"
+                value={values.password}
+                onChangeText={handleChange('password')}
+                onBlur={(): void => setFieldTouched('password')}
+                placeholder="password"
+                touched={touched}
+                errors={errors}
+                autoCapitalize="none"
+                secureTextEntry
+              />
+              {error !== '' && error === 'Forgot Password?' ? (
+                <ErrorText text="Hmmmm that's not right 🤔" />
+              ) : null}
+              <ActionButton
+                text="forgot password?"
+                error
+                onPress={onScreen('ForgotPassword', navigation, userInfo)}
+              />
+              <ActionButton text="sign in" onPress={handleSubmit} />
+            </>
+          )}
+        </Formik>
+      </Wrapper>
+    </AuthLoader>
   );
 }

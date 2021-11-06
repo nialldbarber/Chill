@@ -11,7 +11,6 @@ import HomeScreen from '~/screens/Home';
 import InfoModalScreen from '~/screens/InfoModal';
 import {SignInScreen} from '~/screens/SignIn';
 import {SignUpScreen} from '~/screens/SignUp';
-import {UserScreen} from '~/screens/User';
 
 export type RootStackParamList = {
   Home: undefined;

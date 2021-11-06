@@ -4,7 +4,6 @@ import {RouteProp} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {Auth} from 'aws-amplify';
 import {Formik} from 'formik';
-import {Text} from 'react-native';
 import * as Keychain from 'react-native-keychain';
 import * as Yup from 'yup';
 
@@ -13,6 +12,7 @@ import ErrorText from '~/components/Error/ErrorText';
 import BackIcon from '~/components/Icons/Back';
 import {Input} from '~/components/Input';
 import Wrapper from '~/components/Layout/Wrapper';
+import {AuthLoader} from '~/components/Loader/AuthLoader';
 import ModalIcon from '~/components/Modal';
 import {RootStackParamList} from '~/components/Navigator/RootNavigator/RootNavigator';
 import {PASSWORD_FORGOT_CONFIRM_ERROR_MAP} from '~/constants/errors';
@@ -59,82 +59,84 @@ export default function ForgotPasswordSubmit({
   };
 
   return (
-    <Wrapper>
-      <ModalIcon modalScreen="Authenticator">
-        <BackIcon />
-      </ModalIcon>
-      <Formik
-        initialValues={{
-          email: route?.params?.email || '',
-          code: '',
-          password: '',
-          passwordConfirmation: '',
-        }}
-        onSubmit={(values): Promise<void> => _onPress(values)}
-        validationSchema={Yup.object().shape({
-          email: Yup.string().email().required(),
-          code: Yup.string().min(6).required(),
-          password: Yup.string().min(6).required(),
-          passwordConfirmation: Yup.string().min(6).required(),
-        })}
-      >
-        {({
-          values,
-          handleChange,
-          errors,
-          setFieldTouched,
-          touched,
-          handleSubmit,
-        }): ReactElement => (
-          <>
-            <Input
-              name="email"
-              value={values.email}
-              onChangeText={handleChange('email')}
-              onBlur={(): void => setFieldTouched('email')}
-              placeholder="e-mail"
-              touched={touched}
-              errors={errors}
-              autoCapitalize="none"
-            />
-            <Input
-              name="code"
-              value={values.code}
-              onChangeText={handleChange('code')}
-              onBlur={(): void => setFieldTouched('code')}
-              placeholder="code"
-              touched={touched}
-              errors={errors}
-            />
-            <Input
-              name="password"
-              value={values.password}
-              onChangeText={handleChange('password')}
-              onBlur={(): void => setFieldTouched('password')}
-              placeholder="new password"
-              touched={touched}
-              errors={errors}
-              autoCapitalize="none"
-              secureTextEntry
-            />
-            <Input
-              name="passwordConfirmation"
-              value={values.passwordConfirmation}
-              onChangeText={handleChange('passwordConfirmation')}
-              onBlur={(): void => setFieldTouched('passwordConfirmation')}
-              placeholder="password confirm"
-              touched={touched}
-              errors={errors}
-              autoCapitalize="none"
-              secureTextEntry
-            />
-            {error !== '' && (
-              <ErrorText text={PASSWORD_FORGOT_CONFIRM_ERROR_MAP[error]} />
-            )}
-            <ActionButton text="confirm" onPress={handleSubmit} />
-          </>
-        )}
-      </Formik>
-    </Wrapper>
+    <AuthLoader {...{loading}}>
+      <Wrapper>
+        <ModalIcon modalScreen="Authenticator">
+          <BackIcon />
+        </ModalIcon>
+        <Formik
+          initialValues={{
+            email: route?.params?.email || '',
+            code: '',
+            password: '',
+            passwordConfirmation: '',
+          }}
+          onSubmit={(values): Promise<void> => _onPress(values)}
+          validationSchema={Yup.object().shape({
+            email: Yup.string().email().required(),
+            code: Yup.string().min(6).required(),
+            password: Yup.string().min(6).required(),
+            passwordConfirmation: Yup.string().min(6).required(),
+          })}
+        >
+          {({
+            values,
+            handleChange,
+            errors,
+            setFieldTouched,
+            touched,
+            handleSubmit,
+          }): ReactElement => (
+            <>
+              <Input
+                name="email"
+                value={values.email}
+                onChangeText={handleChange('email')}
+                onBlur={(): void => setFieldTouched('email')}
+                placeholder="e-mail"
+                touched={touched}
+                errors={errors}
+                autoCapitalize="none"
+              />
+              <Input
+                name="code"
+                value={values.code}
+                onChangeText={handleChange('code')}
+                onBlur={(): void => setFieldTouched('code')}
+                placeholder="code"
+                touched={touched}
+                errors={errors}
+              />
+              <Input
+                name="password"
+                value={values.password}
+                onChangeText={handleChange('password')}
+                onBlur={(): void => setFieldTouched('password')}
+                placeholder="new password"
+                touched={touched}
+                errors={errors}
+                autoCapitalize="none"
+                secureTextEntry
+              />
+              <Input
+                name="passwordConfirmation"
+                value={values.passwordConfirmation}
+                onChangeText={handleChange('passwordConfirmation')}
+                onBlur={(): void => setFieldTouched('passwordConfirmation')}
+                placeholder="password confirm"
+                touched={touched}
+                errors={errors}
+                autoCapitalize="none"
+                secureTextEntry
+              />
+              {error !== '' && (
+                <ErrorText text={PASSWORD_FORGOT_CONFIRM_ERROR_MAP[error]} />
+              )}
+              <ActionButton text="confirm" onPress={handleSubmit} />
+            </>
+          )}
+        </Formik>
+      </Wrapper>
+    </AuthLoader>
   );
 }

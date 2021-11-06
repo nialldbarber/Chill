@@ -1,6 +1,8 @@
 import React from 'react';
 
-import {View} from 'react-native';
+import {Text} from 'react-native';
+
+import Wrapper from '~/components/Layout/Wrapper';
 
 type AuthLoaderProps = {
   loading: boolean;
@@ -8,5 +10,11 @@ type AuthLoaderProps = {
 };
 
 export default function AuthLoader({loading, children}: AuthLoaderProps) {
-  return loading ? <View>{children}</View> : null;
+  return loading ? (
+    <Wrapper>
+      <Text>LOADING</Text>
+    </Wrapper>
+  ) : (
+    children
+  );
 }

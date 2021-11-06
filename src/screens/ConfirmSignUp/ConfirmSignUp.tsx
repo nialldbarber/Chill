@@ -11,6 +11,7 @@ import {ActionButton} from '~/components/Button';
 import BackIcon from '~/components/Icons/Back';
 import {Input} from '~/components/Input';
 import Wrapper from '~/components/Layout/Wrapper';
+import {AuthLoader} from '~/components/Loader/AuthLoader';
 import ModalIcon from '~/components/Modal';
 import {RootStackParamList} from '~/components/Navigator/RootNavigator/RootNavigator';
 import {onScreen} from '~/utils/navigation';
@@ -68,41 +69,43 @@ export default function ConfirmSignUp({
   }
 
   return (
-    <Wrapper>
-      <ModalIcon modalScreen="Authenticator">
-        <BackIcon />
-      </ModalIcon>
-      <Formik
-        initialValues={{code: ''}}
-        onSubmit={(values) => onPress(values)}
-        validationSchema={Yup.object().shape({
-          code: Yup.string().min(6).required(),
-        })}
-      >
-        {({
-          values,
-          handleChange,
-          errors,
-          setFieldTouched,
-          touched,
-          handleSubmit,
-        }) => (
-          <>
-            <Input
-              name="code"
-              value={values.code}
-              onChangeText={handleChange('code')}
-              onBlur={(): void => setFieldTouched('code')}
-              placeholder="Insert code"
-              touched={touched}
-              errors={errors}
-            />
-            <ActionButton text="resend code?" onPress={onResend} />
-            {error !== 'Forgot Password?' && <Text>{error}</Text>}
-            <ActionButton text="confirm" onPress={handleSubmit} />
-          </>
-        )}
-      </Formik>
-    </Wrapper>
+    <AuthLoader {...{loading}}>
+      <Wrapper>
+        <ModalIcon modalScreen="Authenticator">
+          <BackIcon />
+        </ModalIcon>
+        <Formik
+          initialValues={{code: ''}}
+          onSubmit={(values) => onPress(values)}
+          validationSchema={Yup.object().shape({
+            code: Yup.string().min(6).required(),
+          })}
+        >
+          {({
+            values,
+            handleChange,
+            errors,
+            setFieldTouched,
+            touched,
+            handleSubmit,
+          }) => (
+            <>
+              <Input
+                name="code"
+                value={values.code}
+                onChangeText={handleChange('code')}
+                onBlur={(): void => setFieldTouched('code')}
+                placeholder="Insert code"
+                touched={touched}
+                errors={errors}
+              />
+              <ActionButton text="resend code?" onPress={onResend} />
+              {error !== 'Forgot Password?' && <Text>{error}</Text>}
+              <ActionButton text="confirm" onPress={handleSubmit} />
+            </>
+          )}
+        </Formik>
+      </Wrapper>
+    </AuthLoader>
   );
 }
