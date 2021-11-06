@@ -10,12 +10,12 @@ import {
 import Btn from '~/components/helpers/Button';
 
 type ModalIconProps = {
-  modalScreen: any;
+  modalScreen?: any;
   mode?: string;
   style?: any;
   customRoute?: any;
   onPress?: () => void;
-  children: ReactChild;
+  children?: ReactChild;
 };
 
 export default function ModalIcon({
@@ -32,6 +32,11 @@ export default function ModalIcon({
       right: wp('5%'),
       zIndex: 3,
     },
+    back: {
+      position: 'absolute',
+      top: hp('7%'),
+      left: wp('5%'),
+    },
   });
 
   const {navigate} = useNavigation();
@@ -42,7 +47,7 @@ export default function ModalIcon({
         onPress && onPress();
         customRoute ? customRoute() : navigate(modalScreen);
       }}
-      style={[styles.modal, style]}
+      style={[styles.modal, styles.back, style]}
     >
       {children}
     </Btn>

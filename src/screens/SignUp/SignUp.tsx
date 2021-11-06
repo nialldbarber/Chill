@@ -1,4 +1,4 @@
-import React, {ReactElement, useEffect, useState} from 'react';
+import React, {ReactElement, useState} from 'react';
 
 import {useTheme} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
@@ -12,13 +12,12 @@ import {
 } from 'react-native-responsive-screen';
 import * as Yup from 'yup';
 
-import Btn from '~/components/helpers/Button';
+import {ActionButton} from '~/components/Button';
 import BackIcon from '~/components/Icons/Back';
 import {Input} from '~/components/Input';
-import {AuthLoader} from '~/components/Loader/AuthLoader';
 import ModalIcon from '~/components/Modal';
 import {RootStackParamList} from '~/components/Navigator/RootNavigator/RootNavigator';
-import {fixedColors} from '~/styles/theme';
+import {SIGN_IN_ERROR_MAP} from '~/constants/errors';
 import {onScreen} from '~/utils/navigation';
 
 type SignUpScreenNavigationProp = StackNavigationProp<
@@ -39,24 +38,11 @@ export default function SignUp({navigation}: SignUpT) {
       alignItems: 'center',
       justifyContent: 'center',
     },
-    back: {
-      position: 'absolute',
-      top: hp('7%'),
-      left: wp('5%'),
-    },
-    btn: {
-      display: 'flex',
-      alignItems: 'center',
+    errorBtnText: {
       alignSelf: 'center',
-      justifyContent: 'center',
-      height: hp('5%'),
-      width: wp('85%'),
-      borderRadius: 25,
-      backgroundColor: colors.text,
-    },
-    btnText: {
-      color: colors.background,
-      fontSize: wp('5%'),
+      color: colors.text,
+      fontSize: wp('4%'),
+      marginBottom: hp('3%'),
     },
   });
 
@@ -101,7 +87,7 @@ export default function SignUp({navigation}: SignUpT) {
 
   return (
     <View style={styles.container}>
-      <ModalIcon style={styles.back} modalScreen="Authenticator">
+      <ModalIcon modalScreen="Authenticator">
         <BackIcon />
       </ModalIcon>
       <Formik
@@ -127,7 +113,7 @@ export default function SignUp({navigation}: SignUpT) {
               value={values.email}
               onChangeText={handleChange('email')}
               onBlur={(): void => setFieldTouched('email')}
-              placeholder="E-mail"
+              placeholder="e-mail"
               touched={touched}
               errors={errors}
               autoCapitalize="none"
@@ -137,7 +123,7 @@ export default function SignUp({navigation}: SignUpT) {
               value={values.password}
               onChangeText={handleChange('password')}
               onBlur={(): void => setFieldTouched('password')}
-              placeholder="Password"
+              placeholder="password"
               touched={touched}
               errors={errors}
               autoCapitalize="none"
@@ -148,16 +134,18 @@ export default function SignUp({navigation}: SignUpT) {
               value={values.passwordConfirmation}
               onChangeText={handleChange('passwordConfirmation')}
               onBlur={(): void => setFieldTouched('passwordConfirmation')}
-              placeholder="Password confirm"
+              placeholder="password confirm"
               touched={touched}
               errors={errors}
               autoCapitalize="none"
               secureTextEntry
             />
-            {error !== '' && <Text>{error}</Text>}
-            <Btn style={styles.btn} onPress={handleSubmit}>
-              <Text style={styles.btnText}>Submit</Text>
-            </Btn>
+            {error !== '' && (
+              <Text style={styles.errorBtnText}>
+                {SIGN_IN_ERROR_MAP[error]}
+              </Text>
+            )}
+            <ActionButton text="sign up" onPress={handleSubmit} />
           </View>
         )}
       </Formik>

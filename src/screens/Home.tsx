@@ -58,6 +58,10 @@ export default function HomeScreen() {
       height: 24,
       width: 24,
     },
+    settingsIcon: {
+      right: wp('5%'),
+      left: 'auto',
+    },
   });
 
   const navigation = useNavigation<homeScreenProp>() as any;
@@ -92,6 +96,7 @@ export default function HomeScreen() {
         </SharedElement>
         <ModalIcon
           modalScreen="InfoModal"
+          style={styles.settingsIcon}
           customRoute={() =>
             navigation.navigate('InfoModal', {
               page: 'info',

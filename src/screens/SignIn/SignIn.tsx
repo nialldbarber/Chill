@@ -1,17 +1,25 @@
 import React, {ReactElement, useState} from 'react';
 
+import {useTheme} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {Auth} from 'aws-amplify';
 import {Formik} from 'formik';
-import {Text} from 'react-native';
+import {StyleSheet} from 'react-native';
 import * as Keychain from 'react-native-keychain';
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from 'react-native-responsive-screen';
 import * as Yup from 'yup';
 
-import Btn from '~/components/helpers/Button';
+import {ActionButton} from '~/components/Button';
+import ErrorText from '~/components/Error/ErrorText';
+import BackIcon from '~/components/Icons/Back';
 import {Input} from '~/components/Input';
 import Wrapper from '~/components/Layout/Wrapper';
+import ModalIcon from '~/components/Modal';
 import {RootStackParamList} from '~/components/Navigator/RootNavigator/RootNavigator';
-import {goBack, onScreen} from '~/utils/navigation';
+import {onScreen} from '~/utils/navigation';
 
 type ProfileScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -23,6 +31,16 @@ type SignInT = {
 };
 
 export default function SignIn({navigation}: SignInT): ReactElement {
+  const {colors} = useTheme();
+
+  const styles = StyleSheet.create({
+    back: {
+      position: 'absolute',
+      top: hp('7%'),
+      left: wp('5%'),
+    },
+  });
+
   const [userInfo, setUserInfo] = useState({email: '', password: ''});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -56,8 +74,13 @@ export default function SignIn({navigation}: SignInT): ReactElement {
     }
   };
 
+  console.log(error);
+
   return (
     <Wrapper>
+      <ModalIcon style={styles.back} modalScreen="Authenticator">
+        <BackIcon />
+      </ModalIcon>
       <Formik
         enableReinitialize
         initialValues={userInfo}
@@ -81,7 +104,7 @@ export default function SignIn({navigation}: SignInT): ReactElement {
               value={values.email}
               onChangeText={handleChange('email')}
               onBlur={(): void => setFieldTouched('email')}
-              placeholder="E-mail"
+              placeholder="e-mail"
               touched={touched}
               errors={errors}
               autoCapitalize="none"
@@ -91,21 +114,21 @@ export default function SignIn({navigation}: SignInT): ReactElement {
               value={values.password}
               onChangeText={handleChange('password')}
               onBlur={(): void => setFieldTouched('password')}
-              placeholder="Password"
+              placeholder="password"
               touched={touched}
               errors={errors}
               autoCapitalize="none"
               secureTextEntry
             />
-            {error !== 'Forgot Password?' && <Text>{error}</Text>}
-            {error === 'Forgot Password?' && (
-              <Btn onPress={onScreen('ForgotPassword', navigation, userInfo)}>
-                <Text>{error}</Text>
-              </Btn>
-            )}
-            <Btn onPress={handleSubmit}>
-              <Text>Sign In</Text>
-            </Btn>
+            {error !== '' && error === 'Forgot Password?' ? (
+              <ErrorText text="Hmmmm that's not right 🤔" />
+            ) : null}
+            <ActionButton
+              text="forgot password?"
+              error
+              onPress={onScreen('ForgotPassword', navigation, userInfo)}
+            />
+            <ActionButton text="sign in" onPress={handleSubmit} />
           </>
         )}
       </Formik>

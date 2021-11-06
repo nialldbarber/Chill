@@ -17,9 +17,8 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 
-import Btn from '~/components/helpers/Button';
+import {ActionButton} from '~/components/Button';
 import Wrapper from '~/components/Layout/Wrapper';
-import {AuthLoader} from '~/components/Loader/AuthLoader';
 import {RootStackParamList} from '~/components/Navigator/RootNavigator/RootNavigator';
 import {fixedColors} from '~/styles/theme';
 import {onScreen} from '~/utils/navigation';
@@ -40,23 +39,25 @@ export default function Authenticator({navigation}: AuthenticatorT) {
 
   const styles = StyleSheet.create({
     container: {
-      marginTop: hp('12%'),
+      marginTop: hp('28%'),
     },
     title: {
       position: 'absolute',
       top: hp('10%'),
       left: wp('10%'),
       fontSize: wp('12%'),
+      color: colors.text,
     },
     subTitle: {
       position: 'absolute',
       top: hp('17%'),
       right: wp('10%'),
       fontSize: wp('6%'),
+      color: colors.text,
     },
     bubbleContainer: {
       position: 'absolute',
-      marginTop: hp('2%'),
+      marginTop: hp('7%'),
       alignItems: 'center',
       width: windowWidth,
       zIndex: 5,
@@ -66,20 +67,6 @@ export default function Authenticator({navigation}: AuthenticatorT) {
       aspectRatio: 1,
       backgroundColor: fixedColors.calm,
       borderRadius: wp('50%'),
-    },
-    btn: {
-      display: 'flex',
-      alignItems: 'center',
-      alignSelf: 'center',
-      justifyContent: 'center',
-      height: hp('5%'),
-      width: wp('85%'),
-      borderRadius: 25,
-      backgroundColor: colors.text,
-    },
-    btnText: {
-      color: colors.background,
-      fontSize: wp('5%'),
     },
     or: {
       alignSelf: 'center',
@@ -192,19 +179,15 @@ export default function Authenticator({navigation}: AuthenticatorT) {
           style={[
             styles.bubble,
             bubbleThreeStyles,
-            {top: hp('37%'), width: wp('11%')},
+            {top: hp('37.5%'), width: wp('9.5%')},
           ]}
         />
       </View>
       <Wrapper style={styles.container}>
         <Animated.View style={buttonWrapperStyles}>
-          <Btn style={styles.btn} onPress={() => navigate('SignIn')}>
-            <Text style={styles.btnText}>Sign In</Text>
-          </Btn>
-          <Text style={styles.or}>Or</Text>
-          <Btn style={styles.btn} onPress={() => navigate('SignUp')}>
-            <Text style={styles.btnText}>Sign Up</Text>
-          </Btn>
+          <ActionButton text="sign in" onPress={() => navigate('SignIn')} />
+          <Text style={styles.or}>or</Text>
+          <ActionButton text="sign up" onPress={() => navigate('SignUp')} />
         </Animated.View>
       </Wrapper>
     </>

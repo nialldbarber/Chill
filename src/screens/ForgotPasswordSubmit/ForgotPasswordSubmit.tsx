@@ -8,10 +8,13 @@ import {Text} from 'react-native';
 import * as Keychain from 'react-native-keychain';
 import * as Yup from 'yup';
 
-import Btn from '~/components/helpers/Button';
+import {ActionButton} from '~/components/Button';
+import BackIcon from '~/components/Icons/Back';
 import {Input} from '~/components/Input';
+import Wrapper from '~/components/Layout/Wrapper';
+import ModalIcon from '~/components/Modal';
 import {RootStackParamList} from '~/components/Navigator/RootNavigator/RootNavigator';
-import {goBack, onScreen} from '~/utils/navigation';
+import {onScreen} from '~/utils/navigation';
 
 type ProfileScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -54,7 +57,10 @@ export default function ForgotPasswordSubmit({
   };
 
   return (
-    <>
+    <Wrapper>
+      <ModalIcon modalScreen="Authenticator">
+        <BackIcon />
+      </ModalIcon>
       <Formik
         initialValues={{
           email: route?.params?.email || '',
@@ -84,7 +90,7 @@ export default function ForgotPasswordSubmit({
               value={values.email}
               onChangeText={handleChange('email')}
               onBlur={(): void => setFieldTouched('email')}
-              placeholder="E-mail"
+              placeholder="e-mail"
               touched={touched}
               errors={errors}
               autoCapitalize="none"
@@ -94,7 +100,7 @@ export default function ForgotPasswordSubmit({
               value={values.code}
               onChangeText={handleChange('code')}
               onBlur={(): void => setFieldTouched('code')}
-              placeholder="Code"
+              placeholder="code"
               touched={touched}
               errors={errors}
             />
@@ -103,7 +109,7 @@ export default function ForgotPasswordSubmit({
               value={values.password}
               onChangeText={handleChange('password')}
               onBlur={(): void => setFieldTouched('password')}
-              placeholder="Password"
+              placeholder="new password"
               touched={touched}
               errors={errors}
               autoCapitalize="none"
@@ -114,19 +120,17 @@ export default function ForgotPasswordSubmit({
               value={values.passwordConfirmation}
               onChangeText={handleChange('passwordConfirmation')}
               onBlur={(): void => setFieldTouched('passwordConfirmation')}
-              placeholder="Password confirm"
+              placeholder="password confirm"
               touched={touched}
               errors={errors}
               autoCapitalize="none"
               secureTextEntry
             />
             {error !== '' && <Text>{error}</Text>}
-            <Btn onPress={handleSubmit}>
-              <Text>Confirm</Text>
-            </Btn>
+            <ActionButton text="confirm" onPress={handleSubmit} />
           </>
         )}
       </Formik>
-    </>
+    </Wrapper>
   );
 }
