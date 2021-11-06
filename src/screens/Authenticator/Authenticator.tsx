@@ -3,16 +3,25 @@ import React, {useEffect, useState} from 'react';
 import {useNavigation, useTheme} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {Auth} from 'aws-amplify';
-import {StyleSheet, Text, View} from 'react-native';
+import {Dimensions, StyleSheet, Text, View} from 'react-native';
 import * as Keychain from 'react-native-keychain';
+import Animated, {
+  useAnimatedStyle,
+  useSharedValue,
+  withDelay,
+  withSpring,
+  withTiming,
+} from 'react-native-reanimated';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 
 import Btn from '~/components/helpers/Button';
+import Wrapper from '~/components/Layout/Wrapper';
 import {AuthLoader} from '~/components/Loader/AuthLoader';
 import {RootStackParamList} from '~/components/Navigator/RootNavigator/RootNavigator';
+import {fixedColors} from '~/styles/theme';
 import {onScreen} from '~/utils/navigation';
 
 type AuthScreenNavigationProp = StackNavigationProp<
@@ -24,14 +33,39 @@ type AuthenticatorT = {
   navigation: AuthScreenNavigationProp;
 };
 
+const windowWidth = Dimensions.get('window').width;
+
 export default function Authenticator({navigation}: AuthenticatorT) {
   const {colors} = useTheme();
 
   const styles = StyleSheet.create({
     container: {
-      flex: 1,
+      marginTop: hp('12%'),
+    },
+    title: {
+      position: 'absolute',
+      top: hp('10%'),
+      left: wp('10%'),
+      fontSize: wp('12%'),
+    },
+    subTitle: {
+      position: 'absolute',
+      top: hp('17%'),
+      right: wp('10%'),
+      fontSize: wp('6%'),
+    },
+    bubbleContainer: {
+      position: 'absolute',
+      marginTop: hp('2%'),
       alignItems: 'center',
-      justifyContent: 'center',
+      width: windowWidth,
+      zIndex: 5,
+    },
+    bubble: {
+      position: 'absolute',
+      aspectRatio: 1,
+      backgroundColor: fixedColors.calm,
+      borderRadius: wp('50%'),
     },
     btn: {
       display: 'flex',
@@ -41,16 +75,52 @@ export default function Authenticator({navigation}: AuthenticatorT) {
       height: hp('5%'),
       width: wp('85%'),
       borderRadius: 25,
-      backgroundColor: 'red',
+      backgroundColor: colors.text,
     },
     btnText: {
       color: colors.background,
       fontSize: wp('5%'),
     },
+    or: {
+      alignSelf: 'center',
+      marginVertical: hp('1%'),
+      fontSize: wp('4.5%'),
+    },
   });
 
   const {navigate} = useNavigation() as any;
   const [loading, setLoading] = useState<boolean>(false);
+
+  const title = useSharedValue<number>(0);
+  const subTitle = useSharedValue<number>(0);
+  const bubbleOne = useSharedValue<number>(0);
+  const bubbleTwo = useSharedValue<number>(0);
+  const bubbleThree = useSharedValue<number>(0);
+  const buttonWrapper = useSharedValue<number>(0);
+
+  const titleStyles = useAnimatedStyle(() => ({
+    opacity: title.value,
+  }));
+
+  const subTitleStyles = useAnimatedStyle(() => ({
+    opacity: subTitle.value,
+  }));
+
+  const bubbleOneStyles = useAnimatedStyle(() => ({
+    transform: [{scale: bubbleOne.value}],
+  }));
+
+  const bubbleTwoStyles = useAnimatedStyle(() => ({
+    transform: [{scale: bubbleTwo.value}],
+  }));
+
+  const bubbleThreeStyles = useAnimatedStyle(() => ({
+    transform: [{scale: bubbleThree.value}],
+  }));
+
+  const buttonWrapperStyles = useAnimatedStyle(() => ({
+    opacity: buttonWrapper.value,
+  }));
 
   useEffect(() => {
     setLoading(true);
@@ -72,19 +142,71 @@ export default function Authenticator({navigation}: AuthenticatorT) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const duration = 1000;
+  const spring = {
+    mass: 1.2,
+    stiffness: 200,
+  };
+
+  useEffect(() => {
+    title.value = withDelay(300, withTiming(1, {duration}));
+    subTitle.value = withDelay(1000, withTiming(1, {duration}));
+
+    bubbleOne.value = withDelay(2000, withSpring(1, spring));
+    bubbleTwo.value = withDelay(2500, withSpring(1, spring));
+    bubbleThree.value = withDelay(
+      3000,
+      withSpring(1, {mass: 1, stiffness: 120}),
+    );
+
+    buttonWrapper.value = withDelay(3500, withTiming(1, {duration}));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
-    <View style={styles.container}>
+    <>
       <View>
-        <Text>hey there</Text>
-        <Text>welcome to chill</Text>
+        <Animated.Text style={[styles.title, titleStyles]}>
+          hey there
+        </Animated.Text>
+        <Animated.Text style={[styles.subTitle, subTitleStyles]}>
+          welcome to chill
+        </Animated.Text>
       </View>
-      <Btn style={styles.btn} onPress={() => navigate('SignIn')}>
-        <Text style={styles.btnText}>Sign In</Text>
-      </Btn>
-      <Text>Or</Text>
-      <Btn style={styles.btn} onPress={() => navigate('SignUp')}>
-        <Text style={styles.btnText}>Sign Up</Text>
-      </Btn>
-    </View>
+      <View style={styles.bubbleContainer}>
+        <Animated.View
+          style={[
+            styles.bubble,
+            bubbleOneStyles,
+            {top: hp('25%'), width: wp('5%')},
+          ]}
+        />
+        <Animated.View
+          style={[
+            styles.bubble,
+            bubbleTwoStyles,
+            {top: hp('31%'), width: wp('7%')},
+          ]}
+        />
+        <Animated.View
+          style={[
+            styles.bubble,
+            bubbleThreeStyles,
+            {top: hp('37%'), width: wp('11%')},
+          ]}
+        />
+      </View>
+      <Wrapper style={styles.container}>
+        <Animated.View style={buttonWrapperStyles}>
+          <Btn style={styles.btn} onPress={() => navigate('SignIn')}>
+            <Text style={styles.btnText}>Sign In</Text>
+          </Btn>
+          <Text style={styles.or}>Or</Text>
+          <Btn style={styles.btn} onPress={() => navigate('SignUp')}>
+            <Text style={styles.btnText}>Sign Up</Text>
+          </Btn>
+        </Animated.View>
+      </Wrapper>
+    </>
   );
 }

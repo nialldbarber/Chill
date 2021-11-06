@@ -3,8 +3,8 @@ import React from 'react';
 import {StyleSheet, View, ViewStyle} from 'react-native';
 
 type WrapperProps = {
-  style: ViewStyle;
-  children: JSX.Element | JSX.Element[];
+  style?: ViewStyle;
+  children?: JSX.Element | JSX.Element[];
 };
 
 export default function Wrapper({style, children}: WrapperProps) {
