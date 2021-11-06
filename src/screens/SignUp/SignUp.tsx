@@ -1,17 +1,24 @@
 import React, {ReactElement, useState} from 'react';
 
+import {useTheme} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {Auth} from 'aws-amplify';
 import {Formik} from 'formik';
-import {Text} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import * as Keychain from 'react-native-keychain';
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from 'react-native-responsive-screen';
 import * as Yup from 'yup';
 
 import Btn from '~/components/helpers/Button';
+import BackIcon from '~/components/Icons/Back';
 import {Input} from '~/components/Input';
 import {AuthLoader} from '~/components/Loader/AuthLoader';
+import ModalIcon from '~/components/Modal';
 import {RootStackParamList} from '~/components/Navigator/RootNavigator/RootNavigator';
-import {goBack, onScreen} from '~/utils/navigation';
+import {onScreen} from '~/utils/navigation';
 
 type SignUpScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -23,6 +30,35 @@ type SignUpT = {
 };
 
 export default function SignUp({navigation}: SignUpT) {
+  const {colors} = useTheme();
+
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    back: {
+      position: 'absolute',
+      top: hp('7%'),
+      left: wp('5%'),
+    },
+    btn: {
+      display: 'flex',
+      alignItems: 'center',
+      alignSelf: 'center',
+      justifyContent: 'center',
+      height: hp('5%'),
+      width: wp('85%'),
+      borderRadius: 25,
+      backgroundColor: 'red',
+    },
+    btnText: {
+      color: colors.background,
+      fontSize: wp('5%'),
+    },
+  });
+
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>('');
 
@@ -62,11 +98,11 @@ export default function SignUp({navigation}: SignUpT) {
     }
   }
 
-  console.log('WE ARE ON THE SIGN UP PAGE');
-  console.log({loading});
-
   return (
-    <AuthLoader {...{loading}}>
+    <View style={styles.container}>
+      <ModalIcon style={styles.back} modalScreen="Authenticator">
+        <BackIcon />
+      </ModalIcon>
       <Formik
         initialValues={{email: '', password: '', passwordConfirmation: ''}}
         onSubmit={(values) => onPress(values)}
@@ -84,7 +120,7 @@ export default function SignUp({navigation}: SignUpT) {
           touched,
           handleSubmit,
         }): ReactElement => (
-          <>
+          <View>
             <Input
               name="email"
               value={values.email}
@@ -118,12 +154,12 @@ export default function SignUp({navigation}: SignUpT) {
               secureTextEntry
             />
             {error !== '' && <Text>{error}</Text>}
-            <Btn onPress={handleSubmit}>
-              <Text>Sign Up</Text>
+            <Btn style={styles.btn} onPress={handleSubmit}>
+              <Text style={styles.btnText}>Sign Up</Text>
             </Btn>
-          </>
+          </View>
         )}
       </Formik>
-    </AuthLoader>
+    </View>
   );
 }

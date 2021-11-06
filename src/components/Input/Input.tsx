@@ -8,6 +8,12 @@ import {
   TextInput,
   TextInputFocusEventData,
 } from 'react-native';
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from 'react-native-responsive-screen';
+
+import {fixedColors} from '~/styles/theme';
 
 const styles = StyleSheet.create({
   inputStyle: {
@@ -22,6 +28,16 @@ const styles = StyleSheet.create({
     color: 'red',
     paddingTop: 10,
     left: 5,
+  },
+  textInput: {
+    height: hp('5%'),
+    width: wp('85%'),
+    margin: hp('2%'),
+    paddingVertical: wp('3%'),
+    paddingHorizontal: wp('4.5%'),
+    borderRadius: wp('4%'),
+    backgroundColor: fixedColors.lighterGrey,
+    fontSize: wp('4.5%'),
   },
 });
 
@@ -64,51 +80,51 @@ const Input = memo<InputT>(
     keyboardType,
     autoCapitalize,
   }) => {
-    const {inputStyle, errorStyle} = styles;
+    // const {fontSize, inputStyle, errorStyle} = styles;
 
-    const {
-      dark,
-      body: {fontSize},
-      colors: {secondary, primary, placeholderTextColor},
-    } = useTheme();
+    // const {
+    //   dark,
+    //   body: {fontSize},
+    //   colors: {secondary, primary, placeholderTextColor},
+    // } = useTheme();
 
-    const input = [
-      inputStyle,
-      {
-        color: dark ? primary : secondary,
-        borderBottomColor: dark ? primary : secondary,
-        fontSize,
-      },
-      ,
-    ];
+    // const input = [
+    //   inputStyle,
+    //   {
+    //     color: dark ? primary : secondary,
+    //     borderBottomColor: dark ? primary : secondary,
+    //     fontSize,
+    //   },
+    //   ,
+    // ];
 
-    const placeholderStyle = [
-      inputStyle,
-      {
-        color: placeholderTextColor,
-        borderBottomColor: dark ? primary : secondary,
-        fontSize,
-      },
-      ,
-    ];
+    // const placeholderStyle = [
+    //   inputStyle,
+    //   {
+    //     color: placeholderTextColor,
+    //     borderBottomColor: dark ? primary : secondary,
+    //     fontSize,
+    //   },
+    //   ,
+    // ];
 
     return (
       <>
         <TextInput
-          style={value.length === 0 ? placeholderStyle : input}
+          // style={value.length === 0 ? placeholderStyle : input}
+          style={styles.textInput}
           value={value}
           onChangeText={onChangeText}
           onBlur={onBlur}
           placeholder={placeholder}
-          placeholderTextColor={placeholderTextColor}
           secureTextEntry={secureTextEntry}
           keyboardType={keyboardType}
           autoCapitalize={autoCapitalize}
         />
         {touched[name] && errors[name] ? (
-          <Text style={errorStyle}>{errors[name]}</Text>
+          <Text>{errors[name]}</Text>
         ) : (
-          <Text style={errorStyle}>{'  '}</Text>
+          <Text>{'  '}</Text>
         )}
       </>
     );
