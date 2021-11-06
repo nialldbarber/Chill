@@ -3,3 +3,5 @@ export const onScreen = (screen?: any, navigation?: any, obj?: any) => () => {
 };
 
 export const goBack = (navigation: any) => () => navigation.goBack();
+
+export const goHome = (navigation: any) => () => navigation.popToTop()();

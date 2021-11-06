@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 
 import {useNavigation, useTheme} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
+import {Auth} from 'aws-amplify';
 import {StyleSheet, View} from 'react-native';
 import Animated, {
   useAnimatedStyle,
@@ -59,7 +60,7 @@ export default function HomeScreen() {
     },
   });
 
-  const {navigate} = useNavigation<homeScreenProp>() as any;
+  const navigation = useNavigation<homeScreenProp>() as any;
   const exercises = useSelector(selectBadges);
   const blockContainerOpacity = useSharedValue<number>(1);
   const spin = useSharedValue<number>(10);
@@ -71,6 +72,13 @@ export default function HomeScreen() {
   const spinStyles = useAnimatedStyle(() => ({
     transform: [{rotate: `${spin.value}deg`}],
   }));
+
+  useEffect(() => {
+    const checkUser = async (): Promise<void> => {
+      await Auth.currentAuthenticatedUser();
+    };
+    checkUser();
+  }, [navigation]);
 
   useEffect(() => {
     spin.value = withDelay(800, withSpring(180));
@@ -85,7 +93,7 @@ export default function HomeScreen() {
         <ModalIcon
           modalScreen="InfoModal"
           customRoute={() =>
-            navigate('InfoModal', {
+            navigation.navigate('InfoModal', {
               page: 'info',
             })
           }
@@ -107,7 +115,7 @@ export default function HomeScreen() {
                 title={exerciseName}
                 category={category}
                 onPress={() =>
-                  navigate(page, {
+                  navigation.navigate(page, {
                     id,
                     exerciseName,
                     exercise,

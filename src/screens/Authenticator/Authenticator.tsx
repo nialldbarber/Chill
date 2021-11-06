@@ -62,7 +62,7 @@ export default function Authenticator({navigation}: AuthenticatorT) {
           const {username, password} = credentials;
           const user = await Auth.signIn(username, password);
           setLoading(false);
-          user && onScreen('USER', navigation)();
+          user && onScreen('Home', navigation)();
         }
       } catch (err) {
         console.log(err);
@@ -78,15 +78,13 @@ export default function Authenticator({navigation}: AuthenticatorT) {
         <Text>hey there</Text>
         <Text>welcome to chill</Text>
       </View>
-      <AuthLoader {...{loading}}>
-        <Btn style={styles.btn} onPress={() => navigate('SignIn')}>
-          <Text style={styles.btnText}>Sign In</Text>
-        </Btn>
-        <Text>Or</Text>
-        <Btn style={styles.btn} onPress={() => navigate('SignUp')}>
-          <Text style={styles.btnText}>Sign Up</Text>
-        </Btn>
-      </AuthLoader>
+      <Btn style={styles.btn} onPress={() => navigate('SignIn')}>
+        <Text style={styles.btnText}>Sign In</Text>
+      </Btn>
+      <Text>Or</Text>
+      <Btn style={styles.btn} onPress={() => navigate('SignUp')}>
+        <Text style={styles.btnText}>Sign Up</Text>
+      </Btn>
     </View>
   );
 }

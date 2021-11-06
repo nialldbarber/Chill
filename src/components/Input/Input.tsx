@@ -1,6 +1,5 @@
 import React, {memo} from 'react';
 
-import {useTheme} from '@react-navigation/native';
 import {
   NativeSyntheticEvent,
   StyleSheet,
@@ -13,33 +12,18 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 
+import {ERROR_MAP} from '~/constants/errors';
 import {fixedColors} from '~/styles/theme';
 
-const styles = StyleSheet.create({
-  inputStyle: {
-    fontSize: 14,
-    alignSelf: 'center',
-    width: 30, // change
-    height: 40,
-    borderBottomWidth: 2,
-  },
-  errorStyle: {
-    fontSize: 14,
-    color: 'red',
-    paddingTop: 10,
-    left: 5,
-  },
-  textInput: {
-    height: hp('5%'),
-    width: wp('85%'),
-    margin: hp('2%'),
-    paddingVertical: wp('3%'),
-    paddingHorizontal: wp('4.5%'),
-    borderRadius: wp('4%'),
-    backgroundColor: fixedColors.lighterGrey,
-    fontSize: wp('4.5%'),
-  },
-});
+const textInput = {
+  height: hp('5%'),
+  width: wp('85%'),
+  marginBottom: hp('3%'),
+  paddingHorizontal: wp('4.5%'),
+  borderRadius: wp('4%'),
+  backgroundColor: fixedColors.lighterGrey,
+  fontSize: wp('4.5%'),
+};
 
 type InputT = {
   name?: string;
@@ -80,39 +64,28 @@ const Input = memo<InputT>(
     keyboardType,
     autoCapitalize,
   }) => {
-    // const {fontSize, inputStyle, errorStyle} = styles;
-
-    // const {
-    //   dark,
-    //   body: {fontSize},
-    //   colors: {secondary, primary, placeholderTextColor},
-    // } = useTheme();
-
-    // const input = [
-    //   inputStyle,
-    //   {
-    //     color: dark ? primary : secondary,
-    //     borderBottomColor: dark ? primary : secondary,
-    //     fontSize,
-    //   },
-    //   ,
-    // ];
-
-    // const placeholderStyle = [
-    //   inputStyle,
-    //   {
-    //     color: placeholderTextColor,
-    //     borderBottomColor: dark ? primary : secondary,
-    //     fontSize,
-    //   },
-    //   ,
-    // ];
+    const styles = StyleSheet.create({
+      errorText: {
+        color: fixedColors.error,
+        fontSize: wp('3.2%'),
+        marginLeft: wp('1%'),
+        marginTop: hp('-2%'),
+        marginBottom: hp('2%'),
+      },
+      textInput,
+      errors: {
+        ...textInput,
+        borderWidth: 1,
+        borderColor: fixedColors.error,
+      },
+    });
 
     return (
       <>
         <TextInput
-          // style={value.length === 0 ? placeholderStyle : input}
-          style={styles.textInput}
+          style={
+            touched[name] && errors[name] ? styles.errors : styles.textInput
+          }
           value={value}
           onChangeText={onChangeText}
           onBlur={onBlur}
@@ -122,10 +95,8 @@ const Input = memo<InputT>(
           autoCapitalize={autoCapitalize}
         />
         {touched[name] && errors[name] ? (
-          <Text>{errors[name]}</Text>
-        ) : (
-          <Text>{'  '}</Text>
-        )}
+          <Text style={styles.errorText}>{ERROR_MAP[errors[name]]}</Text>
+        ) : null}
       </>
     );
   },

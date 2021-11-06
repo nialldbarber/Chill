@@ -1,4 +1,4 @@
-import React, {ReactElement, useState} from 'react';
+import React, {ReactElement, useEffect, useState} from 'react';
 
 import {useTheme} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
@@ -18,6 +18,7 @@ import {Input} from '~/components/Input';
 import {AuthLoader} from '~/components/Loader/AuthLoader';
 import ModalIcon from '~/components/Modal';
 import {RootStackParamList} from '~/components/Navigator/RootNavigator/RootNavigator';
+import {fixedColors} from '~/styles/theme';
 import {onScreen} from '~/utils/navigation';
 
 type SignUpScreenNavigationProp = StackNavigationProp<
@@ -51,7 +52,7 @@ export default function SignUp({navigation}: SignUpT) {
       height: hp('5%'),
       width: wp('85%'),
       borderRadius: 25,
-      backgroundColor: 'red',
+      backgroundColor: colors.text,
     },
     btnText: {
       color: colors.background,
@@ -79,7 +80,7 @@ export default function SignUp({navigation}: SignUpT) {
       try {
         const user = await Auth.signUp(email, password);
         await Keychain.setInternetCredentials('auth', email, password);
-        user && onScreen('CONFIRM_SIGN_UP', navigation, {email, password})();
+        user && onScreen('ConfirmSignUp', navigation, {email, password})();
         setLoading(false);
       } catch (err) {
         setLoading(false);
@@ -155,7 +156,7 @@ export default function SignUp({navigation}: SignUpT) {
             />
             {error !== '' && <Text>{error}</Text>}
             <Btn style={styles.btn} onPress={handleSubmit}>
-              <Text style={styles.btnText}>Sign Up</Text>
+              <Text style={styles.btnText}>Submit</Text>
             </Btn>
           </View>
         )}
