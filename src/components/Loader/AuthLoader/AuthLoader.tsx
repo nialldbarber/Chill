@@ -1,10 +1,10 @@
-import React, {ReactNode} from 'react';
+import React from 'react';
 
 import {View} from 'react-native';
 
 type AuthLoaderProps = {
   loading: boolean;
-  children: any;
+  children?: any;
 };
 
 export default function AuthLoader({loading, children}: AuthLoaderProps) {

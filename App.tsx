@@ -10,6 +10,8 @@ import {store} from '~/store/index';
 enableFreeze(true);
 
 export default function App() {
+  console.log('ehllo');
+
   useEffect(() => {
     hide({fade: true});
   }, []);

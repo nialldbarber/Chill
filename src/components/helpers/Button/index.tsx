@@ -1,9 +1,9 @@
-import React, {ReactChild} from 'react';
+import React from 'react';
 
 import {TouchableOpacity} from 'react-native';
 
 type BtnProps = {
-  children: ReactChild;
+  children?: JSX.Element[] | JSX.Element;
   style?: any;
   disabled?: boolean;
   hitSlop?: number;

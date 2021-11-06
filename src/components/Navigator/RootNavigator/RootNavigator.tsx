@@ -6,12 +6,15 @@ import {AuthenticatorScreen} from '~/screens/Authenticator';
 import ExerciseScreen from '~/screens/Exercise';
 import HomeScreen from '~/screens/Home';
 import InfoModalScreen from '~/screens/InfoModal';
+import {SignUpScreen} from '~/screens/SignUp';
 
 export type RootStackParamList = {
   Home: undefined;
   Exercise: undefined;
   Authenticator: undefined;
   InfoModal: undefined;
+  SignUp: undefined;
+  SignIn: undefined;
 };
 
 const options = {headerShown: false};
@@ -31,6 +34,8 @@ export default function RootNavigator() {
         component={AuthenticatorScreen}
         {...{options}}
       />
+      <Screen name="SignUp" component={SignUpScreen} {...{options}} />
+      <Screen name="SignIn" component={SignUpScreen} {...{options}} />
       <Screen
         name="Exercise"
         component={ExerciseScreen}
