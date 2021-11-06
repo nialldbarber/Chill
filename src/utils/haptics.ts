@@ -27,7 +27,6 @@ export const HapticFeedbackTypes: Haptics = {
 };
 
 export const hapticToTrigger = (haptic) => {
-  // console.log(haptic);
   return {
     [haptic]: () => ReactNativeHapticFeedback.trigger(haptic),
   };

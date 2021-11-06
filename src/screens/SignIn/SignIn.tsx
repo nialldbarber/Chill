@@ -74,8 +74,6 @@ export default function SignIn({navigation}: SignInT): ReactElement {
     }
   };
 
-  console.log(error);
-
   return (
     <Wrapper>
       <ModalIcon style={styles.back} modalScreen="Authenticator">

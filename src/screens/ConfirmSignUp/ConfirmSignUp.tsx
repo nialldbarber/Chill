@@ -4,14 +4,16 @@ import {RouteProp} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {Auth} from 'aws-amplify';
 import {Formik} from 'formik';
-import {Text, View} from 'react-native';
+import {Text} from 'react-native';
 import * as Yup from 'yup';
 
-import Btn from '~/components/helpers/Button';
+import {ActionButton} from '~/components/Button';
+import BackIcon from '~/components/Icons/Back';
 import {Input} from '~/components/Input';
 import Wrapper from '~/components/Layout/Wrapper';
+import ModalIcon from '~/components/Modal';
 import {RootStackParamList} from '~/components/Navigator/RootNavigator/RootNavigator';
-import {goBack, onScreen} from '~/utils/navigation';
+import {onScreen} from '~/utils/navigation';
 
 type ProfileScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -41,7 +43,7 @@ export default function ConfirmSignUp({
       const user = await Auth.signIn(email, password);
       user && onScreen('Home', navigation)();
       setLoading(false);
-    } catch (err) {
+    } catch (err: any) {
       setLoading(false);
       setError(err.message);
       if (err.code === 'UserNotConfirmedException') {
@@ -60,13 +62,16 @@ export default function ConfirmSignUp({
     try {
       const {email} = route.params;
       await Auth.resendSignUp(email);
-    } catch (err) {
+    } catch (err: any) {
       setError(err.message);
     }
   }
 
   return (
     <Wrapper>
+      <ModalIcon modalScreen="Authenticator">
+        <BackIcon />
+      </ModalIcon>
       <Formik
         initialValues={{code: ''}}
         onSubmit={(values) => onPress(values)}
@@ -92,13 +97,9 @@ export default function ConfirmSignUp({
               touched={touched}
               errors={errors}
             />
-            <Btn onPress={onResend}>
-              <Text>Resend code?</Text>
-            </Btn>
+            <ActionButton text="resend code?" onPress={onResend} />
             {error !== 'Forgot Password?' && <Text>{error}</Text>}
-            <Btn onPress={handleSubmit}>
-              <Text>Confirm</Text>
-            </Btn>
+            <ActionButton text="confirm" onPress={handleSubmit} />
           </>
         )}
       </Formik>

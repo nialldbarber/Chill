@@ -9,11 +9,13 @@ import * as Keychain from 'react-native-keychain';
 import * as Yup from 'yup';
 
 import {ActionButton} from '~/components/Button';
+import ErrorText from '~/components/Error/ErrorText';
 import BackIcon from '~/components/Icons/Back';
 import {Input} from '~/components/Input';
 import Wrapper from '~/components/Layout/Wrapper';
 import ModalIcon from '~/components/Modal';
 import {RootStackParamList} from '~/components/Navigator/RootNavigator/RootNavigator';
+import {PASSWORD_FORGOT_CONFIRM_ERROR_MAP} from '~/constants/errors';
 import {onScreen} from '~/utils/navigation';
 
 type ProfileScreenNavigationProp = StackNavigationProp<
@@ -126,7 +128,9 @@ export default function ForgotPasswordSubmit({
               autoCapitalize="none"
               secureTextEntry
             />
-            {error !== '' && <Text>{error}</Text>}
+            {error !== '' && (
+              <ErrorText text={PASSWORD_FORGOT_CONFIRM_ERROR_MAP[error]} />
+            )}
             <ActionButton text="confirm" onPress={handleSubmit} />
           </>
         )}

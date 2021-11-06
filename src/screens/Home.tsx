@@ -24,6 +24,7 @@ import Scroll from '~/components/helpers/Scrollview';
 import SettingsIcon from '~/components/Icons/Settings';
 import ModalIcon from '~/components/Modal';
 import {RootStackParamList} from '~/components/Navigator/RootNavigator/RootNavigator';
+import {feelingCategories, feelings} from '~/constants/exercises';
 import {selectBadges} from '~/store/selectors/exercises';
 import {fixedColors} from '~/styles/theme';
 import {toggleVisibility} from '~/utils/toggleVisibility';
@@ -109,6 +110,11 @@ export default function HomeScreen() {
         </ModalIcon>
         <Header />
         <Badges
+          data={feelingCategories}
+          // press={() => toggleVisibility(blockContainerOpacity, true, 500)}
+        />
+        <Badges
+          data={feelings}
           press={() => toggleVisibility(blockContainerOpacity, true, 500)}
         />
         <Animated.View style={[styles.blockContainer, blockContainerStyle]}>

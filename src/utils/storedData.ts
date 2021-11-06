@@ -4,7 +4,7 @@ export async function setStoredData(value: string): Promise<void> {
   try {
     await AsyncStorage.setItem('@first_name', value);
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 }
 

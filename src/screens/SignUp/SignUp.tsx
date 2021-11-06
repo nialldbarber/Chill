@@ -13,6 +13,7 @@ import {
 import * as Yup from 'yup';
 
 import {ActionButton} from '~/components/Button';
+import ErrorText from '~/components/Error/ErrorText';
 import BackIcon from '~/components/Icons/Back';
 import {Input} from '~/components/Input';
 import ModalIcon from '~/components/Modal';
@@ -147,11 +148,7 @@ export default function SignUp({navigation}: SignUpT) {
               autoCapitalize="none"
               secureTextEntry
             />
-            {error !== '' && (
-              <Text style={styles.errorBtnText}>
-                {SIGN_IN_ERROR_MAP[error]}
-              </Text>
-            )}
+            {error !== '' && <ErrorText text={SIGN_IN_ERROR_MAP[error]} />}
             <ActionButton text="sign up" onPress={handleSubmit} />
           </View>
         )}

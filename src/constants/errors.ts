@@ -9,3 +9,8 @@ export const SIGN_IN_ERROR_MAP: Record<string, string> = {
   UsernameExistsException: 'user already exists',
   InvalidPasswordException: 'password is invalid',
 };
+
+export const PASSWORD_FORGOT_CONFIRM_ERROR_MAP: Record<string, string> = {
+  'Password does not conform to policy: Password not long enough':
+    'password not long enough',
+};

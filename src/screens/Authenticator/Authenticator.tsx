@@ -122,7 +122,7 @@ export default function Authenticator({navigation}: AuthenticatorT) {
           user && onScreen('Home', navigation)();
         }
       } catch (err) {
-        console.log(err);
+        console.error(err);
         setLoading(false);
       }
     })();

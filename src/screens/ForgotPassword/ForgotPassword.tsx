@@ -48,13 +48,11 @@ export default function Forgot({route, navigation}: ForgotT): ReactElement {
 
   const _onPress = async (values: {email: string}): Promise<void> => {
     setLoading(true);
-    console.log('loading');
     try {
       const {email} = values;
       const user = await Auth.forgotPassword(email);
       user && onScreen('ForgotPasswordSubmit', navigation, values)();
       setLoading(false);
-      console.log('not loading');
     } catch (err) {
       setError(error);
     }

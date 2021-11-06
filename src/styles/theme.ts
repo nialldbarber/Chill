@@ -43,17 +43,17 @@ export default function getTheme(scheme: string): ThemeT {
 
 export const fixedColors: Record<string, string> = {
   white: '#ffffff',
-  primary: '#ff6b6b',
-  primaryFaded: 'rgba(255, 107, 107, 0.45)',
+  primary: '#FFB99C',
+  primaryFaded: 'rgba(255, 185, 156, 0.45)',
   calm: '#9CE2FF',
   calmFaded: 'rgba(156, 226, 255, 0.45)',
   calmDeep: '#2098c9',
 
-  night: '#d49cff',
+  night: '#dec1f5',
   nightFaded: 'rgba(212, 156, 255, 0.45)',
-  nightDeep: '#945abf',
+  nightDeep: '#a086b5',
 
-  primaryDeep: '#e85151',
+  primaryDeep: '#de7549',
   success: '#20bf6b',
   warning: '#f39c12',
   error: '#e74c3c',

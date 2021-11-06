@@ -2,16 +2,16 @@ import React from 'react';
 
 import BadgeInner from '~/components/Badges/BadgeInner';
 import Scroll from '~/components/helpers/Scrollview';
-import {feelings} from '~/constants/exercises';
 
 type BadgesProps = {
-  press: () => void;
+  data?: any;
+  press?: () => void;
 };
 
-export default function Badges({press}: BadgesProps) {
+export default function Badges({data, press}: BadgesProps) {
   return (
     <Scroll h>
-      {feelings.map((item, index) => (
+      {data.map((item: number, index: number) => (
         <BadgeInner key={index} {...{index, item, press}} />
       ))}
     </Scroll>

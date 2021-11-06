@@ -4,7 +4,7 @@ import {ScrollView} from 'react-native';
 
 type ScrollProps = {
   h?: boolean;
-  children: ReactChild | JSX.Element[];
+  children?: ReactChild | JSX.Element[];
 };
 
 export default function Scroll({h, children}: ScrollProps) {

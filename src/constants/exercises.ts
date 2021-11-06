@@ -40,6 +40,8 @@ export const FEELING_MAPPED_KEY: Record<string, string> = {
   unwind: 'night',
 };
 
+export const feelingCategories = ['calm', 'energy', 'night'];
+
 export const feelings = [
   'activated',
   'alleviated',
