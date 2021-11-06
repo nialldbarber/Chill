@@ -106,6 +106,13 @@ export default function SignUp({navigation}: SignUpT) {
           setFieldTouched,
           touched,
           handleSubmit,
+        }: {
+          values: any;
+          handleChange: any;
+          errors: any;
+          setFieldTouched: any;
+          touched: boolean;
+          handleSubmit: any;
         }): ReactElement => (
           <View>
             <Input
