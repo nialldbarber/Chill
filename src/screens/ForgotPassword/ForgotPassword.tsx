@@ -47,7 +47,7 @@ export default function Forgot({route, navigation}: ForgotT): ReactElement {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const _onPress = async (values: {email: string}): Promise<void> => {
+  async function onPress(values: {email: string}): Promise<void> {
     setLoading(true);
     try {
       const {email} = values;
@@ -57,7 +57,7 @@ export default function Forgot({route, navigation}: ForgotT): ReactElement {
     } catch (err) {
       setError(error);
     }
-  };
+  }
 
   return (
     <AuthLoader {...{loading}}>
@@ -67,7 +67,7 @@ export default function Forgot({route, navigation}: ForgotT): ReactElement {
         </ModalIcon>
         <Formik
           initialValues={{email: route?.params?.email || ''}}
-          onSubmit={(values): Promise<void> => _onPress(values)}
+          onSubmit={(values): Promise<void> => onPress(values)}
           validationSchema={Yup.object().shape({
             email: Yup.string().email().required(),
           })}

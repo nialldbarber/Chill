@@ -39,11 +39,11 @@ export default function ForgotPasswordSubmit({
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const _onPress = async (values: {
+  async function onPress(values: {
     email: string;
     password: string;
     code: string;
-  }): Promise<void> => {
+  }): Promise<void> {
     setLoading(true);
     try {
       const {email, code, password} = values;
@@ -56,7 +56,7 @@ export default function ForgotPasswordSubmit({
       setLoading(false);
       setError(err?.message);
     }
-  };
+  }
 
   return (
     <AuthLoader {...{loading}}>
@@ -71,7 +71,7 @@ export default function ForgotPasswordSubmit({
             password: '',
             passwordConfirmation: '',
           }}
-          onSubmit={(values): Promise<void> => _onPress(values)}
+          onSubmit={(values): Promise<void> => onPress(values)}
           validationSchema={Yup.object().shape({
             email: Yup.string().email().required(),
             code: Yup.string().min(6).required(),

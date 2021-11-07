@@ -46,10 +46,10 @@ export default function SignIn({navigation}: SignInT): ReactElement {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const _onPress = async (values: {
+  async function onPress(values: {
     email: string;
     password: string;
-  }): Promise<void> => {
+  }): Promise<void> {
     setLoading(true);
     setError('');
     try {
@@ -73,7 +73,7 @@ export default function SignIn({navigation}: SignInT): ReactElement {
         setError(code);
       }
     }
-  };
+  }
 
   return (
     <AuthLoader {...{loading}}>
@@ -84,7 +84,7 @@ export default function SignIn({navigation}: SignInT): ReactElement {
         <Formik
           enableReinitialize
           initialValues={userInfo}
-          onSubmit={(values) => _onPress(values)}
+          onSubmit={(values) => onPress(values)}
           validationSchema={Yup.object().shape({
             email: Yup.string().email().required(),
             password: Yup.string().min(6).required(),
@@ -120,9 +120,7 @@ export default function SignIn({navigation}: SignInT): ReactElement {
                 autoCapitalize="none"
                 secureTextEntry
               />
-              {error !== '' && error === 'Forgot Password?' ? (
-                <ErrorText text="Hmmmm that's not right 🤔" />
-              ) : null}
+              {error ? <ErrorText text={error} /> : null}
               <ActionButton
                 text="forgot password?"
                 error
