@@ -4,11 +4,11 @@ import {createSharedElementStackNavigator} from 'react-navigation-shared-element
 
 import {AuthenticatorScreen} from '~/screens/Authenticator';
 import {ConfirmSignUpScreen} from '~/screens/ConfirmSignUp';
-import ExerciseScreen from '~/screens/Exercise';
+import {ExerciseScreen} from '~/screens/Exercise';
 import {ForgotPasswordScreen} from '~/screens/ForgotPassword';
 import {ForgotPasswordSubmitScreen} from '~/screens/ForgotPasswordSubmit';
-import HomeScreen from '~/screens/Home';
-import InfoModalScreen from '~/screens/InfoModal';
+import {HomeScreen} from '~/screens/Home';
+import {InfoScreen} from '~/screens/Info';
 import {SignInScreen} from '~/screens/SignIn';
 import {SignUpScreen} from '~/screens/SignUp';
 
@@ -71,7 +71,7 @@ export default function RootNavigator() {
       />
       <Screen
         name="InfoModal"
-        component={InfoModalScreen}
+        component={InfoScreen}
         {...{options}}
         sharedElements={(route, showing) => {
           if (showing) {
