@@ -46,6 +46,6 @@ module.exports = {
     'react-native/no-inline-styles': 0,
     'react-native/no-unused-styles': 2,
     'react-hooks/exhaustive-deps': 'warn',
-    '@typescript-eslint/no-explicit-any': 2,
+    '@typescript-eslint/no-explicit-any': 0,
   },
 };
