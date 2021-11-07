@@ -18,7 +18,7 @@ import {SharedElement} from 'react-navigation-shared-element';
 import {useSelector} from 'react-redux';
 
 import Badges from '~/components/Badges';
-import Block from '~/components/Block';
+import {Block} from '~/components/Block';
 import Header from '~/components/Header';
 import Scroll from '~/components/helpers/Scrollview';
 import SettingsIcon from '~/components/Icons/Settings';
