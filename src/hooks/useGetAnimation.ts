@@ -12,15 +12,15 @@ import Animated, {
 } from 'react-native-reanimated';
 import {useDispatch, useSelector} from 'react-redux';
 
-import {HOLD, IN, OUT} from '~/constants/exercises';
 import useInterval from '~/hooks/useInterval';
-import {Instruct} from '~/screens/Exercise';
+import {Instruct} from '~/screens/Exercise/Exercise';
 import {selectHasBegun} from '~/store/selectors/individual-exercise';
 import {
   setBeginExercise,
   setStartCountdown,
 } from '~/store/slices/individual-exercise';
 import {ORIGINAL_SIZE, WIDTH} from '~/styles/theme';
+import {formatAnimatedStr} from '~/utils/animatedText';
 import {secToMill} from '~/utils/time';
 
 type AnimationT = {
@@ -43,7 +43,7 @@ export default function useGetAnimation(
   const hasBegun = useSelector(selectHasBegun);
   const [seconds, setSeconds] = useState<number>(0);
   const innerCircle = useSharedValue<number>(ORIGINAL_SIZE);
-  const instructions = useSharedValue<Instruct>('');
+  const instructions = useSharedValue<number>(0);
   const scale = useSharedValue<number>(0);
 
   const innerCircleStyles = useAnimatedStyle(() => ({
@@ -54,9 +54,9 @@ export default function useGetAnimation(
   }));
 
   const animatedText = useDerivedValue(() => {
-    let str: Instruct = instructions.value;
-    str = str.toString().replace(/NaN/g, '');
-    return str;
+    const text: string | number = instructions.value;
+    const txt = formatAnimatedStr(text, instructions, type);
+    return txt;
   }, [hasBegun]);
 
   useEffect(() => {
@@ -79,10 +79,10 @@ export default function useGetAnimation(
       if (type === 1) {
         instructions.value = withRepeat(
           withSequence(
-            withTiming(IN, {duration: secToMill(exercise[0])}),
-            withTiming(HOLD, {duration: secToMill(exercise[1])}),
-            withTiming(OUT, {duration: secToMill(exercise[2])}),
-            withTiming(HOLD, {duration: secToMill(exercise[3])}),
+            withTiming(1, {duration: secToMill(exercise[0])}),
+            withTiming(2, {duration: secToMill(exercise[1])}),
+            withTiming(3, {duration: secToMill(exercise[2])}),
+            withTiming(4, {duration: secToMill(exercise[3])}),
           ),
           -1,
           false,
@@ -90,9 +90,9 @@ export default function useGetAnimation(
       } else if (type === 2) {
         instructions.value = withRepeat(
           withSequence(
-            withTiming(IN, {duration: secToMill(exercise[0])}),
-            withTiming(OUT, {duration: secToMill(exercise[2])}),
-            withTiming(HOLD, {duration: secToMill(exercise[3])}),
+            withTiming(1, {duration: secToMill(exercise[0])}),
+            withTiming(2, {duration: secToMill(exercise[2])}),
+            withTiming(3, {duration: secToMill(exercise[3])}),
           ),
           -1,
           false,
@@ -100,9 +100,9 @@ export default function useGetAnimation(
       } else if (type === 3) {
         instructions.value = withRepeat(
           withSequence(
-            withTiming(IN, {duration: secToMill(exercise[0])}),
-            withTiming(HOLD, {duration: secToMill(exercise[1])}),
-            withTiming(OUT, {duration: secToMill(exercise[2])}),
+            withTiming(1, {duration: secToMill(exercise[0])}),
+            withTiming(2, {duration: secToMill(exercise[1])}),
+            withTiming(3, {duration: secToMill(exercise[2])}),
           ),
           -1,
           false,
@@ -110,8 +110,8 @@ export default function useGetAnimation(
       } else if (type === 4) {
         instructions.value = withRepeat(
           withSequence(
-            withTiming(IN, {duration: secToMill(exercise[0])}),
-            withTiming(OUT, {duration: secToMill(exercise[2])}),
+            withTiming(1, {duration: secToMill(exercise[0])}),
+            withTiming(2, {duration: secToMill(exercise[2])}),
           ),
           -1,
           false,
@@ -135,8 +135,13 @@ export default function useGetAnimation(
     dispatch(setBeginExercise(false));
     dispatch(setStartCountdown(false));
     innerCircle.value = withSpring(ORIGINAL_SIZE);
-    instructions.value = '';
+    instructions.value = 0;
   }
+
+  // console.log({
+  //   text: animatedText,
+  //   // num: instructions.value,
+  // });
 
   return {
     seconds,

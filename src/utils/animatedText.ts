@@ -1,48 +1,60 @@
+import Animated from 'react-native-reanimated';
+
+import {Instruct} from '~/screens/Exercise/Exercise';
+
 export function getAnimatedTextFormatted(str: any): string {
+  'worklet';
   let formattedStr = str.value;
   formattedStr = formattedStr.toString();
   formattedStr = str.replace(/NaN/g, '');
   return formattedStr;
 }
 
-export function run<T extends number>(
-  ex1: T,
-  ex2: T,
-  ex3: T,
-  ex4: T,
-): Promise<string> {
-  const instructions = Promise.resolve()
-    .then(() => delay(ex1))
-    .then(() => inhale())
-    .then(() => delay(ex2))
-    .then(() => hold())
-    .then(() => delay(ex3))
-    .then(() => exhale())
-    .then(() => delay(ex4))
-    .then(() => hold());
+type N = number;
+type S = string;
 
-  return instructions;
-}
+export const formatAnimatedStr = (
+  str: S | N,
+  instructions: Animated.SharedValue<Instruct>,
+  type: N | undefined,
+): S => {
+  'worklet';
 
-function delay(duration: number) {
-  return new Promise((resolve) => {
-    setTimeout(() => resolve(), duration);
-  });
-}
+  let text: S | N = str;
 
-const inhale = () => 'Inhale';
-const hold = () => 'Hold';
-const exhale = () => 'Exhale';
-
-export async function loopItUp<T extends number>(
-  ex1: T,
-  ex2: T,
-  ex3: T,
-  ex4: T,
-) {
-  let test;
-  for (let i = 0; i < Infinity; i++) {
-    test = await run(ex1, ex2, ex3, ex4);
+  if (type === 1) {
+    if (instructions.value < 1) {
+      text = 'breathe in';
+    } else if (instructions.value > 1 && instructions.value < 2) {
+      text = 'hold';
+    } else if (instructions.value > 2 && instructions.value < 3) {
+      text = 'breathe out';
+    } else if (instructions.value > 3 && instructions.value < 4) {
+      text = 'hold';
+    }
+  } else if (type === 2) {
+    if (instructions.value < 1) {
+      text = 'breathe in';
+    } else if (instructions.value > 1 && instructions.value < 2) {
+      text = 'breathe out';
+    } else if (instructions.value > 2 && instructions.value < 3) {
+      text = 'hold';
+    }
+  } else if (type === 3) {
+    if (instructions.value < 1) {
+      text = 'breathe in';
+    } else if (instructions.value > 1 && instructions.value < 2) {
+      text = 'hold';
+    } else if (instructions.value > 2 && instructions.value < 3) {
+      text = 'breathe out';
+    }
+  } else if (type === 4) {
+    if (instructions.value < 1) {
+      text = 'breathe in';
+    } else if (instructions.value > 1 && instructions.value < 2) {
+      text = 'breathe out';
+    }
   }
-  return test;
-}
+
+  return text.toString().replace(/NaN/g, '');
+};

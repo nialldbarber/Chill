@@ -3,6 +3,7 @@ import React from 'react';
 import {useTheme} from '@react-navigation/native';
 import {StyleSheet, Text, View} from 'react-native';
 import Animated from 'react-native-reanimated';
+import {ReText} from 'react-native-redash';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
@@ -94,8 +95,9 @@ export default function ExerciseScreen({route}: {route: RouteT}) {
     },
     innerText: {
       color: DEEP_BACKGROUND[category || ''],
-      fontSize: 20,
+      fontSize: wp('4.5%'),
       fontWeight: '700',
+      textAlign: 'center',
     },
     instructionContainer: {
       position: 'absolute',
@@ -108,8 +110,10 @@ export default function ExerciseScreen({route}: {route: RouteT}) {
   const dispatch = useDispatch();
   const hasBegun = useSelector(selectHasBegun);
   const hasCountdownStarted = useSelector(selectHasCountdownStarted);
-  const {seconds, instructions, reset, innerCircleStyles, animatedText} =
-    useGetAnimation(type, exercise);
+  const {seconds, reset, innerCircleStyles, animatedText} = useGetAnimation(
+    type,
+    exercise,
+  );
 
   function handleExercise(cond: boolean): void {
     dispatch(setStartCountdown(true));
@@ -134,7 +138,9 @@ export default function ExerciseScreen({route}: {route: RouteT}) {
           <View style={styles.outerCircle}>
             <Animated.View style={[styles.innerCircle, innerCircleStyles]}>
               <View>
-                {hasBegun ? <Text style={styles.innerText}>steps</Text> : null}
+                {hasBegun ? (
+                  <Text style={styles.innerText}>{animatedText?.value}</Text>
+                ) : null}
               </View>
             </Animated.View>
           </View>

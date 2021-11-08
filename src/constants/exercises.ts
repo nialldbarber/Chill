@@ -9,9 +9,9 @@
 // - 3 = in hold out
 // - 4 = in out
 
-export const IN = 'In';
-export const OUT = 'Out';
-export const HOLD = 'Hold';
+export const IN = 'breathe in';
+export const OUT = 'hold';
+export const HOLD = 'breathe out';
 
 const page = 'Exercise';
 
@@ -206,6 +206,28 @@ export const CONFIG: ConfigT[] = [
     exerciseName: 'Anxiety Ease',
     exercise: [4, 2, 6, 0],
     type: 3,
+    theme: 'dark',
+    category: 'calm',
+    tags: [
+      'alleviated',
+      'balanced',
+      'blissful',
+      'calm',
+      'clear',
+      'cool',
+      'dream',
+      'pain relief',
+      'peaceful',
+      'relaxed',
+      'tranquil',
+    ],
+  },
+  {
+    id: 9,
+    page,
+    exerciseName: 'Test',
+    exercise: [4, 0, 6, 2],
+    type: 2,
     theme: 'dark',
     category: 'calm',
     tags: [

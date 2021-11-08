@@ -7,6 +7,6 @@ import config from './src/aws-exports';
 
 Amplify.configure(config);
 
-window.LOG_LEVEL = 'DEBUG';
+// window.LOG_LEVEL = 'DEBUG';
 
 AppRegistry.registerComponent(appName, () => App);

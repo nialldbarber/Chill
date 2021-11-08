@@ -93,6 +93,7 @@ const Input = memo<InputT>(
           secureTextEntry={secureTextEntry}
           keyboardType={keyboardType}
           autoCapitalize={autoCapitalize}
+          KeyboardAvoidingView
         />
         {touched[name] && errors[name] ? (
           <Text style={styles.errorText}>{ERROR_MAP[errors[name]]}</Text>
