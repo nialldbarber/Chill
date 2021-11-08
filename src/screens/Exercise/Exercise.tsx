@@ -123,7 +123,7 @@ export default function ExerciseScreen({route}: {route: RouteT}) {
     }
   }
 
-  useGetHaptics(instructions);
+  useGetHaptics(animatedText, instructions);
 
   return (
     <View style={styles.container}>

@@ -6,10 +6,12 @@ import {Instruct} from '~/screens/Exercise/Exercise';
 import {haptics} from '~/utils/haptics';
 
 export default function useGetHaptics(
+  animatedText: Animated.DerivedValue<string>,
   instructions: Animated.SharedValue<Instruct>,
 ) {
   useEffect(() => {
-    const str = instructions?.value.toString().replace(/NaN/g, '');
+    const str: any = animatedText?.value;
+
     if (str === 'breathe in') {
       haptics.impactLight();
       setTimeout(() => {
@@ -23,5 +25,6 @@ export default function useGetHaptics(
         }, i);
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [instructions.value]);
 }

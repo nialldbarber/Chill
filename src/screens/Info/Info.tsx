@@ -19,7 +19,7 @@ import {SharedElement} from 'react-navigation-shared-element';
 import Btn from '~/components/helpers/Button';
 import Scroll from '~/components/helpers/Scrollview';
 import BackIcon from '~/components/Icons/Back';
-import ModalIcon from '~/components/Modal';
+import ModalIcon from '~/components/Modal/ModalIcon';
 import {RootStackParamList} from '~/components/Navigator/RootNavigator/RootNavigator';
 import {fixedColors} from '~/styles/theme';
 import {goHome} from '~/utils/navigation';

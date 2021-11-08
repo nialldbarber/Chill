@@ -22,6 +22,7 @@ import Wrapper from '~/components/Layout/Wrapper';
 import {AuthLoader} from '~/components/Loader/AuthLoader';
 import {RootStackParamList} from '~/components/Navigator/RootNavigator/RootNavigator';
 import {fixedColors} from '~/styles/theme';
+import {haptics} from '~/utils/haptics';
 import {onScreen} from '~/utils/navigation';
 
 type AuthScreenNavigationProp = StackNavigationProp<
@@ -153,6 +154,18 @@ export default function Authenticator({navigation}: AuthenticatorT) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(() => {
+    setTimeout(() => {
+      haptics.impactMedium();
+    }, 2000);
+    setTimeout(() => {
+      haptics.impactMedium();
+    }, 2500);
+    setTimeout(() => {
+      haptics.impactMedium();
+    }, 3000);
+  }, []);
+
   return (
     <AuthLoader {...{loading}}>
       <View>
@@ -188,9 +201,21 @@ export default function Authenticator({navigation}: AuthenticatorT) {
       </View>
       <Wrapper style={styles.container}>
         <Animated.View style={buttonWrapperStyles}>
-          <ActionButton text="sign in" onPress={() => navigate('SignIn')} />
+          <ActionButton
+            text="sign in"
+            onPress={() => {
+              navigate('SignIn');
+              haptics.selection();
+            }}
+          />
           <Text style={styles.or}>or</Text>
-          <ActionButton text="sign up" onPress={() => navigate('SignUp')} />
+          <ActionButton
+            text="sign up"
+            onPress={() => {
+              navigate('SignUp');
+              haptics.selection();
+            }}
+          />
         </Animated.View>
       </Wrapper>
     </AuthLoader>

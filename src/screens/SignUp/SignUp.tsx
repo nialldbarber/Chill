@@ -12,7 +12,7 @@ import ErrorText from '~/components/Error/ErrorText';
 import BackIcon from '~/components/Icons/Back';
 import {Input} from '~/components/Input';
 import {AuthLoader} from '~/components/Loader/AuthLoader';
-import ModalIcon from '~/components/Modal';
+import ModalIcon from '~/components/Modal/ModalIcon';
 import {RootStackParamList} from '~/components/Navigator/RootNavigator/RootNavigator';
 import {SIGN_IN_ERROR_MAP} from '~/constants/errors';
 import {onScreen} from '~/utils/navigation';
