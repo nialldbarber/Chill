@@ -3,7 +3,6 @@ import React from 'react';
 import {useTheme} from '@react-navigation/native';
 import {StyleSheet, Text, View} from 'react-native';
 import Animated from 'react-native-reanimated';
-import {ReText} from 'react-native-redash';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
@@ -15,7 +14,7 @@ import ExerciseButton from '~/components/Exercise/Button';
 import InstructionsContainer from '~/components/Exercise/Icons/InstructionContainer';
 import ExerciseTitle from '~/components/Exercise/Title';
 import BackIcon from '~/components/Icons/Back';
-import ModalIcon from '~/components/Modal';
+import ModalIcon from '~/components/Modal/ModalIcon';
 import {ConfigT, FEELINGS_COLOR_MAP} from '~/constants/exercises';
 import useGetAnimation from '~/hooks/useGetAnimation';
 import useGetHaptics from '~/hooks/useGetHaptics';
@@ -110,10 +109,8 @@ export default function ExerciseScreen({route}: {route: RouteT}) {
   const dispatch = useDispatch();
   const hasBegun = useSelector(selectHasBegun);
   const hasCountdownStarted = useSelector(selectHasCountdownStarted);
-  const {seconds, reset, innerCircleStyles, animatedText} = useGetAnimation(
-    type,
-    exercise,
-  );
+  const {seconds, reset, innerCircleStyles, animatedText, instructions} =
+    useGetAnimation(type, exercise);
 
   function handleExercise(cond: boolean): void {
     dispatch(setStartCountdown(true));
@@ -125,6 +122,8 @@ export default function ExerciseScreen({route}: {route: RouteT}) {
       dispatch(setBeginExercise(cond));
     }
   }
+
+  useGetHaptics(instructions);
 
   return (
     <View style={styles.container}>

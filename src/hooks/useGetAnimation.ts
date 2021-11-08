@@ -138,11 +138,6 @@ export default function useGetAnimation(
     instructions.value = 0;
   }
 
-  // console.log({
-  //   text: animatedText,
-  //   // num: instructions.value,
-  // });
-
   return {
     seconds,
     reset,

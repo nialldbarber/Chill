@@ -19,10 +19,10 @@ import {useSelector} from 'react-redux';
 
 import {Badges} from '~/components/Badges/Badge';
 import {Block} from '~/components/Block';
-import Header from '~/components/Header';
+import {Header} from '~/components/Header';
 import Scroll from '~/components/helpers/Scrollview';
 import SettingsIcon from '~/components/Icons/Settings';
-import ModalIcon from '~/components/Modal';
+import ModalIcon from '~/components/Modal/ModalIcon';
 import {RootStackParamList} from '~/components/Navigator/RootNavigator/RootNavigator';
 import {feelingCategories, feelings} from '~/constants/exercises';
 import {selectBadges} from '~/store/selectors/exercises';

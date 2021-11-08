@@ -13,7 +13,7 @@ import {
 
 import Wrapper from '~/components/Layout/Wrapper';
 import {fixedColors} from '~/styles/theme';
-import {impactAsync} from '~/utils/haptics';
+import {haptics} from '~/utils/haptics';
 
 export default function Loader({active}: {active: boolean}) {
   const styles = StyleSheet.create({
@@ -51,15 +51,15 @@ export default function Loader({active}: {active: boolean}) {
     if (active) {
       setTimeout(() => {
         circleThree.value = withTiming(0);
-        // impactAsync('heavy');
+        haptics.impactHeavy();
       }, 1000);
       setTimeout(() => {
         circleTwo.value = withTiming(0);
-        // impactAsync('heavy');
+        haptics.impactHeavy();
       }, 2000);
       setTimeout(() => {
         circleOne.value = withTiming(0);
-        // impactAsync('heavy');
+        haptics.impactHeavy();
       }, 3000);
     }
   }, [active, circleOne, circleTwo, circleThree]);

@@ -2,16 +2,16 @@ import Animated from 'react-native-reanimated';
 
 import {Instruct} from '~/screens/Exercise/Exercise';
 
-export function getAnimatedTextFormatted(str: any): string {
-  'worklet';
-  let formattedStr = str.value;
-  formattedStr = formattedStr.toString();
-  formattedStr = str.replace(/NaN/g, '');
-  return formattedStr;
-}
-
 type N = number;
 type S = string;
+
+export function getAnimatedTextFormatted(str: any): S {
+  'worklet';
+  let formattedStr = str?.value;
+  formattedStr = formattedStr?.toString();
+  formattedStr = str?.replace(/NaN/g, '');
+  return formattedStr;
+}
 
 export const formatAnimatedStr = (
   str: S | N,
