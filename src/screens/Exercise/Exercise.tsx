@@ -132,7 +132,7 @@ export default function ExerciseScreen({route}: {route: RouteT}) {
           <BackIcon />
         </ModalIcon>
         {hasBegun ? <Text style={styles.timer}>{getTime(seconds)}</Text> : null}
-        <ExerciseTitle title={exerciseName} hasBegun={hasBegun} />
+        <ExerciseTitle title={exerciseName} {...{hasBegun}} />
         <SharedElement id={id.toString()}>
           <View style={styles.outerCircle}>
             <Animated.View style={[styles.innerCircle, innerCircleStyles]}>
