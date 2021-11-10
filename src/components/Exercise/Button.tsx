@@ -48,16 +48,17 @@ AppleHealthKit.initHealthKit(permissions, (error: string) => {
     endDate: new Date().toISOString(), // optional; default now
   };
 
-  // AppleHealthKit.saveMindfulSession(
-  //   (options: HealthInputOptions),
-  //   (err: Object, results: number) => {
-  //     if (err)
-  //       return {
-  //         return,
-  //       }
-  //     // mindfullSession successfully saved
-  //   },
-  // )
+  AppleHealthKit.getMindfulSession(
+    options,
+    (err: string, results: Array<HealthValue>) => {
+      if (err) {
+        console.log('error getting mindful session: ', err);
+        return;
+      }
+      // returns array of mindful session data
+      console.log(results);
+    },
+  );
 });
 
 export default function ExerciseButton({reset, action}: ExerciseButtonProps) {
