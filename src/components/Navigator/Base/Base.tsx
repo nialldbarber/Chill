@@ -8,6 +8,7 @@ import {useDispatch, useSelector} from 'react-redux';
 
 import awsconfig from '../../../aws-exports';
 import {RootNavigator} from '~/components/Navigator/RootNavigator';
+import {TabNavigator} from '~/components/Navigator/TabNavigator';
 import {selectMode} from '~/store/selectors/dark-mode';
 import {setMode} from '~/store/slices/dark-mode';
 import getTheme from '~/styles/theme';

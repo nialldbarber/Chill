@@ -278,7 +278,7 @@ PODS:
     - glog
   - react-native-appearance (0.3.4):
     - React
-  - react-native-netinfo (6.0.6):
+  - react-native-netinfo (6.1.0):
     - React-Core
   - react-native-safe-area-context (3.3.2):
     - React-Core
@@ -349,7 +349,7 @@ PODS:
     - React-perflogger (= 0.66.0)
   - RNAppleHealthKit (1.7.0):
     - React
-  - RNAWSCognito (5.2.2):
+  - RNAWSCognito (5.2.3):
     - React-Core
   - RNBootSplash (3.2.6):
     - React-Core
@@ -615,7 +615,7 @@ SPEC CHECKSUMS:
   React-jsinspector: be95ad424ba9f7b817aff22732eb9b1b810a000a
   React-logger: 9a9cd87d4ea681ae929b32ef580638ff1b50fb24
   react-native-appearance: 0f0e5fc2fcef70e03d48c8fe6b00b9158c2ba8aa
-  react-native-netinfo: 40b91995cd49c33ae57996486db76f0af067b630
+  react-native-netinfo: 5a001e406317eaaf1e4846906650e107dadcaa72
   react-native-safe-area-context: 584dc04881deb49474363f3be89e4ca0e854c057
   React-perflogger: 1f554c2b684e2f484f9edcdfdaeedab039fbaca8
   React-RCTActionSheet: 610d5a5d71ab4808734782c8bca6a12ec3563672
@@ -630,7 +630,7 @@ SPEC CHECKSUMS:
   React-runtimeexecutor: 4bb657a97aa74568d9ed634c8bd478299bb8a3a6
   ReactCommon: eb059748e842a1a86025ebbd4ac9d99e74492f88
   RNAppleHealthKit: 60a6beefdd89a75811e9a8873a5e24f351dee681
-  RNAWSCognito: c7a76906377a903986a3b89fbb1b84586663ab4c
+  RNAWSCognito: fd5136ee9e4db912be13a84fa00cd849137e0d3c
   RNBootSplash: 51eef7e143faeab63f81ddbb7c1de38b8fba66ed
   RNCAsyncStorage: eb05c0284dd6b50b32f92fad55e2a41e03358c43
   RNGestureHandler: a479ebd5ed4221a810967000735517df0d2db211

@@ -2,6 +2,7 @@ import React from 'react';
 
 import {createSharedElementStackNavigator} from 'react-navigation-shared-element';
 
+import {TabNavigator} from '~/components/Navigator/TabNavigator';
 import {AuthenticatorScreen} from '~/screens/Authenticator';
 import {ConfirmSignUpScreen} from '~/screens/ConfirmSignUp';
 import {ExerciseScreen} from '~/screens/Exercise';
@@ -35,7 +36,7 @@ export default function RootNavigator() {
       initialRouteName="Authenticator"
       screenOptions={{gestureEnabled: false}}
     >
-      <Screen name="Home" component={HomeScreen} {...{options}} />
+      <Screen name="Home" component={TabNavigator} {...{options}} />
       <Screen
         name="Authenticator"
         component={AuthenticatorScreen}
