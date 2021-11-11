@@ -56,5 +56,6 @@ export const formatAnimatedStr = (
     }
   }
 
-  return text.toString().replace(/NaN/g, '');
+  const strippedText = text.toString().replace(/\d+|^\s+|\s+$/g, '');
+  return strippedText;
 };

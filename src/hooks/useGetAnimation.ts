@@ -1,6 +1,7 @@
 import {useEffect, useState} from 'react';
 
 import Animated, {
+  Easing,
   useAnimatedStyle,
   useDerivedValue,
   useSharedValue,
@@ -21,7 +22,7 @@ import {
 } from '~/store/slices/individual-exercise';
 import {ORIGINAL_SIZE, WIDTH} from '~/styles/theme';
 import {formatAnimatedStr} from '~/utils/animatedText';
-import {secToMill} from '~/utils/time';
+import {fmtInSTM, fmtOutSTM, secToMill} from '~/utils/time';
 
 type AnimationT = {
   seconds: number;
@@ -31,6 +32,9 @@ type AnimationT = {
     width: number;
     height: number;
     borderRadius: number;
+  }>;
+  innerCircleTextStyles: Animated.AnimateStyle<{
+    opacity: number;
   }>;
   animatedText: Animated.DerivedValue<string>;
 };
@@ -45,12 +49,17 @@ export default function useGetAnimation(
   const innerCircle = useSharedValue<number>(ORIGINAL_SIZE);
   const instructions = useSharedValue<number>(0);
   const scale = useSharedValue<number>(0);
+  const textVisibility = useSharedValue<number>(0);
 
   const innerCircleStyles = useAnimatedStyle(() => ({
     width: innerCircle.value,
     height: innerCircle.value,
     borderRadius: innerCircle.value / 2,
     transform: [{scale: scale.value}],
+  }));
+
+  const innerCircleTextStyles = useAnimatedStyle(() => ({
+    opacity: textVisibility.value,
   }));
 
   const animatedText = useDerivedValue(() => {
@@ -61,6 +70,7 @@ export default function useGetAnimation(
 
   useEffect(() => {
     if (hasBegun) {
+      // circle
       innerCircle.value = withRepeat(
         withSequence(
           withTiming(WIDTH, {duration: secToMill(exercise[0])}),
@@ -71,8 +81,43 @@ export default function useGetAnimation(
         -1,
         false,
       );
+      // instructions
+      textVisibility.value = withRepeat(
+        withSequence(
+          // 1
+          withTiming(0, {duration: fmtOutSTM(exercise[0])}),
+          withTiming(1, {
+            duration: fmtInSTM(exercise[0]),
+            easing: Easing.bezier(0.25, 0.1, 0.25, 1),
+          }),
+          withTiming(0, {duration: fmtOutSTM(exercise[0])}),
+          // 2
+          withTiming(0, {duration: fmtOutSTM(exercise[1])}),
+          withTiming(1, {
+            duration: fmtInSTM(exercise[1]),
+            easing: Easing.bezier(0.25, 0.1, 0.25, 1),
+          }),
+          withTiming(0, {duration: fmtOutSTM(exercise[1])}),
+          // 3
+          withTiming(0, {duration: fmtOutSTM(exercise[2])}),
+          withTiming(1, {
+            duration: fmtInSTM(exercise[2]),
+            easing: Easing.bezier(0.25, 0.1, 0.25, 1),
+          }),
+          withTiming(0, {duration: fmtOutSTM(exercise[2])}),
+          // 4
+          withTiming(0, {duration: fmtOutSTM(exercise[3])}),
+          withTiming(1, {
+            duration: fmtInSTM(exercise[3]),
+            easing: Easing.bezier(0.25, 0.1, 0.25, 1),
+          }),
+          withTiming(0, {duration: fmtOutSTM(exercise[3])}),
+        ),
+        -1,
+        false,
+      );
     }
-  }, [hasBegun, exercise, innerCircle]);
+  }, [hasBegun, exercise, innerCircle, textVisibility]);
 
   useEffect(() => {
     if (hasBegun) {
@@ -136,7 +181,10 @@ export default function useGetAnimation(
     dispatch(setStartCountdown(false));
     innerCircle.value = withSpring(ORIGINAL_SIZE);
     instructions.value = 0;
+    textVisibility.value = 0;
   }
+
+  console.log({value: textVisibility.value});
 
   return {
     seconds,
@@ -144,5 +192,6 @@ export default function useGetAnimation(
     instructions,
     innerCircleStyles,
     animatedText,
+    innerCircleTextStyles,
   };
 }

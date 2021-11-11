@@ -94,7 +94,7 @@ export default function ExerciseScreen({route}: {route: RouteT}) {
     },
     innerText: {
       color: DEEP_BACKGROUND[category || ''],
-      fontSize: wp('4.5%'),
+      fontSize: wp('4%'),
       fontWeight: '700',
       textAlign: 'center',
     },
@@ -109,8 +109,14 @@ export default function ExerciseScreen({route}: {route: RouteT}) {
   const dispatch = useDispatch();
   const hasBegun = useSelector(selectHasBegun);
   const hasCountdownStarted = useSelector(selectHasCountdownStarted);
-  const {seconds, reset, innerCircleStyles, animatedText, instructions} =
-    useGetAnimation(type, exercise);
+  const {
+    seconds,
+    reset,
+    innerCircleStyles,
+    animatedText,
+    instructions,
+    innerCircleTextStyles,
+  } = useGetAnimation(type, exercise);
 
   function handleExercise(cond: boolean): void {
     dispatch(setStartCountdown(true));
@@ -138,7 +144,11 @@ export default function ExerciseScreen({route}: {route: RouteT}) {
             <Animated.View style={[styles.innerCircle, innerCircleStyles]}>
               <View>
                 {hasBegun ? (
-                  <Text style={styles.innerText}>{animatedText?.value}</Text>
+                  <Animated.Text
+                    style={[innerCircleTextStyles, styles.innerText]}
+                  >
+                    {animatedText?.value}
+                  </Animated.Text>
                 ) : null}
               </View>
             </Animated.View>
