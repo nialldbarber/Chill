@@ -68,6 +68,8 @@ export default function useGetAnimation(
     return txt;
   }, [hasBegun]);
 
+  const duration = 800;
+
   useEffect(() => {
     if (hasBegun) {
       // circle
@@ -81,43 +83,8 @@ export default function useGetAnimation(
         -1,
         false,
       );
-      // instructions
-      textVisibility.value = withRepeat(
-        withSequence(
-          // 1
-          withTiming(0, {duration: fmtOutSTM(exercise[0])}),
-          withTiming(1, {
-            duration: fmtInSTM(exercise[0]),
-            easing: Easing.bezier(0.25, 0.1, 0.25, 1),
-          }),
-          withTiming(0, {duration: fmtOutSTM(exercise[0])}),
-          // 2
-          withTiming(0, {duration: fmtOutSTM(exercise[1])}),
-          withTiming(1, {
-            duration: fmtInSTM(exercise[1]),
-            easing: Easing.bezier(0.25, 0.1, 0.25, 1),
-          }),
-          withTiming(0, {duration: fmtOutSTM(exercise[1])}),
-          // 3
-          withTiming(0, {duration: fmtOutSTM(exercise[2])}),
-          withTiming(1, {
-            duration: fmtInSTM(exercise[2]),
-            easing: Easing.bezier(0.25, 0.1, 0.25, 1),
-          }),
-          withTiming(0, {duration: fmtOutSTM(exercise[2])}),
-          // 4
-          withTiming(0, {duration: fmtOutSTM(exercise[3])}),
-          withTiming(1, {
-            duration: fmtInSTM(exercise[3]),
-            easing: Easing.bezier(0.25, 0.1, 0.25, 1),
-          }),
-          withTiming(0, {duration: fmtOutSTM(exercise[3])}),
-        ),
-        -1,
-        false,
-      );
     }
-  }, [hasBegun, exercise, innerCircle, textVisibility]);
+  }, [hasBegun, exercise, innerCircle]);
 
   useEffect(() => {
     if (hasBegun) {
@@ -132,12 +99,76 @@ export default function useGetAnimation(
           -1,
           false,
         );
+        // instructions
+        textVisibility.value = withRepeat(
+          withSequence(
+            // 1
+            withTiming(0, {duration}),
+            withTiming(1, {
+              duration: fmtInSTM(exercise[0]),
+              easing: Easing.bezier(0.25, 0.1, 0.25, 1),
+            }),
+            withTiming(0, {duration}),
+            // 2
+            withTiming(0, {duration}),
+            withTiming(1, {
+              duration: fmtInSTM(exercise[1]),
+              easing: Easing.bezier(0.25, 0.1, 0.25, 1),
+            }),
+            withTiming(0, {duration}),
+            // 3
+            withTiming(0, {duration}),
+            withTiming(1, {
+              duration: fmtInSTM(exercise[2]),
+              easing: Easing.bezier(0.25, 0.1, 0.25, 1),
+            }),
+            withTiming(0, {duration}),
+            // 4
+            withTiming(0, {duration}),
+            withTiming(1, {
+              duration: fmtInSTM(exercise[3]),
+              easing: Easing.bezier(0.25, 0.1, 0.25, 1),
+            }),
+            withTiming(0, {duration}),
+          ),
+          -1,
+          false,
+        );
       } else if (type === 2) {
         instructions.value = withRepeat(
           withSequence(
             withTiming(1, {duration: secToMill(exercise[0])}),
             withTiming(2, {duration: secToMill(exercise[2])}),
             withTiming(3, {duration: secToMill(exercise[3])}),
+          ),
+          -1,
+          false,
+        );
+
+        // instructions
+        textVisibility.value = withRepeat(
+          withSequence(
+            // 1
+            withTiming(0, {duration}),
+            withTiming(1, {
+              duration: fmtInSTM(exercise[0]),
+              easing: Easing.bezier(0.25, 0.1, 0.25, 1),
+            }),
+            withTiming(0, {duration}),
+            // 3
+            withTiming(0, {duration}),
+            withTiming(1, {
+              duration: fmtInSTM(exercise[2]),
+              easing: Easing.bezier(0.25, 0.1, 0.25, 1),
+            }),
+            withTiming(0, {duration}),
+            // 4
+            withTiming(0, {duration}),
+            withTiming(1, {
+              duration: fmtInSTM(exercise[3]),
+              easing: Easing.bezier(0.25, 0.1, 0.25, 1),
+            }),
+            withTiming(0, {duration}),
           ),
           -1,
           false,
@@ -152,6 +183,34 @@ export default function useGetAnimation(
           -1,
           false,
         );
+        // instructions
+        textVisibility.value = withRepeat(
+          withSequence(
+            // 1
+            withTiming(0, {duration}),
+            withTiming(1, {
+              duration: fmtInSTM(exercise[0]),
+              easing: Easing.bezier(0.25, 0.1, 0.25, 1),
+            }),
+            withTiming(0, {duration}),
+            // 2
+            withTiming(0, {duration}),
+            withTiming(1, {
+              duration: fmtInSTM(exercise[1]),
+              easing: Easing.bezier(0.25, 0.1, 0.25, 1),
+            }),
+            withTiming(0, {duration}),
+            // 3
+            withTiming(0, {duration}),
+            withTiming(1, {
+              duration: fmtInSTM(exercise[2]),
+              easing: Easing.bezier(0.25, 0.1, 0.25, 1),
+            }),
+            withTiming(0, {duration}),
+          ),
+          -1,
+          false,
+        );
       } else if (type === 4) {
         instructions.value = withRepeat(
           withSequence(
@@ -161,9 +220,30 @@ export default function useGetAnimation(
           -1,
           false,
         );
+        // instructions
+        textVisibility.value = withRepeat(
+          withSequence(
+            // 1
+            withTiming(0, {duration}),
+            withTiming(1, {
+              duration: fmtInSTM(exercise[0]),
+              easing: Easing.bezier(0.25, 0.1, 0.25, 1),
+            }),
+            withTiming(0, {duration}),
+            // 3
+            withTiming(0, {duration}),
+            withTiming(1, {
+              duration: fmtInSTM(exercise[2]),
+              easing: Easing.bezier(0.25, 0.1, 0.25, 1),
+            }),
+            withTiming(0, {duration}),
+          ),
+          -1,
+          false,
+        );
       }
     }
-  }, [hasBegun, exercise, instructions, type]);
+  }, [hasBegun, exercise, instructions, type, textVisibility]);
 
   useEffect(() => {
     scale.value = withDelay(450, withSpring(1));
