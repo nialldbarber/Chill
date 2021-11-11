@@ -22,6 +22,7 @@ import {Block} from '~/components/Block';
 import {Header} from '~/components/Header';
 import Scroll from '~/components/helpers/Scrollview';
 import SettingsIcon from '~/components/Icons/Settings';
+import {WrapperWithBottomBar} from '~/components/Layout/WrapperWithBottomBar';
 import ModalIcon from '~/components/Modal/ModalIcon';
 import {RootStackParamList} from '~/components/Navigator/RootNavigator/RootNavigator';
 import {feelingCategories, feelings} from '~/constants/exercises';
@@ -35,9 +36,6 @@ export default function HomeScreen() {
   const {colors} = useTheme();
 
   const styles = StyleSheet.create({
-    container: {
-      backgroundColor: colors.background,
-    },
     blockContainer: {
       display: 'flex',
       flexDirection: 'row',
@@ -90,7 +88,7 @@ export default function HomeScreen() {
   }, [spin]);
 
   return (
-    <View style={styles.container}>
+    <WrapperWithBottomBar>
       <Scroll>
         <SharedElement id="info">
           <View style={styles.infoCircle} />
@@ -139,6 +137,6 @@ export default function HomeScreen() {
           )}
         </Animated.View>
       </Scroll>
-    </View>
+    </WrapperWithBottomBar>
   );
 }
