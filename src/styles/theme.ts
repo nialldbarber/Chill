@@ -42,7 +42,6 @@ export default function getTheme(scheme: string): ThemeT {
 }
 
 export const fixedColors: Record<string, string> = {
-  white: '#ffffff',
   primary: '#FFB99C',
   primaryFaded: 'rgba(255, 185, 156, 0.45)',
   calm: '#9CE2FF',
@@ -60,6 +59,26 @@ export const fixedColors: Record<string, string> = {
   lightGrey: '#f7f7f7',
   lighterGrey: '#F2F5F9',
   darkGrey: '#A09FA2',
+
+  // new colours
+  white: 'rgba(255, 255, 255, 1)',
+  whiteOne: 'rgba(248, 247, 251, 1)',
+
+  black: 'rgba(0, 0, 0, 1)',
+  blackOne: 'rgba(70, 70, 70, 1)',
+  blackTwo: 'rgba(0, 0, 0, 0.3)',
+
+  blue: 'rgba(110, 166, 255, 1)',
+  lightBlue: 'rgba(174, 201, 244, 1)',
+  blueOne: 'rgba(227, 244, 252, 1)',
+  blueTwo: 'rgba(143, 219, 255, 1)',
+  blueThree: 'rgba(241, 247, 255, 1)',
+
+  orange: 'rgba(255, 135, 118, 1)',
+  orangeTwo: 'rgba(251, 236, 237, 1)',
+
+  purple: 'rgba(177, 177, 255, 1)',
+  purpleOne: 'rgba(237, 237, 250, 1)',
 };
 
 export const FADED_BACKGROUND: Record<string, string> = {
