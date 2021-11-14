@@ -81,6 +81,27 @@ export const fixedColors: Record<string, string> = {
   purpleOne: 'rgba(237, 237, 250, 1)',
 };
 
+export const buttons = {
+  background: {
+    primary: {
+      backgroundColor: fixedColors.blue,
+      borderColor: fixedColors.blue,
+    },
+    secondary: {
+      backgroundColor: fixedColors.white,
+      borderColor: fixedColors.blue,
+    },
+  },
+  text: {
+    primary: {
+      color: fixedColors.white,
+    },
+    secondary: {
+      color: fixedColors.blue,
+    },
+  },
+};
+
 export const FADED_BACKGROUND: Record<string, string> = {
   calm: fixedColors.calmFaded,
   energy: fixedColors.primaryFaded,

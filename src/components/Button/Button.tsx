@@ -2,23 +2,33 @@ import React from 'react';
 
 import {useTheme} from '@react-navigation/native';
 import {StyleSheet, Text} from 'react-native';
+import Animated, {
+  useAnimatedStyle,
+  useSharedValue,
+  withSpring,
+} from 'react-native-reanimated';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 
 import Btn from '~/components/helpers/Button';
+import {buttons} from '~/styles/theme';
 
 type ActionButtonProps = {
   text?: string;
+  type?: 'primary' | 'secondary' | 'tertiary' | 'danger';
   error?: boolean;
   onPress?: () => void;
+  style?: any;
 };
 
 export default function ActionButton({
   text,
-  onPress,
+  type = 'primary',
   error,
+  onPress,
+  style,
 }: ActionButtonProps) {
   const {colors} = useTheme();
 
@@ -28,10 +38,11 @@ export default function ActionButton({
       alignItems: 'center',
       alignSelf: 'center',
       justifyContent: 'center',
-      height: hp('5%'),
+      height: hp('6%'),
       width: wp('85%'),
       borderRadius: 25,
-      backgroundColor: colors.text,
+      borderWidth: 2,
+      ...buttons.background[type],
     },
     errorBtn: {
       display: 'flex',
@@ -42,8 +53,8 @@ export default function ActionButton({
       width: wp('85%'),
     },
     text: {
-      color: colors.background,
-      fontSize: wp('5%'),
+      fontSize: wp('4.2%'),
+      ...buttons.text[type],
     },
     errorText: {
       color: colors.text,
@@ -52,9 +63,22 @@ export default function ActionButton({
     },
   });
 
+  const scale = useSharedValue(1);
+
+  const scaleStyles = useAnimatedStyle(() => ({
+    transform: [{scale: scale.value}],
+  }));
+
+  const onPressIn = () => (scale.value = withSpring(1.02));
+  const onPressOut = () => (scale.value = withSpring(1));
+
   return (
-    <Btn style={error ? styles.errorBtn : styles.btn} onPress={onPress}>
-      <Text style={error ? styles.errorText : styles.text}>{text}</Text>
+    <Btn {...{onPress, onPressIn, onPressOut}}>
+      <Animated.View
+        style={[error ? styles.errorBtn : styles.btn, style, scaleStyles]}
+      >
+        <Text style={error ? styles.errorText : styles.text}>{text}</Text>
+      </Animated.View>
     </Btn>
   );
 }
