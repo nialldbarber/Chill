@@ -67,6 +67,7 @@ export const fixedColors: Record<string, string> = {
   black: 'rgba(0, 0, 0, 1)',
   blackOne: 'rgba(70, 70, 70, 1)',
   blackTwo: 'rgba(0, 0, 0, 0.3)',
+  blackThree: 'rgba(63, 61, 86, 1)',
 
   blue: 'rgba(110, 166, 255, 1)',
   lightBlue: 'rgba(174, 201, 244, 1)',

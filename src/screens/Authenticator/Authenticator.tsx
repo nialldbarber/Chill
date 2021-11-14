@@ -3,7 +3,7 @@ import React, {useEffect, useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {Auth} from 'aws-amplify';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import * as Keychain from 'react-native-keychain';
 import Animated, {
   useAnimatedStyle,
@@ -21,8 +21,8 @@ import Onboarding from '~/components/Icons/Onboarding';
 import {CardLayout} from '~/components/Layout/CardLayout';
 import {AuthLoader} from '~/components/Loader/AuthLoader';
 import {RootStackParamList} from '~/components/Navigator/RootNavigator/RootNavigator';
-import {H} from '~/components/typography/Heading';
 import {P} from '~/components/typography/Paragraph';
+import {Title} from '~/components/typography/Title';
 import {fixedColors} from '~/styles/theme';
 import {haptics} from '~/utils/haptics';
 import {onScreen} from '~/utils/navigation';
@@ -38,12 +38,6 @@ type AuthenticatorT = {
 
 export default function Authenticator({navigation}: AuthenticatorT) {
   const styles = StyleSheet.create({
-    title: {
-      fontSize: wp('12%'),
-      textAlign: 'center',
-      paddingBottom: hp('1%'),
-      color: fixedColors.white,
-    },
     innerCard: {
       height: hp('70%'),
       alignItems: 'center',
@@ -60,6 +54,7 @@ export default function Authenticator({navigation}: AuthenticatorT) {
       textAlign: 'center',
       fontSize: wp('6%'),
       width: wp('55%'),
+      color: fixedColors.blackThree,
     },
     underline: {
       textDecorationLine: 'underline',
@@ -69,7 +64,7 @@ export default function Authenticator({navigation}: AuthenticatorT) {
       bottom: hp('7%'),
     },
     signInBtn: {
-      marginBottom: hp('1%'),
+      marginBottom: hp('1.2%'),
     },
   });
 
@@ -120,23 +115,22 @@ export default function Authenticator({navigation}: AuthenticatorT) {
 
   return (
     <AuthLoader {...{loading}}>
-      <CardLayout
-        title={
-          <View>
-            <Animated.View style={titleStyles}>
-              <H style={styles.title}>Chill</H>
-            </Animated.View>
-          </View>
-        }
-      >
+      <CardLayout title={<Title style={titleStyles} text="Chill" />}>
         <View style={styles.innerCard}>
           <View style={styles.floatingIcon}>
             <Onboarding />
           </View>
           <View style={styles.onboarding}>
             <P style={styles.welcomeMessage}>
-              Welcome, <P style={styles.underline}>login</P> or{' '}
-              <P style={styles.underline}>sign up</P> to continue
+              Hey there,{' '}
+              <P style={styles.underline} weight="bold">
+                login
+              </P>{' '}
+              or{' '}
+              <P style={styles.underline} weight="bold">
+                sign up
+              </P>{' '}
+              to continue
             </P>
           </View>
           <Animated.View style={[styles.buttons, buttonWrapperStyles]}>

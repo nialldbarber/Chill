@@ -4,13 +4,14 @@ import {StyleSheet, Text, TextStyle} from 'react-native';
 
 type PProps = {
   style?: TextStyle;
+  weight?: 'light' | 'regular' | 'medium' | 'bold';
   children?: string;
 };
 
-export default function P({style, children}: PProps) {
+export default function P({style, weight = 'regular', children}: PProps) {
   const styles = StyleSheet.create({
     base: {
-      fontFamily: 'Inter-Regular',
+      fontFamily: `Inter-${weight}`,
     },
   });
 

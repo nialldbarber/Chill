@@ -4,7 +4,7 @@ import {useTheme} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {Auth} from 'aws-amplify';
 import {Formik} from 'formik';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import * as Keychain from 'react-native-keychain';
 import {
   heightPercentageToDP as hp,
@@ -16,10 +16,11 @@ import {ActionButton} from '~/components/Button';
 import ErrorText from '~/components/Error/ErrorText';
 import BackIcon from '~/components/Icons/Back';
 import {Input} from '~/components/Input';
-import Wrapper from '~/components/Layout/Wrapper';
+import {CardLayout} from '~/components/Layout/CardLayout';
 import {AuthLoader} from '~/components/Loader/AuthLoader';
 import ModalIcon from '~/components/Modal/ModalIcon';
 import {RootStackParamList} from '~/components/Navigator/RootNavigator/RootNavigator';
+import {Title} from '~/components/typography/Title';
 import {onScreen} from '~/utils/navigation';
 
 type ProfileScreenNavigationProp = StackNavigationProp<
@@ -32,8 +33,6 @@ type SignInT = {
 };
 
 export default function SignIn({navigation}: SignInT): ReactElement {
-  const {colors} = useTheme();
-
   const styles = StyleSheet.create({
     back: {
       position: 'absolute',
@@ -77,60 +76,62 @@ export default function SignIn({navigation}: SignInT): ReactElement {
 
   return (
     <AuthLoader {...{loading}}>
-      <Wrapper>
-        <ModalIcon style={styles.back} modalScreen="Authenticator">
-          <BackIcon />
-        </ModalIcon>
-        <Formik
-          enableReinitialize
-          initialValues={userInfo}
-          onSubmit={(values) => onPress(values)}
-          validationSchema={Yup.object().shape({
-            email: Yup.string().email().required(),
-            password: Yup.string().min(6).required(),
-          })}
-        >
-          {({
-            values,
-            handleChange,
-            errors,
-            setFieldTouched,
-            touched,
-            handleSubmit,
-          }): ReactElement => (
-            <>
-              <Input
-                name="email"
-                value={values.email}
-                onChangeText={handleChange('email')}
-                onBlur={(): void => setFieldTouched('email')}
-                placeholder="e-mail"
-                touched={touched}
-                errors={errors}
-                autoCapitalize="none"
-              />
-              <Input
-                name="password"
-                value={values.password}
-                onChangeText={handleChange('password')}
-                onBlur={(): void => setFieldTouched('password')}
-                placeholder="password"
-                touched={touched}
-                errors={errors}
-                autoCapitalize="none"
-                secureTextEntry
-              />
-              {error ? <ErrorText text={error} /> : null}
-              <ActionButton
-                text="forgot password?"
-                error
-                onPress={onScreen('ForgotPassword', navigation, userInfo)}
-              />
-              <ActionButton text="sign in" onPress={handleSubmit} />
-            </>
-          )}
-        </Formik>
-      </Wrapper>
+      <ModalIcon style={styles.back} modalScreen="Authenticator">
+        <BackIcon />
+      </ModalIcon>
+      <CardLayout title={<Title text="Chill" />}>
+        <View>
+          <Formik
+            enableReinitialize
+            initialValues={userInfo}
+            onSubmit={(values) => onPress(values)}
+            validationSchema={Yup.object().shape({
+              email: Yup.string().email().required(),
+              password: Yup.string().min(6).required(),
+            })}
+          >
+            {({
+              values,
+              handleChange,
+              errors,
+              setFieldTouched,
+              touched,
+              handleSubmit,
+            }): ReactElement => (
+              <>
+                <Input
+                  name="email"
+                  value={values.email}
+                  onChangeText={handleChange('email')}
+                  onBlur={(): void => setFieldTouched('email')}
+                  placeholder="e-mail"
+                  touched={touched}
+                  errors={errors}
+                  autoCapitalize="none"
+                />
+                <Input
+                  name="password"
+                  value={values.password}
+                  onChangeText={handleChange('password')}
+                  onBlur={(): void => setFieldTouched('password')}
+                  placeholder="password"
+                  touched={touched}
+                  errors={errors}
+                  autoCapitalize="none"
+                  secureTextEntry
+                />
+                {error ? <ErrorText text={error} /> : null}
+                <ActionButton
+                  text="forgot password?"
+                  error
+                  onPress={onScreen('ForgotPassword', navigation, userInfo)}
+                />
+                <ActionButton text="Login" onPress={handleSubmit} />
+              </>
+            )}
+          </Formik>
+        </View>
+      </CardLayout>
     </AuthLoader>
   );
 }

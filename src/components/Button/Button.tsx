@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {useTheme} from '@react-navigation/native';
-import {StyleSheet, Text} from 'react-native';
+import {StyleSheet} from 'react-native';
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
@@ -13,6 +13,7 @@ import {
 } from 'react-native-responsive-screen';
 
 import Btn from '~/components/helpers/Button';
+import {P} from '~/components/typography/Paragraph';
 import {buttons} from '~/styles/theme';
 
 type ActionButtonProps = {
@@ -39,7 +40,7 @@ export default function ActionButton({
       alignSelf: 'center',
       justifyContent: 'center',
       height: hp('6%'),
-      width: wp('85%'),
+      width: wp('75%'),
       borderRadius: 25,
       borderWidth: 2,
       ...buttons.background[type],
@@ -77,7 +78,9 @@ export default function ActionButton({
       <Animated.View
         style={[error ? styles.errorBtn : styles.btn, style, scaleStyles]}
       >
-        <Text style={error ? styles.errorText : styles.text}>{text}</Text>
+        <P weight="medium" style={error ? styles.errorText : styles.text}>
+          {text}
+        </P>
       </Animated.View>
     </Btn>
   );

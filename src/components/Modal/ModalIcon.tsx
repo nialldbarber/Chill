@@ -1,4 +1,4 @@
-import React, {ReactChild} from 'react';
+import React from 'react';
 
 import {useNavigation} from '@react-navigation/native';
 import {StyleSheet} from 'react-native';
@@ -15,7 +15,7 @@ type ModalIconProps = {
   style?: any;
   customRoute?: any;
   onPress?: () => void;
-  children?: ReactChild;
+  children?: JSX.Element | JSX.Element[];
 };
 
 export default function ModalIcon({
