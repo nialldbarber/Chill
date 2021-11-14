@@ -12,8 +12,14 @@ export default function Search() {
     },
   });
 
+  const Title = () => (
+    <View>
+      <Text>This is the title</Text>
+    </View>
+  );
+
   return (
-    <CardLayout>
+    <CardLayout title={<Title />}>
       <View>
         <Text style={styles.text}>Search</Text>
         <Text style={styles.text}>Search</Text>
