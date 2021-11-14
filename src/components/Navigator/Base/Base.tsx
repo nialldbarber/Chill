@@ -8,15 +8,14 @@ import {useDispatch, useSelector} from 'react-redux';
 
 import awsconfig from '../../../aws-exports';
 import {RootNavigator} from '~/components/Navigator/RootNavigator';
-import {TabNavigator} from '~/components/Navigator/TabNavigator';
 import {selectMode} from '~/store/selectors/dark-mode';
 import {setMode} from '~/store/slices/dark-mode';
 import getTheme from '~/styles/theme';
 
-const MEMORY_KEY_PREFIX = '@ChillStorage:';
+const MEMORY_KEY_PREFIX = '@ChillAppStorage:';
 let dataMemory: any = {};
 
-class ChillStorage {
+class ChillAppStorage {
   static syncPromise = null;
 
   static setItem(key: string, value: string): boolean {
@@ -47,7 +46,7 @@ Amplify.configure({
   Analytics: {
     disabled: false,
   },
-  storage: ChillStorage,
+  storage: ChillAppStorage,
 });
 
 export default function Base() {

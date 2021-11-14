@@ -1,0 +1,26 @@
+type User @model @auth(rules: [{allow: owner}, {allow: private}]) {
+  id: ID!
+  username: String!
+  name: String!
+  favouriteExercises: [Exercise]
+  notifications: [Notification]
+}
+
+type Categories @model @auth(rules: [{allow: owner}, {allow: private}]) {
+  id: ID!
+  name: String!
+  description: String
+  exercises: [Exercise]
+}
+
+type Exercise @model @auth(rules: [{allow: owner}, {allow: private}]) {
+  id: ID!
+  name: String!
+  steps: [Int]!
+}
+
+type Notification @model @auth(rules: [{allow: owner}, {allow: private}]) {
+  id: ID!
+  message: String!
+  time: [AWSDate!]!
+}

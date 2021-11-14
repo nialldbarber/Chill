@@ -76,12 +76,12 @@ export default function HomeScreen() {
     transform: [{rotate: `${spin.value}deg`}],
   }));
 
-  useEffect(() => {
-    const checkUser = async (): Promise<void> => {
-      await Auth.currentAuthenticatedUser();
-    };
-    checkUser();
-  }, [navigation]);
+  // useEffect(() => {
+  //   const checkUser = async (): Promise<void> => {
+  //     await Auth.currentAuthenticatedUser();
+  //   };
+  //   checkUser();
+  // }, [navigation]);
 
   useEffect(() => {
     spin.value = withDelay(800, withSpring(180));

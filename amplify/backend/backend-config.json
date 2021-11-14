@@ -1,6 +1,6 @@
 {
   "auth": {
-    "chillbreathe741621a0": {
+    "chill935e229c": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
@@ -23,6 +23,23 @@
         "verificationMechanisms": [
           "EMAIL"
         ]
+      }
+    }
+  },
+  "api": {
+    "chill": {
+      "service": "AppSync",
+      "providerPlugin": "awscloudformation",
+      "output": {
+        "authConfig": {
+          "defaultAuthentication": {
+            "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+            "userPoolConfig": {
+              "userPoolId": "authchill935e229c"
+            }
+          },
+          "additionalAuthenticationProviders": []
+        }
       }
     }
   }

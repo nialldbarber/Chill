@@ -1,19 +1,19 @@
 {
   "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-chillbreathe-dev-174751-authRole",
-      "UnauthRoleArn": "arn:aws:iam::362917156042:role/amplify-chillbreathe-dev-174751-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::362917156042:role/amplify-chillbreathe-dev-174751-authRole",
+      "AuthRoleName": "amplify-chill-dev-160504-authRole",
+      "UnauthRoleArn": "arn:aws:iam::362917156042:role/amplify-chill-dev-160504-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::362917156042:role/amplify-chill-dev-160504-authRole",
       "Region": "eu-west-2",
-      "DeploymentBucketName": "amplify-chillbreathe-dev-174751-deployment",
-      "UnauthRoleName": "amplify-chillbreathe-dev-174751-unauthRole",
-      "StackName": "amplify-chillbreathe-dev-174751",
-      "StackId": "arn:aws:cloudformation:eu-west-2:362917156042:stack/amplify-chillbreathe-dev-174751/811c49a0-3e60-11ec-a774-06916254cea6",
-      "AmplifyAppId": "d2qnju0jmznqw4"
+      "DeploymentBucketName": "amplify-chill-dev-160504-deployment",
+      "UnauthRoleName": "amplify-chill-dev-160504-unauthRole",
+      "StackName": "amplify-chill-dev-160504",
+      "StackId": "arn:aws:cloudformation:eu-west-2:362917156042:stack/amplify-chill-dev-160504/799154f0-449b-11ec-a1a3-02c1a90a92a8",
+      "AmplifyAppId": "d3pli3chiowmsj"
     },
     "categories": {
       "auth": {
-        "chillbreathe741621a0": {}
+        "chill935e229c": {}
       }
     }
   }

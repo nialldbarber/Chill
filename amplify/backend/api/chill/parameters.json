@@ -1,0 +1,11 @@
+{
+  "AppSyncApiName": "chill",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authchill935e229c",
+      "Outputs.UserPoolId"
+    ]
+  }
+}

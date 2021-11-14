@@ -1,6 +1,5 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 
-import {Auth, Hub} from 'aws-amplify';
 import {createSharedElementStackNavigator} from 'react-navigation-shared-element';
 
 import {TabNavigator} from '~/components/Navigator/TabNavigator';
@@ -28,24 +27,8 @@ export type RootStackParamList = {
 const options = {headerShown: false};
 
 export default function RootNavigator() {
-  const [u, setUser] = useState(null);
   const {Navigator, Screen} =
     createSharedElementStackNavigator<RootStackParamList>();
-
-  // useEffect(() => {
-  //   const updateUser = async () => {
-  //     try {
-  //       const user = await Auth.currentAuthenticatedUser();
-  //       setUser(user);
-  //     } catch {
-  //       setUser(null);
-  //     }
-  //   };
-  //   Hub.listen('auth', updateUser); // listen for login/signup events
-  //   updateUser(); // check manually the first time because we won't get a Hub event
-  //   return () => Hub.remove('auth', updateUser); // cleanup
-  // }, []);
-  // console.log({u});
 
   return (
     <Navigator

@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 
 import {useTheme} from '@react-navigation/native';
+import Amplify, {API, graphqlOperation} from 'aws-amplify';
 import {StyleSheet, Text, View} from 'react-native';
 import Animated from 'react-native-reanimated';
 import {
@@ -10,6 +11,7 @@ import {
 import {SharedElement} from 'react-navigation-shared-element';
 import {useDispatch, useSelector} from 'react-redux';
 
+import {listCategoriess} from '../../graphql/queries';
 import ExerciseButton from '~/components/Exercise/Button';
 import InstructionsContainer from '~/components/Exercise/Icons/InstructionContainer';
 import ExerciseTitle from '~/components/Exercise/Title';
@@ -48,6 +50,7 @@ export type Instruct = number | string;
 export default function ExerciseScreen({route}: {route: RouteT}) {
   const {id, exerciseName, exercise, type, category} = route.params;
   const {colors} = useTheme();
+  const [categories, setCategories] = useState<any[]>([]);
 
   const styles = StyleSheet.create({
     container: {
@@ -128,6 +131,21 @@ export default function ExerciseScreen({route}: {route: RouteT}) {
       dispatch(setBeginExercise(cond));
     }
   }
+
+  async function fetchCategories(): Promise<void> {
+    try {
+      const {data} = await API.graphql(graphqlOperation(listCategoriess));
+      setCategories(data.listCategoriess.items);
+    } catch (error) {
+      console.log(JSON.stringify(error, null, 2));
+    }
+  }
+
+  useEffect(() => {
+    fetchCategories();
+  }, []);
+
+  console.log(JSON.stringify(categories, null, 2));
 
   useGetHaptics(animatedText, instructions);
 

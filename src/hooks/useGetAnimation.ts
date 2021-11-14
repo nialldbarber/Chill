@@ -22,7 +22,7 @@ import {
 } from '~/store/slices/individual-exercise';
 import {ORIGINAL_SIZE, WIDTH} from '~/styles/theme';
 import {formatAnimatedStr} from '~/utils/animatedText';
-import {fmtInSTM, fmtOutSTM, secToMill} from '~/utils/time';
+import {fmtInSTM, secToMill} from '~/utils/time';
 
 type AnimationT = {
   seconds: number;
@@ -69,6 +69,7 @@ export default function useGetAnimation(
   }, [hasBegun]);
 
   const duration = 800;
+  const easing = Easing.bezier(0.25, 0.1, 0.25, 1);
 
   useEffect(() => {
     if (hasBegun) {
@@ -106,28 +107,28 @@ export default function useGetAnimation(
             withTiming(0, {duration}),
             withTiming(1, {
               duration: fmtInSTM(exercise[0]),
-              easing: Easing.bezier(0.25, 0.1, 0.25, 1),
+              easing,
             }),
             withTiming(0, {duration}),
             // 2
             withTiming(0, {duration}),
             withTiming(1, {
               duration: fmtInSTM(exercise[1]),
-              easing: Easing.bezier(0.25, 0.1, 0.25, 1),
+              easing,
             }),
             withTiming(0, {duration}),
             // 3
             withTiming(0, {duration}),
             withTiming(1, {
               duration: fmtInSTM(exercise[2]),
-              easing: Easing.bezier(0.25, 0.1, 0.25, 1),
+              easing,
             }),
             withTiming(0, {duration}),
             // 4
             withTiming(0, {duration}),
             withTiming(1, {
               duration: fmtInSTM(exercise[3]),
-              easing: Easing.bezier(0.25, 0.1, 0.25, 1),
+              easing,
             }),
             withTiming(0, {duration}),
           ),
@@ -152,21 +153,21 @@ export default function useGetAnimation(
             withTiming(0, {duration}),
             withTiming(1, {
               duration: fmtInSTM(exercise[0]),
-              easing: Easing.bezier(0.25, 0.1, 0.25, 1),
+              easing,
             }),
             withTiming(0, {duration}),
             // 3
             withTiming(0, {duration}),
             withTiming(1, {
               duration: fmtInSTM(exercise[2]),
-              easing: Easing.bezier(0.25, 0.1, 0.25, 1),
+              easing,
             }),
             withTiming(0, {duration}),
             // 4
             withTiming(0, {duration}),
             withTiming(1, {
               duration: fmtInSTM(exercise[3]),
-              easing: Easing.bezier(0.25, 0.1, 0.25, 1),
+              easing,
             }),
             withTiming(0, {duration}),
           ),
@@ -190,21 +191,21 @@ export default function useGetAnimation(
             withTiming(0, {duration}),
             withTiming(1, {
               duration: fmtInSTM(exercise[0]),
-              easing: Easing.bezier(0.25, 0.1, 0.25, 1),
+              easing,
             }),
             withTiming(0, {duration}),
             // 2
             withTiming(0, {duration}),
             withTiming(1, {
               duration: fmtInSTM(exercise[1]),
-              easing: Easing.bezier(0.25, 0.1, 0.25, 1),
+              easing,
             }),
             withTiming(0, {duration}),
             // 3
             withTiming(0, {duration}),
             withTiming(1, {
               duration: fmtInSTM(exercise[2]),
-              easing: Easing.bezier(0.25, 0.1, 0.25, 1),
+              easing,
             }),
             withTiming(0, {duration}),
           ),
@@ -227,14 +228,14 @@ export default function useGetAnimation(
             withTiming(0, {duration}),
             withTiming(1, {
               duration: fmtInSTM(exercise[0]),
-              easing: Easing.bezier(0.25, 0.1, 0.25, 1),
+              easing,
             }),
             withTiming(0, {duration}),
             // 3
             withTiming(0, {duration}),
             withTiming(1, {
               duration: fmtInSTM(exercise[2]),
-              easing: Easing.bezier(0.25, 0.1, 0.25, 1),
+              easing,
             }),
             withTiming(0, {duration}),
           ),
@@ -243,7 +244,8 @@ export default function useGetAnimation(
         );
       }
     }
-  }, [hasBegun, exercise, instructions, type, textVisibility]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [hasBegun, type]);
 
   useEffect(() => {
     scale.value = withDelay(450, withSpring(1));
@@ -263,8 +265,6 @@ export default function useGetAnimation(
     instructions.value = 0;
     textVisibility.value = 0;
   }
-
-  console.log({value: textVisibility.value});
 
   return {
     seconds,
