@@ -4,7 +4,6 @@ import {
   Keyboard,
   NativeSyntheticEvent,
   StyleSheet,
-  Text,
   TextInput,
   TextInputFocusEventData,
 } from 'react-native';
@@ -13,6 +12,7 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 
+import ErrorText from '~/components/Error/ErrorText';
 import {ERROR_MAP} from '~/constants/errors';
 import {fixedColors} from '~/styles/theme';
 
@@ -69,15 +69,6 @@ const Input = memo<InputT>(
     autoCapitalize,
   }) => {
     const styles = StyleSheet.create({
-      errorText: {
-        color: fixedColors.error,
-        fontSize: wp('3.2%'),
-        marginTop: hp('-0.5%'),
-        marginLeft: wp('1%'),
-        marginBottom: hp('2%'),
-        textAlign: 'center',
-        // backgroundColor: 'red',
-      },
       textInput,
       errors: {
         ...textInput,
@@ -100,6 +91,8 @@ const Input = memo<InputT>(
 
     const [active, setActive] = useState(false);
 
+    console.log(errors);
+
     return (
       <>
         <TextInput
@@ -121,7 +114,7 @@ const Input = memo<InputT>(
           onSubmitEditing={Keyboard.dismiss}
         />
         {touched[name] && errors[name] ? (
-          <Text style={styles.errorText}>{errors[name]}</Text>
+          <ErrorText text={errors[name]} />
         ) : null}
       </>
     );

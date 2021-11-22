@@ -6,6 +6,7 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 
+import {FORM_ERRORS} from '~/constants/errors';
 import {fixedColors} from '~/styles/theme';
 
 type ErrorTextProps = {
@@ -14,12 +15,15 @@ type ErrorTextProps = {
 
 export default function ErrorText({text}: ErrorTextProps) {
   const styles = StyleSheet.create({
-    text: {
+    errorText: {
       color: fixedColors.error,
-      fontSize: wp('4%'),
+      fontSize: wp('3.2%'),
+      marginTop: hp('-0.5%'),
+      marginLeft: wp('1%'),
       marginBottom: hp('2%'),
+      textAlign: 'center',
     },
   });
 
-  return <Text style={styles.text}>{text}</Text>;
+  return <Text style={styles.errorText}>{FORM_ERRORS[text]}</Text>;
 }

@@ -121,6 +121,8 @@ export default function SignIn({navigation}: SignInT): ReactElement {
     }
   }
 
+  const forgotPassword = error === 'Forgot Password?';
+
   return (
     <AuthLoader {...{loading}}>
       <ModalIcon style={styles.back} modalScreen="Authenticator">
@@ -173,7 +175,10 @@ export default function SignIn({navigation}: SignInT): ReactElement {
                   autoCapitalize="none"
                   secureTextEntry
                 />
-                {error ? <ErrorText text={error} /> : null}
+                {!forgotPassword && error ? <ErrorText text={error} /> : null}
+                {forgotPassword ? (
+                  <ErrorText text="Password is incorrect" />
+                ) : null}
                 <Pressable
                   style={styles.forgotPassword}
                   onPress={onScreen('ForgotPassword', navigation, userInfo)}
