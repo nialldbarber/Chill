@@ -52,7 +52,7 @@ export default function Authenticator({navigation}: AuthenticatorT) {
     },
     welcomeMessage: {
       textAlign: 'center',
-      fontSize: wp('6%'),
+      fontSize: wp('5%'),
       width: wp('55%'),
       color: fixedColors.blackThree,
     },

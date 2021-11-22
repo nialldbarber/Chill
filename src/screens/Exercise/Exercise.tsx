@@ -137,7 +137,7 @@ export default function ExerciseScreen({route}: {route: RouteT}) {
       const {data} = await API.graphql(graphqlOperation(listCategoriess));
       setCategories(data.listCategoriess.items);
     } catch (error) {
-      console.log(JSON.stringify(error, null, 2));
+      // console.log(JSON.stringify(error, null, 2));
     }
   }
 
@@ -145,7 +145,7 @@ export default function ExerciseScreen({route}: {route: RouteT}) {
     fetchCategories();
   }, []);
 
-  console.log(JSON.stringify(categories, null, 2));
+  // console.log(JSON.stringify(categories, null, 2));
 
   useGetHaptics(animatedText, instructions);
 

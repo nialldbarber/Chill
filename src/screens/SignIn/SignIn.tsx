@@ -1,10 +1,9 @@
 import React, {ReactElement, useState} from 'react';
 
-import {useTheme} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {Auth} from 'aws-amplify';
 import {Formik} from 'formik';
-import {StyleSheet, View} from 'react-native';
+import {Pressable, StyleSheet, View} from 'react-native';
 import * as Keychain from 'react-native-keychain';
 import {
   heightPercentageToDP as hp,
@@ -14,13 +13,16 @@ import * as Yup from 'yup';
 
 import {ActionButton} from '~/components/Button';
 import ErrorText from '~/components/Error/ErrorText';
+import Btn from '~/components/helpers/Button';
 import BackIcon from '~/components/Icons/Back';
 import {Input} from '~/components/Input';
 import {CardLayout} from '~/components/Layout/CardLayout';
 import {AuthLoader} from '~/components/Loader/AuthLoader';
 import ModalIcon from '~/components/Modal/ModalIcon';
 import {RootStackParamList} from '~/components/Navigator/RootNavigator/RootNavigator';
+import {P} from '~/components/typography/Paragraph';
 import {Title} from '~/components/typography/Title';
+import {fixedColors} from '~/styles/theme';
 import {onScreen} from '~/utils/navigation';
 
 type ProfileScreenNavigationProp = StackNavigationProp<
@@ -38,6 +40,51 @@ export default function SignIn({navigation}: SignInT): ReactElement {
       position: 'absolute',
       top: hp('7%'),
       left: wp('5%'),
+    },
+    login: {
+      marginTop: hp('4%'),
+    },
+    welcome: {
+      alignSelf: 'center',
+      width: wp('80%'),
+      paddingHorizontal: wp('3%'),
+      paddingTop: hp('3%'),
+      paddingBottom: hp('5%'),
+    },
+    welcomeTitle: {
+      fontSize: wp('6.5%'),
+      color: fixedColors.blackThree,
+    },
+    welcomeMessage: {
+      color: fixedColors.greyOne,
+      fontSize: wp('3.7%'),
+      marginTop: hp('1%'),
+    },
+    forgotPassword: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      height: hp('5%'),
+      marginBottom: hp('1%'),
+      backgroundColor: fixedColors.white,
+    },
+    forgotPasswordText: {
+      color: fixedColors.blue,
+    },
+    bottom: {
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'center',
+      position: 'absolute',
+      bottom: hp('5%'),
+      width: wp('100%'),
+    },
+    bottomMessage: {
+      color: fixedColors.greyOne,
+      marginRight: wp('1%'),
+    },
+    bottomMessageLink: {
+      color: fixedColors.blue,
     },
   });
 
@@ -81,6 +128,12 @@ export default function SignIn({navigation}: SignInT): ReactElement {
       </ModalIcon>
       <CardLayout title={<Title text="Chill" />}>
         <View>
+          <View style={styles.welcome}>
+            <P style={styles.welcomeTitle} weight="medium">
+              Welcome back!
+            </P>
+            <P style={styles.welcomeMessage}>Login to get back to it</P>
+          </View>
           <Formik
             enableReinitialize
             initialValues={userInfo}
@@ -104,7 +157,7 @@ export default function SignIn({navigation}: SignInT): ReactElement {
                   value={values.email}
                   onChangeText={handleChange('email')}
                   onBlur={(): void => setFieldTouched('email')}
-                  placeholder="e-mail"
+                  placeholder="Enter your e-mail"
                   touched={touched}
                   errors={errors}
                   autoCapitalize="none"
@@ -114,24 +167,41 @@ export default function SignIn({navigation}: SignInT): ReactElement {
                   value={values.password}
                   onChangeText={handleChange('password')}
                   onBlur={(): void => setFieldTouched('password')}
-                  placeholder="password"
+                  placeholder="Enter your password"
                   touched={touched}
                   errors={errors}
                   autoCapitalize="none"
                   secureTextEntry
                 />
                 {error ? <ErrorText text={error} /> : null}
-                <ActionButton
-                  text="forgot password?"
-                  error
+                <Pressable
+                  style={styles.forgotPassword}
                   onPress={onScreen('ForgotPassword', navigation, userInfo)}
+                >
+                  <P style={styles.forgotPasswordText} weight="bold">
+                    Forgot password?
+                  </P>
+                </Pressable>
+                <ActionButton
+                  text="Login"
+                  style={styles.login}
+                  onPress={handleSubmit}
                 />
-                <ActionButton text="Login" onPress={handleSubmit} />
               </>
             )}
           </Formik>
         </View>
       </CardLayout>
+      <View style={styles.bottom}>
+        <P style={styles.bottomMessage} weight="medium">
+          Don’t have an account?
+        </P>
+        <Btn onPress={onScreen('SignUp', navigation)}>
+          <P style={styles.bottomMessageLink} weight="bold">
+            Sign up here
+          </P>
+        </Btn>
+      </View>
     </AuthLoader>
   );
 }

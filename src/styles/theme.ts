@@ -1,4 +1,8 @@
 import {Platform, useWindowDimensions} from 'react-native';
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from 'react-native-responsive-screen';
 
 type ThemeT = {
   dark: boolean;
@@ -68,6 +72,9 @@ export const fixedColors: Record<string, string> = {
   blackOne: 'rgba(70, 70, 70, 1)',
   blackTwo: 'rgba(0, 0, 0, 0.3)',
   blackThree: 'rgba(63, 61, 86, 1)',
+  blackFour: '#878790',
+
+  greyOne: 'rgba(150, 154, 168, 1)',
 
   blue: 'rgba(110, 166, 255, 1)',
   lightBlue: 'rgba(174, 201, 244, 1)',
@@ -102,6 +109,10 @@ export const buttons = {
     },
   },
 };
+
+// export const spacing = {
+//   paddingHorizontal:
+// };
 
 export const FADED_BACKGROUND: Record<string, string> = {
   calm: fixedColors.calmFaded,

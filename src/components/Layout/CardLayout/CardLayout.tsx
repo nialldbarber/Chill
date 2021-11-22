@@ -23,7 +23,7 @@ export default function CardLayout({title, style, children}: CardLayoutProps) {
       flex: 1,
       justifyContent: 'flex-end',
       alignItems: 'center',
-      backgroundColor: fixedColors.blue,
+      backgroundColor: fixedColors.lightBlue,
     },
     title: {
       display: 'flex',

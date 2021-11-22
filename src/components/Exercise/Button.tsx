@@ -56,7 +56,7 @@ AppleHealthKit.initHealthKit(permissions, (error: string) => {
         return;
       }
       // returns array of mindful session data
-      console.log(results);
+      // console.log(results);
     },
   );
 });

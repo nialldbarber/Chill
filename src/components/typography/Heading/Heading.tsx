@@ -10,7 +10,7 @@ type HProps = {
 export default function H({style, children}: HProps) {
   const styles = StyleSheet.create({
     base: {
-      fontFamily: 'Inter-Regular',
+      fontFamily: 'Poppins-regular',
     },
   });
 

@@ -11,7 +11,7 @@ type PProps = {
 export default function P({style, weight = 'regular', children}: PProps) {
   const styles = StyleSheet.create({
     base: {
-      fontFamily: `Inter-${weight}`,
+      fontFamily: `Poppins-${weight}`,
     },
   });
 

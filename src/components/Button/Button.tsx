@@ -40,7 +40,7 @@ export default function ActionButton({
       alignSelf: 'center',
       justifyContent: 'center',
       height: hp('6%'),
-      width: wp('75%'),
+      width: wp('80%'),
       borderRadius: 25,
       borderWidth: 2,
       ...buttons.background[type],
@@ -54,7 +54,7 @@ export default function ActionButton({
       width: wp('85%'),
     },
     text: {
-      fontSize: wp('4.2%'),
+      fontSize: wp('3.8%'),
       ...buttons.text[type],
     },
     errorText: {
@@ -64,13 +64,13 @@ export default function ActionButton({
     },
   });
 
-  const scale = useSharedValue(1);
+  const scale = useSharedValue<number>(1);
 
   const scaleStyles = useAnimatedStyle(() => ({
     transform: [{scale: scale.value}],
   }));
 
-  const onPressIn = () => (scale.value = withSpring(1.02));
+  const onPressIn = () => (scale.value = withSpring(1.04));
   const onPressOut = () => (scale.value = withSpring(1));
 
   return (
