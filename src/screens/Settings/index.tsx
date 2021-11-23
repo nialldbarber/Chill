@@ -1,1 +1,1 @@
-export {default as SettingsScreen} from './Search';
+export {default as SettingsScreen} from './Settings';
