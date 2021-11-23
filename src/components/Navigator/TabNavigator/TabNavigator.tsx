@@ -5,6 +5,7 @@ import {useTheme} from '@react-navigation/native';
 import {Image, Text, View} from 'react-native';
 
 import {HomeScreen} from '~/screens/Home';
+import {ProfileScreen} from '~/screens/Profile';
 import {SearchScreen} from '~/screens/Search';
 import {SettingsScreen} from '~/screens/Settings';
 
@@ -12,6 +13,7 @@ export type TabStackParamList = {
   HomeScreen: undefined;
   Settings: undefined;
   Search: undefined;
+  Profile: undefined;
 };
 
 const options = {headerShown: false};
@@ -58,6 +60,7 @@ export default function TabNavigator() {
       />
       <Tab.Screen name="HomeScreen" component={HomeScreen} {...{options}} />
       <Tab.Screen name="Settings" component={SettingsScreen} {...{options}} />
+      <Tab.Screen name="Profile" component={ProfileScreen} {...{options}} />
     </Tab.Navigator>
   );
 }

@@ -22,9 +22,6 @@ export default function Search() {
     <CardLayout title={<Title />}>
       <View>
         <Text style={styles.text}>Search</Text>
-        <Text style={styles.text}>Search</Text>
-        <Text style={styles.text}>Search</Text>
-        <Text style={styles.text}>Search</Text>
       </View>
     </CardLayout>
   );
