@@ -13,7 +13,7 @@ import {
 } from 'react-native-responsive-screen';
 
 import ErrorText from '~/components/Error/ErrorText';
-import {ERROR_MAP} from '~/constants/errors';
+import {FORM_ERRORS} from '~/constants/errors';
 import {fixedColors} from '~/styles/theme';
 
 const textInput = {
@@ -62,7 +62,6 @@ const Input = memo<InputT>(
     errors,
     placeholder,
     onChangeText,
-    onBlur,
     touched,
     secureTextEntry,
     keyboardType,
@@ -91,8 +90,6 @@ const Input = memo<InputT>(
 
     const [active, setActive] = useState(false);
 
-    console.log(errors);
-
     return (
       <>
         <TextInput
@@ -114,7 +111,7 @@ const Input = memo<InputT>(
           onSubmitEditing={Keyboard.dismiss}
         />
         {touched[name] && errors[name] ? (
-          <ErrorText text={errors[name]} />
+          <ErrorText text={FORM_ERRORS[errors[name]]} />
         ) : null}
       </>
     );

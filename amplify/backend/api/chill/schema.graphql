@@ -1,24 +1,28 @@
+# SPECIFIC
 type User @model @auth(rules: [{allow: owner}, {allow: private}]) {
   id: ID!
   username: String!
   name: String!
-  favouriteExercises: [Exercise]
-  notifications: [Notification]
+  favouriteExercises: [Exercise] @connection
+  notifications: [Notification] @connection
 }
 
+# GENERAL
 type Categories @model @auth(rules: [{allow: owner}, {allow: private}]) {
   id: ID!
   name: String!
   description: String
-  exercises: [Exercise]
+  exercises: [Exercise] @connection
 }
 
+# GENERAL
 type Exercise @model @auth(rules: [{allow: owner}, {allow: private}]) {
   id: ID!
   name: String!
   steps: [Int]!
 }
 
+# SPECIFIC
 type Notification @model @auth(rules: [{allow: owner}, {allow: private}]) {
   id: ID!
   message: String!

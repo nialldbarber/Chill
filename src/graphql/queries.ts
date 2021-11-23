@@ -9,20 +9,26 @@ export const getUser = /* GraphQL */ `
       username
       name
       favouriteExercises {
-        id
-        name
-        steps
-        createdAt
-        updatedAt
-        owner
+        items {
+          id
+          name
+          steps
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
       }
       notifications {
-        id
-        message
-        time
-        createdAt
-        updatedAt
-        owner
+        items {
+          id
+          message
+          time
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
       }
       createdAt
       updatedAt
@@ -42,20 +48,10 @@ export const listUsers = /* GraphQL */ `
         username
         name
         favouriteExercises {
-          id
-          name
-          steps
-          createdAt
-          updatedAt
-          owner
+          nextToken
         }
         notifications {
-          id
-          message
-          time
-          createdAt
-          updatedAt
-          owner
+          nextToken
         }
         createdAt
         updatedAt
@@ -72,12 +68,15 @@ export const getCategories = /* GraphQL */ `
       name
       description
       exercises {
-        id
-        name
-        steps
-        createdAt
-        updatedAt
-        owner
+        items {
+          id
+          name
+          steps
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
       }
       createdAt
       updatedAt
@@ -97,12 +96,7 @@ export const listCategoriess = /* GraphQL */ `
         name
         description
         exercises {
-          id
-          name
-          steps
-          createdAt
-          updatedAt
-          owner
+          nextToken
         }
         createdAt
         updatedAt

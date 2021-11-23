@@ -2,11 +2,13 @@ import React, {useState} from 'react';
 
 import {RouteProp} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
-import {Auth} from 'aws-amplify';
+import {API, Auth, graphqlOperation} from 'aws-amplify';
 import {Formik} from 'formik';
 import {Text} from 'react-native';
+import {useSelector} from 'react-redux';
 import * as Yup from 'yup';
 
+import {createUser} from '../../graphql/mutations';
 import {ActionButton} from '~/components/Button';
 import BackIcon from '~/components/Icons/Back';
 import {Input} from '~/components/Input';
@@ -14,12 +16,14 @@ import Wrapper from '~/components/Layout/Wrapper';
 import {AuthLoader} from '~/components/Loader/AuthLoader';
 import ModalIcon from '~/components/Modal/ModalIcon';
 import {RootStackParamList} from '~/components/Navigator/RootNavigator/RootNavigator';
+import {selectName} from '~/store/selectors/user-name';
 import {onScreen} from '~/utils/navigation';
 
 type ProfileScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
   'ConfirmSignUp'
 >;
+
 type ProfileScreenRouteProp = RouteProp<RootStackParamList, 'ConfirmSignUp'>;
 
 type ConfirmSignUpT = {
@@ -27,12 +31,27 @@ type ConfirmSignUpT = {
   route: ProfileScreenRouteProp;
 };
 
-export default function ConfirmSignUp({
-  navigation,
-  route,
-}: ConfirmSignUpT): Promise<void> {
+export default function ConfirmSignUp({navigation, route}: ConfirmSignUpT) {
+  const name = useSelector(selectName);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>('');
+
+  async function addNewUserToDB(email: string): Promise<void> {
+    try {
+      // create a user in the USER API
+      await API.graphql(
+        graphqlOperation(createUser, {
+          input: {
+            id: email,
+            name,
+            username: email,
+          },
+        }),
+      );
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   async function onPress(values: {code: string}): Promise<void> {
     setLoading(true);
@@ -42,6 +61,9 @@ export default function ConfirmSignUp({
       const {email, password} = route.params;
       await Auth.confirmSignUp(email, code, {forceAliasCreation: true});
       const user = await Auth.signIn(email, password);
+
+      addNewUserToDB(email);
+
       user && onScreen('Home', navigation)();
       setLoading(false);
     } catch (err: any) {

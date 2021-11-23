@@ -95,7 +95,7 @@ export default function Authenticator({navigation}: AuthenticatorT) {
           user && onScreen('Home', navigation)();
         }
       } catch (err) {
-        console.error(err);
+        console.log(err);
         setLoading(false);
       } finally {
         setLoading(false);

@@ -39,4 +39,5 @@ export const FORM_ERRORS: Record<string, string> = {
 
   'email is a required field': 'Email is required 🤭',
   'password is a required field': 'Password is required 🤭',
+  'Password is incorrect': 'Password is incorrect 🤭',
 };

@@ -28,6 +28,7 @@ module.exports = {
           '~/utils': './src/utils',
           '~/assets': './src/assets',
           '~/store': './src/store',
+          '~/graphql': './src/graphql',
         },
       },
     ],

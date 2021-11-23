@@ -9,20 +9,26 @@ export const onCreateUser = /* GraphQL */ `
       username
       name
       favouriteExercises {
-        id
-        name
-        steps
-        createdAt
-        updatedAt
-        owner
+        items {
+          id
+          name
+          steps
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
       }
       notifications {
-        id
-        message
-        time
-        createdAt
-        updatedAt
-        owner
+        items {
+          id
+          message
+          time
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
       }
       createdAt
       updatedAt
@@ -37,20 +43,26 @@ export const onUpdateUser = /* GraphQL */ `
       username
       name
       favouriteExercises {
-        id
-        name
-        steps
-        createdAt
-        updatedAt
-        owner
+        items {
+          id
+          name
+          steps
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
       }
       notifications {
-        id
-        message
-        time
-        createdAt
-        updatedAt
-        owner
+        items {
+          id
+          message
+          time
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
       }
       createdAt
       updatedAt
@@ -65,20 +77,26 @@ export const onDeleteUser = /* GraphQL */ `
       username
       name
       favouriteExercises {
-        id
-        name
-        steps
-        createdAt
-        updatedAt
-        owner
+        items {
+          id
+          name
+          steps
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
       }
       notifications {
-        id
-        message
-        time
-        createdAt
-        updatedAt
-        owner
+        items {
+          id
+          message
+          time
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
       }
       createdAt
       updatedAt
@@ -93,12 +111,15 @@ export const onCreateCategories = /* GraphQL */ `
       name
       description
       exercises {
-        id
-        name
-        steps
-        createdAt
-        updatedAt
-        owner
+        items {
+          id
+          name
+          steps
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
       }
       createdAt
       updatedAt
@@ -113,12 +134,15 @@ export const onUpdateCategories = /* GraphQL */ `
       name
       description
       exercises {
-        id
-        name
-        steps
-        createdAt
-        updatedAt
-        owner
+        items {
+          id
+          name
+          steps
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
       }
       createdAt
       updatedAt
@@ -133,12 +157,15 @@ export const onDeleteCategories = /* GraphQL */ `
       name
       description
       exercises {
-        id
-        name
-        steps
-        createdAt
-        updatedAt
-        owner
+        items {
+          id
+          name
+          steps
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
       }
       createdAt
       updatedAt

@@ -27,6 +27,7 @@
       "~/types/*": ["./src/types/*"],
       "~/utils/*": ["./src/utils/*"],
       "~/assets/*": ["./src/assets/*"],
+      "~/graphql/*": ["./src/graphql/*"],
       "~/store/*": ["./src/store/*"]
     }
   },

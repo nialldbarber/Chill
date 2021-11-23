@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 
 import {useTheme} from '@react-navigation/native';
+import {API, Auth, graphqlOperation} from 'aws-amplify';
 import LottieView from 'lottie-react-native';
 import {StyleSheet, View} from 'react-native';
 import Animated, {
@@ -15,11 +16,13 @@ import {
 } from 'react-native-responsive-screen';
 import {useDispatch, useSelector} from 'react-redux';
 
+import {listUsers} from '../../graphql/queries';
 import animation from '~/assets/landscape.json';
 import {selectName} from '~/store/selectors/user-name';
 import {setUserName} from '~/store/slices/user-name';
 import {timeOfDayGreeting} from '~/utils/getDate';
-import {getStoredData} from '~/utils/storedData';
+// import {getStoredData} from '~/utils/storedData';
+import {captilise} from '~/utils/text-helpers';
 
 export default function Header() {
   const {colors, normalize} = useTheme();
@@ -57,6 +60,16 @@ export default function Header() {
     opacity: questionOpacity.value,
   }));
 
+  async function getUserName() {
+    const user = await Auth.currentAuthenticatedUser();
+    const userList = await API.graphql(graphqlOperation(listUsers));
+    const userListIndex = userList.data.listUsers.items;
+    const userIdByEmail = user.attributes.email;
+    const index = userListIndex.findIndex((item) => item.id === userIdByEmail);
+
+    dispatch(setUserName(userListIndex[index].name));
+  }
+
   useEffect(() => {
     const duration = 1000;
     greetingOpacity.value = withTiming(1, {duration});
@@ -64,16 +77,14 @@ export default function Header() {
   }, [greetingOpacity, questionOpacity]);
 
   useEffect(() => {
-    (async function getData(): Promise<void> {
-      const user = await getStoredData();
-      dispatch(setUserName(user?.name.trim()));
-    })();
-  }, [dispatch]);
+    getUserName();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <View style={styles.header}>
       <Animated.Text style={[styles.greeting, greetingStyle]}>
-        {timeOfDayGreeting()} {firstName || ''}
+        {timeOfDayGreeting()}, {captilise(firstName) || ''}
       </Animated.Text>
       <LottieView autoPlay loop style={styles.animation} source={animation} />
       <Animated.Text style={[styles.question, questionStyle]}>

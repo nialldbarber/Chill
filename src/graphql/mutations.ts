@@ -12,20 +12,26 @@ export const createUser = /* GraphQL */ `
       username
       name
       favouriteExercises {
-        id
-        name
-        steps
-        createdAt
-        updatedAt
-        owner
+        items {
+          id
+          name
+          steps
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
       }
       notifications {
-        id
-        message
-        time
-        createdAt
-        updatedAt
-        owner
+        items {
+          id
+          message
+          time
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
       }
       createdAt
       updatedAt
@@ -43,20 +49,26 @@ export const updateUser = /* GraphQL */ `
       username
       name
       favouriteExercises {
-        id
-        name
-        steps
-        createdAt
-        updatedAt
-        owner
+        items {
+          id
+          name
+          steps
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
       }
       notifications {
-        id
-        message
-        time
-        createdAt
-        updatedAt
-        owner
+        items {
+          id
+          message
+          time
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
       }
       createdAt
       updatedAt
@@ -74,20 +86,26 @@ export const deleteUser = /* GraphQL */ `
       username
       name
       favouriteExercises {
-        id
-        name
-        steps
-        createdAt
-        updatedAt
-        owner
+        items {
+          id
+          name
+          steps
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
       }
       notifications {
-        id
-        message
-        time
-        createdAt
-        updatedAt
-        owner
+        items {
+          id
+          message
+          time
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
       }
       createdAt
       updatedAt
@@ -105,12 +123,15 @@ export const createCategories = /* GraphQL */ `
       name
       description
       exercises {
-        id
-        name
-        steps
-        createdAt
-        updatedAt
-        owner
+        items {
+          id
+          name
+          steps
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
       }
       createdAt
       updatedAt
@@ -128,12 +149,15 @@ export const updateCategories = /* GraphQL */ `
       name
       description
       exercises {
-        id
-        name
-        steps
-        createdAt
-        updatedAt
-        owner
+        items {
+          id
+          name
+          steps
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
       }
       createdAt
       updatedAt
@@ -151,12 +175,15 @@ export const deleteCategories = /* GraphQL */ `
       name
       description
       exercises {
-        id
-        name
-        steps
-        createdAt
-        updatedAt
-        owner
+        items {
+          id
+          name
+          steps
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
       }
       createdAt
       updatedAt

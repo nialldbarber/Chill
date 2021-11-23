@@ -22,6 +22,7 @@ import ModalIcon from '~/components/Modal/ModalIcon';
 import {RootStackParamList} from '~/components/Navigator/RootNavigator/RootNavigator';
 import {P} from '~/components/typography/Paragraph';
 import {Title} from '~/components/typography/Title';
+import {FORM_ERRORS} from '~/constants/errors';
 import {fixedColors} from '~/styles/theme';
 import {onScreen} from '~/utils/navigation';
 
@@ -175,9 +176,9 @@ export default function SignIn({navigation}: SignInT): ReactElement {
                   autoCapitalize="none"
                   secureTextEntry
                 />
-                {!forgotPassword && error ? <ErrorText text={error} /> : null}
+                {error ? <ErrorText text={FORM_ERRORS[error]} /> : null}
                 {forgotPassword ? (
-                  <ErrorText text="Password is incorrect" />
+                  <ErrorText text={`${FORM_ERRORS['Password is incorrect']}`} />
                 ) : null}
                 <Pressable
                   style={styles.forgotPassword}
