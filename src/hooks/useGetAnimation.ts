@@ -14,7 +14,7 @@ import Animated, {
 import {useDispatch, useSelector} from 'react-redux';
 
 import useInterval from '~/hooks/useInterval';
-import {Instruct} from '~/screens/Exercise/Exercise';
+import type {Instruct} from '~/screens/Exercise/Exercise';
 import {selectHasBegun} from '~/store/selectors/individual-exercise';
 import {
   setBeginExercise,

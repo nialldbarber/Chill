@@ -2,7 +2,7 @@ import {useEffect} from 'react';
 
 import Animated from 'react-native-reanimated';
 
-import {Instruct} from '~/screens/Exercise/Exercise';
+import type {Instruct} from '~/screens/Exercise/Exercise';
 import {haptics} from '~/utils/haptics';
 
 export default function useGetHaptics(

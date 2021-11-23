@@ -1,6 +1,6 @@
 import Animated from 'react-native-reanimated';
 
-import {Instruct} from '~/screens/Exercise/Exercise';
+import type {Instruct} from '~/screens/Exercise/Exercise';
 
 type N = number;
 type S = string;
