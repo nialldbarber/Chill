@@ -1,0 +1,628 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[` 1`] = `
+<RCTScrollView
+  horizontal={true}
+  showsHorizontalScrollIndicator={false}
+  showsVerticalScrollIndicator={false}
+>
+  <View>
+    <View
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      hitSlop={
+        Object {
+          "bottom": undefined,
+          "left": undefined,
+          "right": undefined,
+          "top": undefined,
+        }
+      }
+      nativeID="animatedComponent"
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "marginBottom": 53.5,
+          "marginTop": 26.5,
+          "opacity": 1,
+        }
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "rgba(156, 226, 255, 0.45)",
+              "borderColor": "#2098c9",
+              "borderRadius": 20,
+              "borderWidth": 1,
+              "marginRight": 10,
+              "paddingHorizontal": 12,
+              "paddingVertical": 6,
+            },
+            Object {
+              "marginLeft": 37.5,
+            },
+            Object {
+              "transform": Array [
+                Object {
+                  "scale": 1,
+                },
+              ],
+            },
+          ]
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#2098c9",
+              "fontSize": 30,
+              "fontWeight": "800",
+            }
+          }
+        >
+          calm
+        </Text>
+      </View>
+    </View>
+    <View
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      hitSlop={
+        Object {
+          "bottom": undefined,
+          "left": undefined,
+          "right": undefined,
+          "top": undefined,
+        }
+      }
+      nativeID="animatedComponent"
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "marginBottom": 53.5,
+          "marginTop": 26.5,
+          "opacity": 1,
+        }
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": undefined,
+              "borderColor": undefined,
+              "borderRadius": 20,
+              "borderWidth": 1,
+              "marginRight": 10,
+              "paddingHorizontal": 12,
+              "paddingVertical": 6,
+            },
+            Object {
+              "marginLeft": 0,
+            },
+            Object {
+              "transform": Array [
+                Object {
+                  "scale": 1,
+                },
+              ],
+            },
+          ]
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": undefined,
+              "fontSize": 30,
+              "fontWeight": "800",
+            }
+          }
+        >
+          energy
+        </Text>
+      </View>
+    </View>
+    <View
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      hitSlop={
+        Object {
+          "bottom": undefined,
+          "left": undefined,
+          "right": undefined,
+          "top": undefined,
+        }
+      }
+      nativeID="animatedComponent"
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "marginBottom": 53.5,
+          "marginTop": 26.5,
+          "opacity": 1,
+        }
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": undefined,
+              "borderColor": undefined,
+              "borderRadius": 20,
+              "borderWidth": 1,
+              "marginRight": 10,
+              "paddingHorizontal": 12,
+              "paddingVertical": 6,
+            },
+            Object {
+              "marginLeft": 0,
+            },
+            Object {
+              "transform": Array [
+                Object {
+                  "scale": 1,
+                },
+              ],
+            },
+          ]
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": undefined,
+              "fontSize": 30,
+              "fontWeight": "800",
+            }
+          }
+        >
+          night
+        </Text>
+      </View>
+    </View>
+  </View>
+</RCTScrollView>
+`;
+
+exports[`<Badge /> should match snapshot 1`] = `
+<RCTScrollView
+  horizontal={true}
+  showsHorizontalScrollIndicator={false}
+  showsVerticalScrollIndicator={false}
+>
+  <View>
+    <View
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      hitSlop={
+        Object {
+          "bottom": undefined,
+          "left": undefined,
+          "right": undefined,
+          "top": undefined,
+        }
+      }
+      nativeID="animatedComponent"
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "marginBottom": 53.5,
+          "marginTop": 26.5,
+          "opacity": 1,
+        }
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "rgba(156, 226, 255, 0.45)",
+              "borderColor": "#2098c9",
+              "borderRadius": 20,
+              "borderWidth": 1,
+              "marginRight": 10,
+              "paddingHorizontal": 12,
+              "paddingVertical": 6,
+            },
+            Object {
+              "marginLeft": 37.5,
+            },
+            Object {
+              "transform": Array [
+                Object {
+                  "scale": 1,
+                },
+              ],
+            },
+          ]
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#2098c9",
+              "fontSize": 30,
+              "fontWeight": "800",
+            }
+          }
+        >
+          calm
+        </Text>
+      </View>
+    </View>
+    <View
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      hitSlop={
+        Object {
+          "bottom": undefined,
+          "left": undefined,
+          "right": undefined,
+          "top": undefined,
+        }
+      }
+      nativeID="animatedComponent"
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "marginBottom": 53.5,
+          "marginTop": 26.5,
+          "opacity": 1,
+        }
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": undefined,
+              "borderColor": undefined,
+              "borderRadius": 20,
+              "borderWidth": 1,
+              "marginRight": 10,
+              "paddingHorizontal": 12,
+              "paddingVertical": 6,
+            },
+            Object {
+              "marginLeft": 0,
+            },
+            Object {
+              "transform": Array [
+                Object {
+                  "scale": 1,
+                },
+              ],
+            },
+          ]
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": undefined,
+              "fontSize": 30,
+              "fontWeight": "800",
+            }
+          }
+        >
+          energy
+        </Text>
+      </View>
+    </View>
+    <View
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      hitSlop={
+        Object {
+          "bottom": undefined,
+          "left": undefined,
+          "right": undefined,
+          "top": undefined,
+        }
+      }
+      nativeID="animatedComponent"
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "marginBottom": 53.5,
+          "marginTop": 26.5,
+          "opacity": 1,
+        }
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": undefined,
+              "borderColor": undefined,
+              "borderRadius": 20,
+              "borderWidth": 1,
+              "marginRight": 10,
+              "paddingHorizontal": 12,
+              "paddingVertical": 6,
+            },
+            Object {
+              "marginLeft": 0,
+            },
+            Object {
+              "transform": Array [
+                Object {
+                  "scale": 1,
+                },
+              ],
+            },
+          ]
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": undefined,
+              "fontSize": 30,
+              "fontWeight": "800",
+            }
+          }
+        >
+          night
+        </Text>
+      </View>
+    </View>
+  </View>
+</RCTScrollView>
+`;
+
+exports[`<Badge /> should render 1`] = `
+<RCTScrollView
+  horizontal={true}
+  showsHorizontalScrollIndicator={false}
+  showsVerticalScrollIndicator={false}
+>
+  <View>
+    <View
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      hitSlop={
+        Object {
+          "bottom": undefined,
+          "left": undefined,
+          "right": undefined,
+          "top": undefined,
+        }
+      }
+      nativeID="animatedComponent"
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "marginBottom": 53.5,
+          "marginTop": 26.5,
+          "opacity": 1,
+        }
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "rgba(156, 226, 255, 0.45)",
+              "borderColor": "#2098c9",
+              "borderRadius": 20,
+              "borderWidth": 1,
+              "marginRight": 10,
+              "paddingHorizontal": 12,
+              "paddingVertical": 6,
+            },
+            Object {
+              "marginLeft": 37.5,
+            },
+            Object {
+              "transform": Array [
+                Object {
+                  "scale": 1,
+                },
+              ],
+            },
+          ]
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#2098c9",
+              "fontSize": 30,
+              "fontWeight": "800",
+            }
+          }
+        >
+          calm
+        </Text>
+      </View>
+    </View>
+    <View
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      hitSlop={
+        Object {
+          "bottom": undefined,
+          "left": undefined,
+          "right": undefined,
+          "top": undefined,
+        }
+      }
+      nativeID="animatedComponent"
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "marginBottom": 53.5,
+          "marginTop": 26.5,
+          "opacity": 1,
+        }
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": undefined,
+              "borderColor": undefined,
+              "borderRadius": 20,
+              "borderWidth": 1,
+              "marginRight": 10,
+              "paddingHorizontal": 12,
+              "paddingVertical": 6,
+            },
+            Object {
+              "marginLeft": 0,
+            },
+            Object {
+              "transform": Array [
+                Object {
+                  "scale": 1,
+                },
+              ],
+            },
+          ]
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": undefined,
+              "fontSize": 30,
+              "fontWeight": "800",
+            }
+          }
+        >
+          energy
+        </Text>
+      </View>
+    </View>
+    <View
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      hitSlop={
+        Object {
+          "bottom": undefined,
+          "left": undefined,
+          "right": undefined,
+          "top": undefined,
+        }
+      }
+      nativeID="animatedComponent"
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "marginBottom": 53.5,
+          "marginTop": 26.5,
+          "opacity": 1,
+        }
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": undefined,
+              "borderColor": undefined,
+              "borderRadius": 20,
+              "borderWidth": 1,
+              "marginRight": 10,
+              "paddingHorizontal": 12,
+              "paddingVertical": 6,
+            },
+            Object {
+              "marginLeft": 0,
+            },
+            Object {
+              "transform": Array [
+                Object {
+                  "scale": 1,
+                },
+              ],
+            },
+          ]
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": undefined,
+              "fontSize": 30,
+              "fontWeight": "800",
+            }
+          }
+        >
+          night
+        </Text>
+      </View>
+    </View>
+  </View>
+</RCTScrollView>
+`;

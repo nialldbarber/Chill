@@ -10,6 +10,8 @@ import 'react-native-gesture-handler/jestSetup';
 // for persistor compatibility
 // jest.useFakeTimers();
 
+global.__reanimatedWorkletInit = () => {};
+
 jest.mock('@react-native-community/async-storage', () => mockAsyncStorage);
 
 jest.mock('react-native-bootsplash', () => {
