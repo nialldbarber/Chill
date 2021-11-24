@@ -1,5 +1,13 @@
 module.exports = {
-  presets: ['module:metro-react-native-babel-preset'],
+  presets: [
+    'module:metro-react-native-babel-preset',
+    '@babel/preset-typescript',
+  ],
+  env: {
+    test: {
+      plugins: ['@babel/plugin-transform-modules-commonjs'],
+    },
+  },
   plugins: [
     'react-native-reanimated/plugin',
     [
