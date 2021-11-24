@@ -1,4 +1,4 @@
-import {capitalise} from '../../src/utils/capitalise';
+import {capitalise} from '~/utils/capitalise';
 
 describe('capitalise()', () => {
   it('should capitalise the first letter of a word', () => {

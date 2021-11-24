@@ -1,4 +1,4 @@
-import {timeOfDayGreeting} from '../../src/utils/getDate';
+import {timeOfDayGreeting} from '~/utils/getDate';
 
 function timeOfDay(): number {
   const today = new Date();
