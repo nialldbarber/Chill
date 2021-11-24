@@ -24,6 +24,7 @@ type ProfileScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
   'ForgotPassword'
 >;
+
 type ProfileScreenRouteProp = RouteProp<RootStackParamList, 'ForgotPassword'>;
 
 type ForgotT = {
@@ -86,16 +87,16 @@ export default function Forgot({route, navigation}: ForgotT): ReactElement {
                 value={values.email}
                 onChangeText={handleChange('email')}
                 onBlur={(): void => setFieldTouched('email')}
-                placeholder="e-mail"
+                placeholder="E-mail"
                 touched={touched}
                 errors={errors}
                 autoCapitalize="none"
               />
               <View style={styles.textContainer}>
-                <Text style={styles.text}>please enter your email to </Text>
+                <Text style={styles.text}>Please enter your email to </Text>
                 <Text style={styles.text}>request a password reset</Text>
               </View>
-              <ActionButton text="confirm" onPress={handleSubmit} />
+              <ActionButton text="Confirm" onPress={handleSubmit} />
             </>
           )}
         </Formik>

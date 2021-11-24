@@ -19,7 +19,7 @@ import {DEEP_BACKGROUND, FADED_BACKGROUND} from '~/styles/theme';
 
 type BadgeInnerProps = {
   index: number;
-  item: string;
+  item: number;
   press: () => void;
 };
 
