@@ -1,7 +1,9 @@
 // https://github.com/NewBieBR/typescript-react-native-starter/blob/master/jest.setup.js
 
-import 'isomorphic-fetch';
+require('react-native-reanimated/lib/reanimated2/jestUtils').setUpTests();
+
 import mockAsyncStorage from '@react-native-community/async-storage/jest/async-storage-mock';
+import 'isomorphic-fetch';
 import nock from 'nock';
 import 'react-native-gesture-handler/jestSetup';
 
@@ -20,12 +22,10 @@ jest.mock('react-native-bootsplash', () => {
 nock.disableNetConnect();
 
 jest.mock('react-native-reanimated', () => {
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
   const Reanimated = require('react-native-reanimated/mock');
 
   // The mock for `call` immediately calls the callback which is incorrect
   // So we override it with a no-op
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
   Reanimated.default.call = () => {};
 
   return Reanimated;
