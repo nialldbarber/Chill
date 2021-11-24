@@ -20,7 +20,7 @@ import {DEEP_BACKGROUND, FADED_BACKGROUND} from '~/styles/theme';
 type BadgeInnerProps = {
   index: number;
   item: number;
-  press: () => void;
+  press?: () => void;
 };
 
 export default function BadgeInner({index, item, press}: BadgeInnerProps) {
@@ -63,7 +63,7 @@ export default function BadgeInner({index, item, press}: BadgeInnerProps) {
       style={styles.badgeContainer}
       onPress={() => {
         handleFilter();
-        press();
+        press && press();
       }}
       onPressIn={() => (scale.value = withSpring(1.05))}
       onPressOut={() => (scale.value = withSpring(1))}

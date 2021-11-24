@@ -1,16 +1,15 @@
 import React from 'react';
 
-import renderer from 'react-test-renderer';
+import {render} from '@testing-library/react-native';
 
 import {Badges} from '~/components/Badges/Badge';
 import {feelingCategories} from '~/constants/exercises';
-import {renderWithWrapper} from '~/utils/helpers';
+import {matchSnapshot} from '~/utils/test-helpers';
 
 describe('<Badge />', () => {
   it('should match snapshot', () => {
-    const badge = renderer
-      .create(renderWithWrapper(<Badges data={feelingCategories} />))
-      .toJSON();
-    expect(badge).toMatchSnapshot();
+    matchSnapshot(<Badges data={feelingCategories} />);
   });
 });
+
+// renders null if no data
