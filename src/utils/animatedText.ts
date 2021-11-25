@@ -2,6 +2,7 @@ import Animated from 'react-native-reanimated';
 
 import type {Instruct} from '~/screens/Exercise/Exercise';
 
+// TODO: maybe get rid of this?
 export function getAnimatedTextFormatted(str: any): string {
   'worklet';
   let formattedStr = str?.value;
@@ -10,6 +11,14 @@ export function getAnimatedTextFormatted(str: any): string {
   return formattedStr;
 }
 
+/**
+ * Formats breathing instructions based on numbered input
+ *
+ * @param {number} str - number to format
+ * @param {Animated.SharedValue<Instruct>} instructions - animated value
+ * @param {number | undefined} type - type of breathing instruction
+ * @return {string} formatted string
+ */
 // TODO: 👇 This is gross, find something better!
 export function formatAnimatedStr(
   str: number,

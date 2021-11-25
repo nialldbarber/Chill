@@ -1,8 +1,8 @@
 /**
  * Capitalises the first letter of a string
  *
- * @param {string} str - The string to capitalise
- * @return {string | null} Capitalised string or null if the string is empty
+ * @param {string} str - string to capitalise
+ * @return {string | null} capitalised string or null if the string is empty
  */
 export function capitalise(str: string): string | null {
   if (str.length === 0) {
