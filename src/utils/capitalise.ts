@@ -5,7 +5,6 @@
  * @return {string | null} Capitalised string or null if the string is empty
  */
 export function capitalise(str: string): string | null {
-  console.log(typeof str);
   if (str.length === 0) {
     return '';
   }
