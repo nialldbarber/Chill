@@ -1,25 +1,6 @@
 Todos:
 
-- [ ] specific lodash imports
-- [ ] dark mode
-- [ ] tests
-- [ ] hold countdown animation
-- [ ] define typescript types better
-- [x] kill exercise on screen change
-- [x] prevent onboard submit without value
-- [x] info popups
-- [x] formalise imports
-- [x] correct black icons
-- [x] button loader animation onboarding screen
-- [x] intro animation
-- [x] on first launch - get user name
-- [x] get first name from localstorage?
-- [x] make prettier & eslint better
-- [x] intro image
-- [x] countdown before exercise starts
-- [x] badge select animation
-- [x] instructions
-- [x] breathing page redesign
-- [x] time of day greeting
-- [x] buzz for exercise intervals
-- [x] breathing times, EG 4, 4, 4, 4
+- [ ] 🧪 update jsdocs
+- [ ] 🧪 complete tests
+- [ ] 🐛 refresh/login launch screen transition
+- [ ] 💻 better way to output breating instructions
