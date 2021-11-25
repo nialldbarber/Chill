@@ -1,14 +1,35 @@
-type N = number;
-type S = string;
+/**
+ * Converts seconds to milliseconds
+ *
+ * @param {number} sec - number to format
+ * @return {number} formatted number
+ */
+export const secToMill = (sec: number): number => sec * 1000;
 
-export const secToMill = (sec: N): N => sec * 1000;
+/**
+ * Formats out breaths from seconds to minutes
+ *
+ * @param {number} sec - number to format
+ * @return {number} formatted number
+ */
+export const fmtOutSTM = (sec: number): number => (sec * 1000) / 4;
 
-export const fmtOutSTM = (sec: N): N => (sec * 1000) / 4;
+/**
+ * Formats in breaths from seconds to minutes
+ *
+ * @param {number} sec - number to format
+ * @return {number} formatted number
+ */
+export const fmtInSTM = (sec: number): number => sec * 1000 - 1600;
 
-export const fmtInSTM = (sec: N): N => sec * 1000 - 1600;
-
-export function getTime(time: N | S): S {
-  let ticker: S;
+/**
+ * Rerturns the current, formatted time
+ *
+ * @param {number | string} time - number to format
+ * @return {string} formatted time
+ */
+export function getTime(time: number | string): string {
+  let ticker: string;
 
   if (isNaN(parseInt(time, 10))) {
     return '';
