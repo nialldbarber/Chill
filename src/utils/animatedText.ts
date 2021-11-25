@@ -11,14 +11,13 @@ export function getAnimatedTextFormatted(str: any): string {
 }
 
 // TODO: 👇 This is gross, find something better!
-export const formatAnimatedStr = (
+export function formatAnimatedStr(
   str: number,
   instructions: Animated.SharedValue<Instruct>,
   type: number | undefined,
-): string => {
+): string {
   'worklet';
 
-  console.log(str, typeof str);
   let text: string = str.toString();
 
   if (type === 1) {
@@ -56,4 +55,4 @@ export const formatAnimatedStr = (
   }
 
   return text;
-};
+}
