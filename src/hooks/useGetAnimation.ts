@@ -22,7 +22,7 @@ import {
 } from '~/store/slices/individual-exercise';
 import {ORIGINAL_SIZE, WIDTH} from '~/styles/theme';
 import {formatAnimatedStr} from '~/utils/animatedText';
-import {fmtInSTM, secToMill} from '~/utils/time';
+import {formatInBreaths, secToMill} from '~/utils/time';
 
 type AnimationT = {
   seconds: number;
@@ -106,28 +106,28 @@ export default function useGetAnimation(
             // 1
             withTiming(0, {duration}),
             withTiming(1, {
-              duration: fmtInSTM(exercise[0]),
+              duration: formatInBreaths(exercise[0]),
               easing,
             }),
             withTiming(0, {duration}),
             // 2
             withTiming(0, {duration}),
             withTiming(1, {
-              duration: fmtInSTM(exercise[1]),
+              duration: formatInBreaths(exercise[1]),
               easing,
             }),
             withTiming(0, {duration}),
             // 3
             withTiming(0, {duration}),
             withTiming(1, {
-              duration: fmtInSTM(exercise[2]),
+              duration: formatInBreaths(exercise[2]),
               easing,
             }),
             withTiming(0, {duration}),
             // 4
             withTiming(0, {duration}),
             withTiming(1, {
-              duration: fmtInSTM(exercise[3]),
+              duration: formatInBreaths(exercise[3]),
               easing,
             }),
             withTiming(0, {duration}),
@@ -152,21 +152,21 @@ export default function useGetAnimation(
             // 1
             withTiming(0, {duration}),
             withTiming(1, {
-              duration: fmtInSTM(exercise[0]),
+              duration: formatInBreaths(exercise[0]),
               easing,
             }),
             withTiming(0, {duration}),
             // 3
             withTiming(0, {duration}),
             withTiming(1, {
-              duration: fmtInSTM(exercise[2]),
+              duration: formatInBreaths(exercise[2]),
               easing,
             }),
             withTiming(0, {duration}),
             // 4
             withTiming(0, {duration}),
             withTiming(1, {
-              duration: fmtInSTM(exercise[3]),
+              duration: formatInBreaths(exercise[3]),
               easing,
             }),
             withTiming(0, {duration}),
@@ -190,21 +190,21 @@ export default function useGetAnimation(
             // 1
             withTiming(0, {duration}),
             withTiming(1, {
-              duration: fmtInSTM(exercise[0]),
+              duration: formatInBreaths(exercise[0]),
               easing,
             }),
             withTiming(0, {duration}),
             // 2
             withTiming(0, {duration}),
             withTiming(1, {
-              duration: fmtInSTM(exercise[1]),
+              duration: formatInBreaths(exercise[1]),
               easing,
             }),
             withTiming(0, {duration}),
             // 3
             withTiming(0, {duration}),
             withTiming(1, {
-              duration: fmtInSTM(exercise[2]),
+              duration: formatInBreaths(exercise[2]),
               easing,
             }),
             withTiming(0, {duration}),
@@ -227,14 +227,14 @@ export default function useGetAnimation(
             // 1
             withTiming(0, {duration}),
             withTiming(1, {
-              duration: fmtInSTM(exercise[0]),
+              duration: formatInBreaths(exercise[0]),
               easing,
             }),
             withTiming(0, {duration}),
             // 3
             withTiming(0, {duration}),
             withTiming(1, {
-              duration: fmtInSTM(exercise[2]),
+              duration: formatInBreaths(exercise[2]),
               easing,
             }),
             withTiming(0, {duration}),

@@ -1,4 +1,4 @@
-import {fmtInSTM, fmtOutSTM, getTime, secToMill} from '~/utils/time';
+import {formatInBreaths, getTime, secToMill} from '~/utils/time';
 
 describe('getTime()', () => {
   it('should return 1 second, aka "00:01" if the value is <number> 1', () => {

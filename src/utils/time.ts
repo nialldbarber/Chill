@@ -1,5 +1,9 @@
 /**
- * Converts seconds to milliseconds
+ * ## Converts seconds to milliseconds
+ *
+ * Standard coversion, dividing an integer by 1000
+ * i.e. 6 seconds is represnted as 6000 milliseconds
+ * after this function is called.
  *
  * @param {number} sec - number to format
  * @return {number} formatted number
@@ -7,23 +11,15 @@
 export const secToMill = (sec: number): number => sec * 1000;
 
 /**
- * Formats out breaths from seconds to minutes
+ * ## Formats in breaths from seconds to milliseconds
  *
  * @param {number} sec - number to format
  * @return {number} formatted number
  */
-export const fmtOutSTM = (sec: number): number => (sec * 1000) / 4;
+export const formatInBreaths = (sec: number): number => sec * 1000 - 1600;
 
 /**
- * Formats in breaths from seconds to minutes
- *
- * @param {number} sec - number to format
- * @return {number} formatted number
- */
-export const fmtInSTM = (sec: number): number => sec * 1000 - 1600;
-
-/**
- * Rerturns the current, formatted time
+ * ## Rerturns the current, formatted time
  *
  * @param {number | string} time - number to format
  * @return {string} formatted time
