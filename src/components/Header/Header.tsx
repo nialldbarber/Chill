@@ -20,8 +20,8 @@ import {listUsers} from '../../graphql/queries';
 import animation from '~/assets/landscape.json';
 import {selectName} from '~/store/selectors/user-name';
 import {setUserName} from '~/store/slices/user-name';
-import {capitalise} from '~/utils/capitalise';
 import {timeOfDayGreeting} from '~/utils/getDate';
+import {capitalise, isValueAString} from '~/utils/string-helpers';
 
 export default function Header() {
   const {colors, normalize} = useTheme();
@@ -84,7 +84,7 @@ export default function Header() {
     <View style={styles.header}>
       <Animated.Text style={[styles.greeting, greetingStyle]}>
         {timeOfDayGreeting()}
-        {firstName !== '' ? ', ' + capitalise(firstName) : ''}
+        {isValueAString(firstName) ? ', ' + capitalise(firstName) : null}
       </Animated.Text>
       <LottieView autoPlay loop style={styles.animation} source={animation} />
       <Animated.Text style={[styles.question, questionStyle]}>
