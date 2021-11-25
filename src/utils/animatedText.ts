@@ -2,10 +2,7 @@ import Animated from 'react-native-reanimated';
 
 import type {Instruct} from '~/screens/Exercise/Exercise';
 
-type N = number;
-type S = string;
-
-export function getAnimatedTextFormatted(str: any): S {
+export function getAnimatedTextFormatted(str: any): string {
   'worklet';
   let formattedStr = str?.value;
   formattedStr = formattedStr?.toString();
@@ -13,14 +10,16 @@ export function getAnimatedTextFormatted(str: any): S {
   return formattedStr;
 }
 
+// TODO: 👇 This is gross, find something better!
 export const formatAnimatedStr = (
-  str: S | N,
+  str: number,
   instructions: Animated.SharedValue<Instruct>,
-  type: N | undefined,
-): S => {
+  type: number | undefined,
+): string => {
   'worklet';
 
-  let text: S | N = str;
+  console.log(str, typeof str);
+  let text: string = str.toString();
 
   if (type === 1) {
     if (instructions.value < 1) {
@@ -56,6 +55,5 @@ export const formatAnimatedStr = (
     }
   }
 
-  const strippedText = text.toString().replace(/\d+|^\s+|\s+$/g, '');
-  return strippedText;
+  return text;
 };

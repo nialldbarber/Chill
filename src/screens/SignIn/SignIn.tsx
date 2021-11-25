@@ -32,7 +32,7 @@ type ProfileScreenNavigationProp = StackNavigationProp<
 >;
 
 type SignInT = {
-  navigation: ProfileScreenNavigationProp;
+  navigation?: ProfileScreenNavigationProp;
 };
 
 export default function SignIn({navigation}: SignInT): ReactElement {

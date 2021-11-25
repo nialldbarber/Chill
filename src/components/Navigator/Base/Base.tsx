@@ -6,8 +6,8 @@ import {useColorScheme} from 'react-native';
 import * as Keychain from 'react-native-keychain';
 import {useDispatch, useSelector} from 'react-redux';
 
-import awsconfig from '../../../aws-exports';
 import {RootNavigator} from '~/components/Navigator/RootNavigator';
+import awsconfig from '~/src/aws-exports';
 import {selectMode} from '~/store/selectors/dark-mode';
 import {setMode} from '~/store/slices/dark-mode';
 import getTheme from '~/styles/theme';
