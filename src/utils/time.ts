@@ -1,14 +1,6 @@
-/**
- * ## Converts seconds to milliseconds
- *
- * Standard coversion, dividing an integer by 1000
- * i.e. 6 seconds is represnted as 6000 milliseconds
- * after this function is called.
- *
- * @param {number} sec - number to format
- * @return {number} formatted number
- */
-export const secToMill = (sec: number): number => sec * 1000;
+const SECOND_CONVERSION = 1000;
+
+export const secToMill = (sec: number): number => sec * SECOND_CONVERSION;
 
 /**
  * ## Formats in breaths from seconds to milliseconds
@@ -16,7 +8,9 @@ export const secToMill = (sec: number): number => sec * 1000;
  * @param {number} sec - number to format
  * @return {number} formatted number
  */
-export const formatInBreaths = (sec: number): number => sec * 1000 - 1600;
+const QUARTER_OF_STEP = 1600;
+export const formatInBreaths = (sec: number): number =>
+  sec * 1000 - QUARTER_OF_STEP;
 
 /**
  * ## Rerturns the current, formatted time
@@ -36,9 +30,9 @@ export function getTime(time: number | string): string {
   }
 
   if (time > 3600) {
-    ticker = new Date(time * 1000).toISOString().substr(11, 8);
+    ticker = new Date(time * SECOND_CONVERSION).toISOString().substr(11, 8);
   } else {
-    ticker = new Date(time * 1000).toISOString().substring(14, 19);
+    ticker = new Date(time * SECOND_CONVERSION).toISOString().substring(14, 19);
   }
   return ticker;
 }

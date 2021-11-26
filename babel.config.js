@@ -4,6 +4,9 @@ module.exports = {
     '@babel/preset-typescript',
   ],
   env: {
+    production: {
+      plugins: ['transform-remove-console'],
+    },
     test: {
       plugins: ['@babel/plugin-transform-modules-commonjs'],
     },

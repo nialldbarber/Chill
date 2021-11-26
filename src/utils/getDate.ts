@@ -3,14 +3,20 @@
 
  * @return {string} greeting based on time of day
  */
+
+enum TIMES_IN_DIGITAL {
+  'morning' = 12,
+  'afternoon' = 18,
+}
+
 export function timeOfDayGreeting(): string {
   let message: string;
   const today = new Date();
   const hours = today.getHours();
 
-  if (hours < 12) {
+  if (hours < TIMES_IN_DIGITAL.morning) {
     message = 'Good Morning';
-  } else if (hours < 18) {
+  } else if (hours < TIMES_IN_DIGITAL.afternoon) {
     message = 'Good Afternoon';
   } else {
     message = 'Good Evening';
