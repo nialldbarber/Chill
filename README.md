@@ -5,3 +5,4 @@ Todos:
 - [ ] 🧪 tests
 - [ ] 🐛 refresh/login launch screen transition
 - [ ] 💻 better way to output breating instructions
+- [ ] 💻 add `tiny-invariant`
