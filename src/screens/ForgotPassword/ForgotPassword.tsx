@@ -45,8 +45,8 @@ export default function Forgot({route, navigation}: ForgotT): ReactElement {
     },
   });
 
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string>('');
 
   async function onPress(values: {email: string}): Promise<void> {
     setLoading(true);
