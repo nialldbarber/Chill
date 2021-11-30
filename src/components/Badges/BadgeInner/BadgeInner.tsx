@@ -46,7 +46,7 @@ export default function BadgeInner({index, item, press}: BadgeInnerProps) {
   });
 
   const dispatch = useDispatch();
-  const scale = useSharedValue(1);
+  const scale = useSharedValue<number>(1);
 
   const scaleStyles = useAnimatedStyle(() => ({
     transform: [{scale: scale.value}],
