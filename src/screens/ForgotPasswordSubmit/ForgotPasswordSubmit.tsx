@@ -22,6 +22,7 @@ type ProfileScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
   'ForgotPasswordSubmit'
 >;
+
 type ProfileScreenRouteProp = RouteProp<
   RootStackParamList,
   'ForgotPasswordSubmit'
