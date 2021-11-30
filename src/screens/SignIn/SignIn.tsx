@@ -19,7 +19,7 @@ import {Input} from '~/components/Input';
 import {CardLayout} from '~/components/Layout/CardLayout';
 import {AuthLoader} from '~/components/Loader/AuthLoader';
 import ModalIcon from '~/components/Modal/ModalIcon';
-import {RootStackParamList} from '~/components/Navigator/RootNavigator/RootNavigator';
+import type {RootStackParamList} from '~/components/Navigator/RootNavigator/RootNavigator';
 import {P} from '~/components/typography/Paragraph';
 import {Title} from '~/components/typography/Title';
 import {FORM_ERRORS} from '~/constants/errors';

@@ -17,7 +17,7 @@ import BackIcon from '~/components/Icons/Back';
 import {Input} from '~/components/Input';
 import {AuthLoader} from '~/components/Loader/AuthLoader';
 import ModalIcon from '~/components/Modal/ModalIcon';
-import {RootStackParamList} from '~/components/Navigator/RootNavigator/RootNavigator';
+import type {RootStackParamList} from '~/components/Navigator/RootNavigator/RootNavigator';
 import {setUserName} from '~/store/slices/user-name';
 import {fixedColors} from '~/styles/theme';
 import {onScreen} from '~/utils/navigation';

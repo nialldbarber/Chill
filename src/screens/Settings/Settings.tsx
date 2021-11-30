@@ -7,7 +7,7 @@ import * as Keychain from 'react-native-keychain';
 
 import {ActionButton} from '~/components/Button';
 import Wrapper from '~/components/Layout/Wrapper';
-import {RootStackParamList} from '~/components/Navigator/RootNavigator/RootNavigator';
+import type {RootStackParamList} from '~/components/Navigator/RootNavigator/RootNavigator';
 import {goHome} from '~/utils/navigation';
 
 type ProfileScreenNavigationProp = StackNavigationProp<

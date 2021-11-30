@@ -17,7 +17,8 @@ import InstructionsContainer from '~/components/Exercise/Icons/InstructionContai
 import ExerciseTitle from '~/components/Exercise/Title';
 import BackIcon from '~/components/Icons/Back';
 import ModalIcon from '~/components/Modal/ModalIcon';
-import {ConfigT, FEELINGS_COLOR_MAP} from '~/constants/exercises';
+import {FEELINGS_COLOR_MAP} from '~/constants/exercises';
+import type {ConfigT} from '~/constants/exercises';
 import useGetAnimation from '~/hooks/useGetAnimation';
 import useGetHaptics from '~/hooks/useGetHaptics';
 import {

@@ -1,4 +1,4 @@
-import {RootState} from '~/store/index';
+import type {RootState} from '~/store/index';
 
 export const selectInputValue = (state: RootState) =>
   state.onboarding.inputValue;

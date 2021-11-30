@@ -19,7 +19,7 @@ import Btn from '~/components/helpers/Button';
 import Exit from '~/components/Icons/Exit';
 import Wrapper from '~/components/Layout/Wrapper';
 import Spinner from '~/components/Loader/Spinner';
-import {RootStackParamList} from '~/components/Navigator/RootNavigator/RootNavigator';
+import type {RootStackParamList} from '~/components/Navigator/RootNavigator/RootNavigator';
 import {
   selectInputValue,
   selectProceedToHome,

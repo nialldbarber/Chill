@@ -1,6 +1,7 @@
 import {PayloadAction, createSlice} from '@reduxjs/toolkit';
 
-import {CONFIG, ConfigT} from '~/constants/exercises';
+import {CONFIG} from '~/constants/exercises';
+import type {ConfigT} from '~/constants/exercises';
 
 export interface ExerciseState {
   exerciseList: Array<ConfigT>;

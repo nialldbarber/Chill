@@ -20,7 +20,7 @@ import {ActionButton} from '~/components/Button';
 import Onboarding from '~/components/Icons/Onboarding';
 import {CardLayout} from '~/components/Layout/CardLayout';
 import {AuthLoader} from '~/components/Loader/AuthLoader';
-import {RootStackParamList} from '~/components/Navigator/RootNavigator/RootNavigator';
+import type {RootStackParamList} from '~/components/Navigator/RootNavigator/RootNavigator';
 import {P} from '~/components/typography/Paragraph';
 import {Title} from '~/components/typography/Title';
 import {fixedColors} from '~/styles/theme';

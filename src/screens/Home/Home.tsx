@@ -24,7 +24,7 @@ import Scroll from '~/components/helpers/Scrollview';
 import SettingsIcon from '~/components/Icons/Settings';
 import {WrapperWithBottomBar} from '~/components/Layout/WrapperWithBottomBar';
 import ModalIcon from '~/components/Modal/ModalIcon';
-import {RootStackParamList} from '~/components/Navigator/RootNavigator/RootNavigator';
+import type {RootStackParamList} from '~/components/Navigator/RootNavigator/RootNavigator';
 import {feelingCategories, feelings} from '~/constants/exercises';
 import {selectBadges} from '~/store/selectors/exercises';
 import {fixedColors} from '~/styles/theme';
