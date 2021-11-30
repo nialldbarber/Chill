@@ -11,37 +11,5 @@ module.exports = {
       plugins: ['@babel/plugin-transform-modules-commonjs'],
     },
   },
-  plugins: [
-    'react-native-reanimated/plugin',
-    [
-      'module-resolver',
-      {
-        root: ['.'],
-        extensions: [
-          '.ios.ts',
-          '.android.ts',
-          '.ts',
-          '.ios.tsx',
-          '.android.tsx',
-          '.tsx',
-          '.jsx',
-          '.js',
-          '.json',
-        ],
-        alias: {
-          '~/src': './src',
-          '~/components': './src/components',
-          '~/constants': './src/constants',
-          '~/hooks': './src/hooks',
-          '~/screens': './src/screens',
-          '~/styles': './src/styles',
-          '~/types': './src/types',
-          '~/utils': './src/utils',
-          '~/assets': './src/assets',
-          '~/store': './src/store',
-          '~/graphql': './src/graphql',
-        },
-      },
-    ],
-  ],
+  plugins: ['react-native-reanimated/plugin'],
 };

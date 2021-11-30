@@ -8,12 +8,10 @@ type BadgesProps = {
   press?: () => void;
 };
 
-type T = number;
-
 export default function Badges({data, press}: BadgesProps) {
   return (
     <Scroll h>
-      {data?.map((item: T, index: T) => (
+      {data?.map((item: number, index: number) => (
         <BadgeInner
           key={index}
           index={index}
